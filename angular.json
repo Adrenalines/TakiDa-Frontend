@@ -28,9 +28,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.less",
+              "node_modules/slick-carousel/slick/slick.less",
+              "node_modules/slick-carousel/slick/slick-theme.less"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {

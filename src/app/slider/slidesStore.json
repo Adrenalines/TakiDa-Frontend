@@ -1,0 +1,17 @@
+[
+  {
+    "id": "slide-1",
+    "alt": "Слайд-01",
+    "src": "assets/img/bg-slide_01.jpg"
+  },
+  {
+    "id": "slide-2",
+    "alt": "Слайд-02",
+    "src": "assets/img/bg-slide_02.jpg"
+  },
+  {
+    "id": "slide-3",
+    "alt": "Слайд-03",
+    "src": "assets/img/bg-slide_03.jpg"
+  }
+]
