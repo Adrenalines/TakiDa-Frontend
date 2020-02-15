@@ -1,0 +1,193 @@
+@import '../../../_vars';
+
+/* MENU */
+.menu__container {
+  position: fixed;
+  top: 120px;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  margin: 0 auto;
+  max-width: 1140px;
+}
+
+.menu {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: -25px;
+  z-index: 1001;
+
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  .menu__bg {
+    display: grid;
+    justify-items: center;
+
+    background-color: @menu-rest;
+    transition: background .1s linear;
+
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    &:first-child {
+      border-radius: 10px 0 0 10px;
+    }
+
+    &:last-child {
+      border-radius: 0 10px 10px 0;
+    }
+
+    &:hover {
+      background-color: @menu-hover;
+    }
+
+    &:active {
+      background-color: @menu-active;
+
+      .item-01 {
+        background-image: url('/assets/img/icons_30px/icon_30_rolls-active.svg');
+      }
+
+      .item-02 {
+        background-image: url('/assets/img/icons_30px/icon_30_sets-active.svg');
+      }
+
+      .item-03 {
+        background-image: url('/assets/img/icons_30px/icon_30_nigiri-active.svg');
+      }
+
+      .item-04 {
+        background-image: url('/assets/img/icons_30px/icon_30_hot-rolls-active.svg');
+      }
+
+      .item-05 {
+        background-image: url('/assets/img/icons_30px/icon_30_wok-active.svg');
+      }
+
+      .item-06 {
+        background-image: url('/assets/img/icons_30px/icon_30_drinks-active.svg');
+      }
+
+      .item-07 {
+        background-image: url('/assets/img/icons_30px/icon_30_add-active.svg');
+      }
+    }
+  }
+
+  .menu__item {
+    min-height: 50px;
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    grid-template-rows: 50px;
+    align-items: center;
+    padding: 0 10px;
+
+    position: relative;
+
+    .item-new.active {
+      display: block;
+    }
+
+    .item-new {
+      display: none;
+
+      position: absolute;
+      top: 3px;
+      left: 0;
+
+      background-image: url('/assets/img/icon_20_new.svg');
+      min-height: 20px;
+      min-width: 20px;
+    }
+
+    .item-txt {
+      padding-left: 10px;
+    }
+
+    .item-01 {
+      min-height: 30px;
+      background-image: url('/assets/img/icons_30px/icon_30_rolls.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .item-02 {
+      min-height: 30px;
+      background-image: url('/assets/img/icons_30px/icon_30_sets.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .item-03 {
+      min-height: 30px;
+      background-image: url('/assets/img/icons_30px/icon_30_nigiri.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .item-04 {
+      min-height: 30px;
+      background-image: url('/assets/img/icons_30px/icon_30_hot-rolls.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .item-05 {
+      min-height: 30px;
+      background-image: url('/assets/img/icons_30px/icon_30_wok.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .item-06 {
+      min-height: 30px;
+      background-image: url('/assets/img/icons_30px/icon_30_drinks.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .item-07 {
+      min-height: 30px;
+      background-image: url('/assets/img/icons_30px/icon_30_add.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  }
+}
+
+
+
+@media (max-width: 880px) {
+  .menu {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: -15px;
+    z-index: 1001;
+  }
+
+  .menu__item {
+    .item-txt {
+      display: none;
+    }
+  }
+
+  .menu__bg:hover {
+    .item-txt {
+      display: block;
+    }
+  }
+}
