@@ -6,6 +6,8 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { ItemsComponent } from './items/items.component';
 import { ItemCardComponent } from './item-card/item-card.component';
+import { MainComponent } from './main/main.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,18 +18,15 @@ import { ItemCardComponent } from './item-card/item-card.component';
     MenuComponent,
     FooterComponent,
     ItemsComponent,
-    ItemCardComponent
+    ItemCardComponent,
+    MainComponent
   ],
   exports: [
-    SliderComponent,
-    HeaderComponent,
-    MenuComponent,
-    FooterComponent,
-    ItemsComponent,
-    ItemCardComponent
+    MainComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class MainModule { }

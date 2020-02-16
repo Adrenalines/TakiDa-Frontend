@@ -1,4 +1,10 @@
 @import '../../../_vars';
+a.anchor {
+  display: block;
+  position: relative;
+  top: -120px;
+  visibility: hidden;
+}
 
 /* SECTION */
 .section__title-popular {
@@ -506,5 +512,11 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 880px) {
+  a.anchor {
+    top: -110px;
   }
 }
