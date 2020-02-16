@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Scroll } from '@angular/router';
+import { delay, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-items',
@@ -7,24 +8,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./items.component.less']
 })
 export class ItemsComponent implements OnInit, AfterViewInit {
-  fragment = '';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit() {
-    this.route.fragment.subscribe(fragment => {
-      this.fragment = fragment;
-      setTimeout(() => this.scrollToAnchor(), 50);
+    this.route.fragment.pipe(delay(100)).subscribe(fragment => {
+      this.scrollToAnchor(fragment);
     });
   }
 
-  scrollToAnchor(): void {
+  scrollToAnchor(fragment: string): void {
     try {
-      if (this.fragment) {
-        document.querySelector('#' + this.fragment).scrollIntoView({ behavior: 'smooth' });
+      if (fragment) {
+        document.querySelector('#' + fragment).scrollIntoView({ behavior: 'smooth' });
       }
     } catch (e) { }
   }

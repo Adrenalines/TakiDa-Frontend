@@ -22,7 +22,9 @@ import { RouterModule } from '@angular/router';
     MainComponent
   ],
   exports: [
-    MainComponent
+    HeaderComponent,
+    MenuComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

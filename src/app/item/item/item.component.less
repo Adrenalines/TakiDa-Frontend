@@ -1,12 +1,16 @@
 @import '../../../_vars';
 
 /* ITEM-CONTENT */
+.item-content {
+  margin-top: 160px;
+}
+
 .item-content__main {
   margin-top: 40px;
   margin-bottom: 160px;
 
   display: grid;
-  grid-template-columns: 140px minmax(0, 40px) 1fr 220px;
+  grid-template-columns: 340px minmax(0, 40px) 1fr 220px;
   grid-template-rows: 25px 1fr;
   grid-template-areas:
     "a . b c"
@@ -119,7 +123,7 @@
       background-size: contain;
 
       img {
-        margin: -20px;
+        margin: -60px;
       }
     }
 
@@ -557,13 +561,13 @@
     height: 100%;
     width: 100%;
 
-    background-image: url(assets/img/icon_40_btn-close.svg);
+    background-image: url('/assets/img/icon_40_btn-close.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 
     &:hover {
-      background-image: url(assets/img/icon_40_btn-close-active.svg);
+      background-image: url('/assets/img/icon_40_btn-close-active.svg');
     }
 
     &:active {
@@ -882,6 +886,7 @@
 
 
 
+/* MEDIA QUERY */
 @media (max-width: 1140px) {
   /* ITEM-CONTENT */
   .item-content__main {
@@ -1394,13 +1399,13 @@
       height: 100%;
       width: 100%;
 
-      background-image: url(assets/img/icon_40_btn-close.svg);
+      background-image: url('/assets/img/icon_40_btn-close.svg');
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
 
       &:hover {
-        background-image: url(assets/img/icon_40_btn-close-active.svg);
+        background-image: url('/assets/img/icon_40_btn-close-active.svg');
       }
 
       &:active {
