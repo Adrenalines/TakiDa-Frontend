@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-item',
+  selector: 'app-item-card',
   templateUrl: './item-card.component.html',
   styleUrls: ['./item-card.component.less']
 })
 export class ItemCardComponent implements OnInit {
+  @Input() itemCard: string;
 
-  constructor() { }
+  item: number;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    this.item = +this.itemCard;
+    console.log(this.item);
   }
 
 }

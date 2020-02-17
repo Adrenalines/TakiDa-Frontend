@@ -1,1 +1,30 @@
-<p>item works!</p>
+<div class="item">
+  <div class="item__info">
+    <div class="item__info-a">
+      <div class="picture">
+        <img src="/assets/img/lg/image_lg.png" alt="">
+      </div>
+      <div class="extra">
+        <div [ngClass]="{ 'extra-new': true, 'active': item % 2 === 0 }"></div>
+        <div [ngClass]="{ 'extra-stock': true, 'active': item % 3 === 0 }"></div>
+      </div>
+    </div>
+    <div class="item__info-b">Водоросль с кунжутом</div>
+    <div class="item__info-c">8 шт.</div>
+    <div class="item__info-d">128 г.</div>
+    <div class="item__info-e">
+      <span>Рис, Сыр Филадельфия, Нори, Авокадо, Угорь</span>
+    </div>
+    <div class="item__info-f">
+      <div [ngClass]="{ 'price__stock': true, 'active': item % 6 === 0 }">
+        159 <span>₴</span>
+      </div>
+      <div class="price__current">
+        139 <span>₴</span>
+      </div>
+    </div>
+    <a class="item__info-g" href="#">
+      <span>+ В корзину</span>
+    </a>
+  </div>
+</div>

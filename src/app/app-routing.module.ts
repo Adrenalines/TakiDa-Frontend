@@ -4,6 +4,9 @@ import { MainComponent } from './main/main/main.component';
 import { ItemComponent } from './item/item/item.component';
 import { CabinetComponent } from './account/cabinet/cabinet.component';
 import { OrderComponent } from './order/order/order.component';
+import { DeliveryComponent } from './pages/delivery/delivery.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactsComponent } from './pages/contacts/contacts.component';
 
 
 const routes: Routes = [
@@ -11,6 +14,9 @@ const routes: Routes = [
   { path: 'item/:id', component: ItemComponent },
   { path: 'profile', component: CabinetComponent },
   { path: 'cart', component: OrderComponent },
+  { path: 'delivery', component: DeliveryComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contacts', component: ContactsComponent },
   { path: '**', redirectTo: '/' }
 ];
 

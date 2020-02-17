@@ -1,15 +1,13 @@
-<div class="header-wrapper"></div>
-
 <header class="header">
   <div class="header-grid wrapper">
     <a class="header__logo" routerLink="/">
       <img src="assets/img/logo_taki-da.png" alt="логотип TakiDa">
     </a>
     <div class="header__nav">
-      <a href="#">Главная</a>
-      <a href="#">Доставка и оплата</a>
-      <a href="#">О нас</a>
-      <a href="#">Контакты</a>
+      <a routerLink="/">Главная</a>
+      <a routerLink="delivery">Доставка и оплата</a>
+      <a routerLink="about">О нас</a>
+      <a routerLink="contacts">Контакты</a>
     </div>
     <div class="header__socials">
       <a href="#"><img src="assets/img/icon_15_social_vk.svg" alt="vk"></a>
@@ -24,8 +22,12 @@
         </select>
       </div>
       <div class="acc">
-        <img src="assets/img/icon_account.svg" alt="">
-        <a href="#">Аккаунт</a>
+        <a routerLink="profile">
+          <div class="acc">
+            <img src="assets/img/icon_account.svg" alt="">
+            Аккаунт
+          </div>
+        </a>
       </div>
     </div>
     <div class="header__contacts">
@@ -52,7 +54,7 @@
       </a>
     </div>
     <div class="header__basket">
-      <a class="basket__btn" href="#">
+      <a class="basket__btn" routerLink="cart">
         <img class="btn-a" src="assets/img/icon_25_basket.svg" alt="">
         <span class="btn-b">Корзина</span>
         <span class="btn-c">5 товаров</span>
@@ -76,7 +78,7 @@
     </div>
     <div class="header-mobile__lang">
       <div class="lang">
-        <select name="language" id="language">
+        <select name="language" id="language-mobile">
           <option value="russian">RUS</option>
           <option value="ukrainian">UKR</option>
         </select>

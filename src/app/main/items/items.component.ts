@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Scroll } from '@angular/router';
-import { delay, filter } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-items',
@@ -8,6 +8,8 @@ import { delay, filter } from 'rxjs/operators';
   styleUrls: ['./items.component.less']
 })
 export class ItemsComponent implements OnInit, AfterViewInit {
+  rolls: string[] = ['1', '2', '3', '4', '5', '6', '7', '8'];
+  sets: string[] = ['9', '10', '11', '12', '13', '14', '15', '16'];
 
   constructor(private readonly route: ActivatedRoute) { }
 
