@@ -8,6 +8,7 @@ import { ItemsComponent } from './items/items.component';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { MainComponent } from './main/main.component';
 import { RouterModule } from '@angular/router';
+import { ItemModule } from '../item/item.module';
 
 
 
@@ -28,7 +29,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ItemModule
   ]
 })
 export class MainModule { }

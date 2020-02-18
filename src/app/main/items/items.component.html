@@ -8,9 +8,10 @@
     <div class="section__items">
       <div *ngFor="let item of rolls">
         <a [routerLink]="['item', item]">
-          <app-item-card [itemCard]="item"></app-item-card>
+          <app-item-card [itemCard]="item" (click)="showPopup()"></app-item-card>
         </a>
       </div>
+<!--      <app-item-popup></app-item-popup>-->
     </div>
   </div>
 </div>

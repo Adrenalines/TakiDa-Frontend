@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { delay, filter } from 'rxjs/operators';
+import { delay, filter, tap } from 'rxjs/operators';
 import { Router, Scroll } from '@angular/router';
 
 @Component({
@@ -12,11 +12,18 @@ export class AppComponent {
     this.router.events
       .pipe(
         filter((e: any): e is Scroll => e instanceof Scroll),
-        delay(0)
+        tap(e => {
+          if (!e.anchor && !e.position) {
+            window.scroll(0, 0);
+          }
+        }),
+        delay(10)
       )
       .subscribe(e => {
-        if (!e.anchor) {
-          window.scroll(0, 0);
+        if (e.position) {
+          window.scroll({ top: e.position[1] });
+        } else if (e.anchor) {
+          document.querySelector('#' + e.anchor).scrollIntoView({ behavior: 'smooth' });
         }
       });
   }
