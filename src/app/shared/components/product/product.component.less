@@ -1,29 +1,25 @@
-@import '../../../_vars';
+@import '../../../../_vars';
 
 .item__image {
-  grid-area: d;
-
-  padding-top: 20px;
+  grid-area: b;
 
   position: relative;
+  top: 10px;
+
 
   display: grid;
   justify-items: center;
 
   .picture {
-    background-image: url('/assets/img/circle-bg.svg');
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: contain;
 
     img {
-      margin: -60px;
+      margin: -25px;
     }
   }
 
   .extra {
     position: absolute;
-    top: 0;
+    top: 40px;
     right: 5px;
 
     display: flex;
@@ -66,12 +62,24 @@
 }
 
 .item__info {
-  grid-area: e;
+  grid-area: c;
+  width: 430px;
 
   background-color: #fff;
   border-radius: 10px;
+  border: 2px dashed #e0e0e0;
   padding: 30px;
   position: relative;
+  top: -290px;
+  left: 400px;
+
+  &:before {
+    position: relative;
+    right: 100%;
+    top: 18px;
+    left: -340px;
+    content: url('/assets/img/pop-up_before.svg');
+  }
 
   &:after {
     border: 15px solid transparent;
@@ -82,14 +90,14 @@
     content: '';
   }
 
-  &:hover {
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  }
-
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: minmax(30px, auto) 60px auto 30px 43px;
-  grid-template-areas: "a a a" "b b ." "c c c" ". . ." "d e f";
+  grid-template-areas: "a a a"
+  "b b ."
+  "c c c"
+  ". . ."
+  "d e f";
   grid-column-gap: 10px;
 
   .info-a {
@@ -314,11 +322,6 @@
     justify-items: center;
 
     .picture {
-      background-image: url('/assets/img/circle-bg.svg');
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-
       img {
         margin: 0;
         object-fit: fill;

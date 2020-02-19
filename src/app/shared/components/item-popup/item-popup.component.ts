@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-item-popup',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item-popup.component.less']
 })
 export class ItemPopupComponent implements OnInit {
+  @Input() itemCard: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.itemCard);
   }
 
 }
