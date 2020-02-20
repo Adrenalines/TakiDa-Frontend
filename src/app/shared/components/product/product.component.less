@@ -4,18 +4,10 @@
   grid-area: b;
 
   position: relative;
-  top: 10px;
 
 
   display: grid;
   justify-items: center;
-
-  .picture {
-
-    img {
-      margin: -25px;
-    }
-  }
 
   .extra {
     position: absolute;
@@ -70,7 +62,7 @@
   border: 2px dashed #e0e0e0;
   padding: 30px;
   position: relative;
-  top: -290px;
+  top: -340px;
   left: 400px;
 
   &:before {
@@ -311,19 +303,31 @@
 }
 
 @media (max-width: 1140px) {
+  .picture {
+    margin-left: -120px;
+  }
+
+  .extra {
+    position: relative;
+    margin-top: -30px;
+    margin-right: 90px;
+  }
+
+  .item__info {
+    left: 290px;
+  }
+}
+
+@media (max-width: 930px) {
   .item__image {
     grid-area: d;
-
-    padding-top: 20px;
-
     position: relative;
 
     display: grid;
     justify-items: center;
-
+    margin: -30px 0 0 50px;
     .picture {
       img {
-        margin: 0;
         object-fit: fill;
         width: 240px;
         height: 240px;
@@ -331,10 +335,8 @@
     }
 
     .extra {
-      position: absolute;
-      top: 0;
-      right: 5px;
-
+      margin-top: -10px;
+      margin-right: 35px;
       display: flex;
       flex-direction: column;
 
@@ -379,19 +381,20 @@
 
     background-color: #fff;
     border-radius: 10px;
-    padding: 20px;
-    position: relative;
-
-    min-width: 430px;
+    padding: 10px;
+    top: -20px;
+    left: -40px;
+    margin-bottom: 5px;
+    width: 105%;
 
     &:after {
-      border: 15px solid transparent;
+      border: 6px solid transparent;
       border-bottom-color: #fff;
       position: absolute;
       right: 50%;
-      top: -30px;
+      top: -25px;
       bottom: 100%;
-      content: '';
+      content: url('/assets/img/pop-up_before_up.svg');;
     }
 
     &:hover {
@@ -400,7 +403,7 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: minmax(30px, auto) 60px auto 30px 45px 20px 43px;
+    grid-template-rows: auto 30px 95px 35px 35px 0 43px;
     grid-template-areas: "a a a" "b b b" "c c c" ". . ." "d e e" ". . ." "f f f";
     grid-column-gap: 10px;
 
@@ -408,15 +411,16 @@
       grid-area: a;
 
       color: #000;
-      font-size: 24px;
+      font-size: 18px;
       font-weight: 900;
-      line-height: 30px;
+      line-height: 20px;
     }
 
     .info-b {
       grid-area: b;
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: 45px auto;
+      grid-template-rows: 30px;
       grid-column-gap: 16px;
       align-items: center;
 
@@ -438,19 +442,22 @@
 
     .info-c {
       grid-area: c;
-
-      padding: 20px 0 10px;
       border-top: 1px dotted #ebeadf;
       border-bottom: 1px dotted #ebeadf;
 
       display: grid;
-      grid-template-columns: repeat(auto-fit, 70px);
+      grid-gap: 16px;
+      padding: 2px 5px 8px 5px;
+      grid-template-columns: repeat(auto-fill,minmax(50px,1fr));
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(50px,1fr);
+      overflow-x: auto;
 
       .component {
         margin-top: 5px;
         display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 60px auto;
+        grid-template-columns: 40px;
+        grid-template-rows: 50px auto;
         justify-items: center;
 
         text-align: center;
@@ -469,6 +476,8 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
+      margin-top: -50px;
+      margin-left: 10px;
 
       .price__stock.active {
         display: flex;
@@ -478,7 +487,7 @@
       .price__stock {
         display: none;
         color: #bdbdbd;
-        font-size: 24px;
+        font-size: 16px;
         font-weight: 700;
 
         margin-right: 5px;
@@ -508,7 +517,7 @@
 
       .price__current {
         color: #000;
-        font-size: 36px;
+        font-size: 26px;
         font-weight: 700;
 
         display: flex;
@@ -528,21 +537,21 @@
 
     .info-e {
       grid-area: e;
-
+      margin-top: -50px;
       display: grid;
-      grid-template-columns: 100px 45px 100px;
-      grid-template-rows: 45px;
-      grid-column-gap: 15px;
+      grid-template-columns: 60px 30px 60px;
+      grid-template-rows: 30px;
+      grid-column-gap: 0px;
       justify-content: center;
 
       .minus {
-        background-image: url('/assets/img/icon_100_minus.svg');
+        background-image: url('/assets/img/icons_30px/icon_30_minus.svg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
 
         &:hover {
-          background-image: url('/assets/img/icon_100_minus-active.svg');
+          background-image: url('/assets/img/icons_30px/icon_30_minus-active.svg');
         }
 
         &:active {
@@ -551,13 +560,13 @@
       }
 
       .plus {
-        background-image: url('/assets/img/icon_100_plus.svg');
+        background-image: url('/assets/img/icons_30px/icon_30_plus.svg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
 
         &:hover {
-          background-image: url('/assets/img/icon_100_plus-active.svg');
+          background-image: url('/assets/img/icons_30px/icon_30_plus-active.svg');
         }
 
         &:active {
@@ -567,11 +576,10 @@
 
       .counter {
         text-align: center;
-
         color: #4f4f4f;
         font-size: 18px;
         font-weight: 400;
-        line-height: 45px;
+        line-height: 30px;
 
         width: 100%;
 
@@ -584,12 +592,11 @@
 
     .info-f {
       grid-area: f;
-
+      margin-bottom: 15px;
       align-self: center;
       justify-self: center;
-
       height: 100%;
-      width: 400px;
+      width: 100%;
       background-color: #fff;
       border: 1px solid @menu-active;
       border-radius: 10px;

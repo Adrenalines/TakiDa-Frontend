@@ -22,4 +22,9 @@ export class ItemsComponent implements OnInit {
     event.stopPropagation();
     this.item = item;
   }
+
+  public closePopup() {
+    this.item = '';
+    this.location.replaceState( '/');
+  }
 }

@@ -82,6 +82,11 @@
     }
   }
 
+  .product {
+    margin-top: 20px;
+    margin-left: -350px;
+  }
+
   .socials {
     grid-area: c;
 
@@ -214,10 +219,17 @@
   }
 }
 
-
+@media (max-width: 1140px) {
+  .product {
+    transform: scale(87%);
+  }
+}
 
 /* MEDIA QUERY */
-@media (max-width: 1140px) {
+@media (max-width: 930px) {
+  .product {
+    margin-left: 0;
+  }
   /* ITEM-CONTENT */
   .item-content__main {
     margin: 40px auto;
