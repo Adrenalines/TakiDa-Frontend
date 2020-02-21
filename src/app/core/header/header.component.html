@@ -1,37 +1,36 @@
 <header class="header">
   <div class="header-grid wrapper">
     <a class="header__logo" routerLink="/">
-      <img src="assets/img/logo_taki-da.png" alt="логотип TakiDa">
+      <img src="/assets/img/logo_taki-da.png" alt="логотип TakiDa">
     </a>
     <div class="header__nav">
       <a routerLink="/">Главная</a>
-      <a routerLink="delivery">Доставка и оплата</a>
-      <a routerLink="about">О нас</a>
-      <a routerLink="contacts">Контакты</a>
+      <a routerLink="/delivery">Доставка и оплата</a>
+      <a routerLink="/about">О нас</a>
+      <a routerLink="/contacts">Контакты</a>
     </div>
     <div class="header__socials">
-      <a href="#"><img src="assets/img/icon_15_social_vk.svg" alt="vk"></a>
-      <a href="#"><img src="assets/img/icon_15_social_fb.svg" alt="fb"></a>
-      <a href="#"><img src="assets/img/icon_15_social_inst.svg" alt="inst"></a>
+      <a href="#"><img src="/assets/img/icon_15_social_vk.svg" alt="vk"></a>
+      <a href="#"><img src="/assets/img/icon_15_social_fb.svg" alt="fb"></a>
+      <a href="#"><img src="/assets/img/icon_15_social_inst.svg" alt="inst"></a>
     </div>
     <div class="header__lang-acc">
       <div class="lang">
         <select name="language" id="language">
-          <option value="russian">RUS</option>
-          <option value="ukrainian">UKR</option>
+          <option *ngFor="let language of languages" value="{{ language }}">{{ language }}</option>
         </select>
       </div>
       <div class="acc">
-        <a routerLink="profile">
+        <a routerLink="/profile">
           <div class="acc">
-            <img src="assets/img/icon_account.svg" alt="">
+            <img src="/assets/img/icon_account.svg" alt="">
             Аккаунт
           </div>
         </a>
       </div>
     </div>
     <div class="header__contacts">
-      <img class="contacs-a" src="assets/img/icon_tel.svg" alt="">
+      <img class="contacs-a" src="/assets/img/icon_tel.svg" alt="">
       <div class="contacs-b">
         <select name="tel" id="tel">
           <option value="main">
@@ -42,20 +41,20 @@
           </option>
         </select>
       </div>
-      <img class="contacs-c" src="assets/img/icon_watches.svg" alt="">
+      <img class="contacs-c" src="/assets/img/icon_watches.svg" alt="">
       <span class="contacs-d">Пн-Вс <b>11:00 - 00:00</b></span>
-      <img class="contacs-e" src="assets/img/icon_geolocation.svg" alt="">
+      <img class="contacs-e" src="/assets/img/icon_geolocation.svg" alt="">
       <span class="contacs-f">пр-т <b>Шевченко 8а</b></span>
     </div>
     <div class="header__call-me">
       <a class="call-me__btn" href="#">
-        <img src="assets/img/icon_25_call.svg" alt="">
+        <img src="/assets/img/icon_25_call.svg" alt="">
         <span>Перезвоните мне</span>
       </a>
     </div>
     <div class="header__basket">
       <a class="basket__btn" routerLink="cart">
-        <img class="btn-a" src="assets/img/icon_25_basket.svg" alt="">
+        <img class="btn-a" src="/assets/img/icon_25_basket.svg" alt="">
         <span class="btn-b">Корзина</span>
         <span class="btn-c">5 товаров</span>
       </a>
@@ -66,11 +65,11 @@
 <div class="header-mobile">
   <div class="header-mobile-grid wrapper">
     <a class="header-mobile__logo" routerLink="/">
-      <img src="assets/img/logo_taki-da.png" alt="логотип TakiDa">
+      <img src="/assets/img/logo_taki-da.png" alt="логотип TakiDa">
     </a>
     <div class="header-mobile__contacts">
-      <img class="contacs-a" src="assets/img/icon_tel.svg" alt="">
-      <img class="contacs-b" src="assets/img/arrow-for-select-01.svg" alt="">
+      <img class="contacs-a" src="/assets/img/icon_tel.svg" alt="">
+      <img class="contacs-b" src="/assets/img/arrow-for-select-01.svg" alt="">
       <ul>
         <li><a href="#">+38 (050) 50-65-888</a></li>
         <li><a href="#">+38 (073) 50-65-888</a></li>
@@ -85,12 +84,12 @@
       </div>
     </div>
     <div class="header-mobile__nav">
-      <a href="#"><img src="assets/img/icons_50px/icon_50_menu-active.svg" alt="кнопка меню навигации"></a>
+      <a href="#"><img src="/assets/img/icons_50px/icon_50_menu-active.svg" alt="кнопка меню навигации"></a>
     </div>
     <div class="nav-menu">
       <div class="nav-menu-grid wrapper">
         <a class="nav-menu__btn-back" href="index.html">
-          <img src="assets/img/icons_50px/icon_50_arrow-active.svg" alt="Назад">
+          <img src="/assets/img/icons_50px/icon_50_arrow-active.svg" alt="Назад">
         </a>
         <div class="nav-menu__list">
           <a href="#">Главная</a>
@@ -101,21 +100,21 @@
         </div>
         <div class="nav-menu__call-me">
           <a class="call-me__btn" href="#">
-            <img src="assets/img/icon_25_call.svg" alt="">
+            <img src="/assets/img/icon_25_call.svg" alt="">
             <span>Перезвоните мне</span>
           </a>
         </div>
         <div class="nav-menu__basket">
           <a class="basket__btn" href="#">
-            <img class="btn-a" src="assets/img/icon_25_basket.svg" alt="">
+            <img class="btn-a" src="/assets/img/icon_25_basket.svg" alt="">
             <span class="btn-b">Корзина</span>
             <span class="btn-c">5 товаров</span>
           </a>
         </div>
         <div class="nav-menu__socials">
-          <a href="#"><img src="assets/img/icon_15_social_vk.svg" alt="vk"></a>
-          <a href="#"><img src="assets/img/icon_15_social_fb.svg" alt="fb"></a>
-          <a href="#"><img src="assets/img/icon_15_social_inst.svg" alt="inst"></a>
+          <a href="#"><img src="/assets/img/icon_15_social_vk.svg" alt="vk"></a>
+          <a href="#"><img src="/assets/img/icon_15_social_fb.svg" alt="fb"></a>
+          <a href="#"><img src="/assets/img/icon_15_social_inst.svg" alt="inst"></a>
         </div>
       </div>
     </div>

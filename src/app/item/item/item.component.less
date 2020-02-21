@@ -227,15 +227,16 @@
 
 /* MEDIA QUERY */
 @media (max-width: 930px) {
-  .product {
-    margin-left: 0;
-  }
   /* ITEM-CONTENT */
   .item-content__main {
-    margin: 40px auto;
+    .product {
+      margin-top: -20px;
+      margin-left: -100px;
+      margin-right: -100px;
+    }
 
     display: grid;
-    grid-template-columns: 100px 240px 100px;
+    grid-template-columns: 100px auto 70px;
     grid-template-rows: 25px auto 1fr auto;
     grid-template-areas:
       "a a a"

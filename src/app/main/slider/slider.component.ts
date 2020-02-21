@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as jQuery from 'jquery';
 import 'slick-carousel';
 import * as slidesStore from './slidesStore.json';

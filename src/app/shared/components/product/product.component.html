@@ -49,9 +49,9 @@
     </div>
   </div>
   <div class="info-e">
-    <a class="minus" href="#"></a>
-    <div class="counter">1</div>
-    <a class="plus" href="#"></a>
+    <a class="minus" (click)="changeNumber(-1)"></a>
+    <div class="counter">{{ number }}</div>
+    <a class="plus" (click)="changeNumber(1)"></a>
   </div>
   <a class="info-f" href="#">
     <span>В корзину</span>
