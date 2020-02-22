@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Languages } from '../../shared/types/types';
+import { TELEPHONES } from '../../shared/data/telephones';
+import { LANGUAGES } from '../../shared/data/languages';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +8,17 @@ import { Languages } from '../../shared/types/types';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
-  languages = Object.keys(Languages).filter(k => typeof Languages[k as any] === 'number');
+  public languages = LANGUAGES;
+  public telephones = TELEPHONES;
+  public mobileNav = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  public toggleMobileNav(show: boolean) {
+    this.mobileNav = show;
+  }
 }

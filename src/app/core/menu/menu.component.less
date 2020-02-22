@@ -6,7 +6,7 @@
   top: 120px;
   left: 0;
   right: 0;
-  z-index: 10000;
+  z-index: 1;
   margin: 0 auto;
   max-width: 1140px;
 }
@@ -16,7 +16,6 @@
   left: 15px;
   right: 15px;
   bottom: -25px;
-  z-index: 1001;
 
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -177,12 +176,14 @@
 
 
 @media (max-width: 880px) {
+  .menu__container {
+    z-index: 1;
+  }
   .menu {
     position: absolute;
     left: 15px;
     right: 15px;
     bottom: -15px;
-    z-index: 1001;
   }
 
   .menu__item {

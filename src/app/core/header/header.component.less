@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 1;
   height: 120px;
   background-color: #fcfcfc;
   background-image: url('/assets/img/fish-loop_for-title-01.svg');
@@ -126,15 +126,13 @@
       "a b c d"
       ". . e f";
 
-    .contacs-a {
+    .contacts-a {
       grid-area: a;
-
       align-self: center;
     }
 
-    .contacs-b {
+    .contacts-b {
       grid-area: b;
-
       align-self: center;
 
       position: relative;
@@ -172,25 +170,25 @@
       }
     }
 
-    .contacs-c {
+    .contacts-c {
       grid-area: c;
 
       align-self: center;
     }
 
-    .contacs-d {
+    .contacts-d {
       grid-area: d;
 
       align-self: center;
     }
 
-    .contacs-e {
+    .contacts-e {
       grid-area: e;
 
       align-self: center;
     }
 
-    .contacs-f {
+    .contacts-f {
       grid-area: f;
 
       align-self: center;
@@ -279,7 +277,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1100;
+  z-index: 9999;
 
   margin: 0 auto;
 
@@ -452,7 +450,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
+    z-index: 1;
     height: 110px;
     background-color: #fcfcfc;
     background-image: url('/assets/img/fish-loop_for-title-01.svg');
@@ -472,76 +470,6 @@
 
     .header-mobile__logo {
       grid-area: a;
-    }
-
-    .header-mobile__contacts {
-      grid-area: b;
-
-      background-color: #f9f9f4;
-
-      height: 50px;
-      width: 75px;
-      border-radius: 10px;
-
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-
-      position: relative;
-
-      &:hover {
-        background-color: #ddd;
-
-        ul {
-          visibility: visible;
-        }
-      }
-
-      &:active {}
-
-      .contacs-a {
-        width: 21px;
-        height: auto;
-      }
-
-      .contacs-b {
-        width: 8px;
-        height: auto;
-      }
-
-      ul {
-        position: absolute;
-        bottom: -70px;
-        left: -42px;
-        z-index: 1005;
-
-        visibility: hidden;
-
-        a {
-          text-decoration: none;
-
-          color: #000;
-          font-size: 18px;
-          font-weight: 400;
-        }
-
-        li {
-          list-style-type: none;
-          text-align: center;
-
-          background-color: #f9f9f4;
-          border-radius: 5px;
-
-          width: 188px;
-
-          padding: 2px;
-          margin: 2px;
-
-          &:hover {
-            background-color: #ddd;
-          }
-        }
-      }
     }
 
     .header-mobile__lang {
@@ -611,6 +539,79 @@
       &:active {
         img {
           filter: saturate(150%);
+        }
+      }
+    }
+  }
+
+  .header-mobile__contacts {
+    grid-area: b;
+
+    background-color: #f9f9f4;
+
+    height: 50px;
+    width: 75px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    position: fixed;
+    top: 13px;
+    left: 140px;
+    z-index: 3;
+    font-size: 18px;
+    font-weight: normal;
+
+    &:hover {
+      background-color: #ddd;
+
+      ul {
+        visibility: visible;
+      }
+    }
+
+
+    .contacts-a {
+      width: 21px;
+      height: auto;
+    }
+
+    .contacts-b {
+      width: 8px;
+      height: auto;
+    }
+
+    ul {
+      position: absolute;
+      bottom: -70px;
+      left: -42px;
+
+      visibility: hidden;
+
+      a {
+        text-decoration: none;
+
+        color: #000;
+        font-size: 18px;
+        font-weight: 400;
+      }
+
+      li {
+        list-style-type: none;
+        text-align: center;
+
+        background-color: #f9f9f4;
+        border-radius: 5px;
+
+        width: 188px;
+
+        padding: 2px;
+        margin: 2px;
+
+        &:hover {
+          background-color: #ddd;
         }
       }
     }

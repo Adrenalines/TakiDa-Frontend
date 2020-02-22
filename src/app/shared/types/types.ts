@@ -1,5 +1,3 @@
-export enum Languages {
-  'RUS',
-  'UKR',
-  'ENG'
+export interface Category {
+
 }
