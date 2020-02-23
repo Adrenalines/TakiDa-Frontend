@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { delay, filter, tap } from 'rxjs/operators';
 import { Router, Scroll } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { defaultLocale } from './shared/data/languages';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent {
-  constructor(private readonly router: Router) {
+export class AppComponent implements OnInit {
+  constructor(
+    private readonly router: Router,
+    private translateService: TranslateService
+  ) {
     this.router.events
       .pipe(
         filter((e: any): e is Scroll => e instanceof Scroll),
@@ -27,4 +32,9 @@ export class AppComponent {
         }
       });
   }
+
+  ngOnInit(): void {
+    this.translateService.use(defaultLocale);
+  }
+
 }

@@ -4,10 +4,10 @@
       <img src="/assets/img/logo_taki-da.png" alt="логотип TakiDa">
     </a>
     <div class="header__nav">
-      <a routerLink="/">Главная</a>
-      <a routerLink="/delivery">Доставка и оплата</a>
-      <a routerLink="/about">О нас</a>
-      <a routerLink="/contacts">Контакты</a>
+      <a routerLink="/">{{ 'core.main' | translate }}</a>
+      <a routerLink="/delivery">{{ 'core.delivery' | translate }}</a>
+      <a routerLink="/about">{{ 'core.about' | translate }}</a>
+      <a routerLink="/contacts">{{ 'core.contacts' | translate }}</a>
     </div>
     <div class="header__socials">
       <a href="#"><img src="/assets/img/icon_15_social_vk.svg" alt="vk"></a>
@@ -17,7 +17,13 @@
     <div class="header__lang-acc">
       <div class="lang">
         <select name="language" id="language">
-          <option *ngFor="let language of languages | keyvalue" value="{{ language.key }}">{{ language.value }}</option>
+          <option
+            *ngFor="let language of languages | keyvalue : returnZero"
+            value="{{ language.key }}"
+            (click)="useLanguage(language.key)"
+          >
+            {{ language.value }}
+          </option>
         </select>
       </div>
       <div class="acc">

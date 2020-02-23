@@ -3,3 +3,6 @@ export const LANGUAGES = {
   ua: 'UKR',
   en: 'ENG'
 };
+
+export const locales = Object.keys(LANGUAGES);
+export const defaultLocale = locales[0];
