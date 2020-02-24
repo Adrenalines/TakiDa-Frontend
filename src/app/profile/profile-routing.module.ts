@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CabinetComponent } from './cabinet/cabinet.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
-  { path: '', component: CabinetComponent }
+  { path: '', component: AccountComponent }
 ];
 
 @NgModule({

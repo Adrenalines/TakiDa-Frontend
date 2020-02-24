@@ -3,16 +3,16 @@
     <img src="/assets/img/lg/image_item-content.png" alt="">
   </div>
   <div class="extra">
-    <div class="extra-new active"></div>
-    <div class="extra-stock active"></div>
+    <div class="extra-new active">{{ 'product.new' | translate }}</div>
+    <div class="extra-stock active">{{ 'product.stock' | translate }}</div>
   </div>
 </div>
 
 <div class="item__info">
   <div class="info-a">Роллы Унаги С Креветкой</div>
   <div class="info-b">
-    <div>8 шт.</div>
-    <div>152 г.</div>
+    <div>8 {{ 'product.pieces' | translate }}</div>
+    <div>152 {{ 'product.gram' | translate }}</div>
   </div>
   <div class="info-c">
     <div class="component">
@@ -54,6 +54,6 @@
     <a class="plus" (click)="changeNumber(1)"></a>
   </div>
   <a class="info-f" href="#">
-    <span>В корзину</span>
+    <span>{{ 'product.to_card' | translate }}</span>
   </a>
 </div>

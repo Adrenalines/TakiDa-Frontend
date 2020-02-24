@@ -5,13 +5,13 @@
         <img src="/assets/img/lg/image_lg.png" alt="">
       </div>
       <div class="extra">
-        <div [ngClass]="{ 'extra-new': true, 'active': item % 2 === 0 }"></div>
-        <div [ngClass]="{ 'extra-stock': true, 'active': item % 3 === 0 }"></div>
+        <div [ngClass]="{ 'extra-new': true, 'active': item % 2 === 0 }">{{ 'product.new' | translate }}</div>
+        <div [ngClass]="{ 'extra-stock': true, 'active': item % 3 === 0 }">{{ 'product.stock' | translate }}</div>
       </div>
     </div>
     <div class="item__info-b">Водоросль с кунжутом</div>
-    <div class="item__info-c">8 шт.</div>
-    <div class="item__info-d">128 г.</div>
+    <div class="item__info-c">8 {{ 'product.pieces' | translate }}</div>
+    <div class="item__info-d">128 {{ 'product.gram' | translate }}</div>
     <div class="item__info-e">
       <span>Рис, Сыр Филадельфия, Нори, Авокадо, Угорь</span>
     </div>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <a class="item__info-g" href="#">
-      <span>+ В корзину</span>
+      <span>+ {{ 'product.to_card' | translate }}</span>
     </a>
   </div>
 </div>

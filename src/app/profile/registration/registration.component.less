@@ -1,0 +1,155 @@
+@import '../../../_vars';
+
+.item-registration {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 60px 150px 60px;
+  grid-row-gap: 20px;
+
+  justify-self: center;
+
+  align-items: center;
+
+  .item-title {
+    text-align: center;
+
+    color: #000;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .reg-form {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+
+    grid-column-gap: 60px;
+    grid-row-gap: 14px;
+
+    justify-self: center;
+    align-items: center;
+    justify-items: center;
+
+    padding: 33px 30px;
+
+    background-color: #fff;
+    border-radius: 10px;
+
+    &:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    input {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+
+      height: 33px;
+      width: 208px;
+
+      color: #000;
+      font-family: 'Montserrat',
+      sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+
+      padding: 0 15px;
+    }
+  }
+
+  input.btn-save {
+    justify-self: center;
+
+    height: 100%;
+    width: 400px;
+
+    background-color: @menu-active;
+    border-radius: 10px;
+
+    border: none;
+    outline: none;
+
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+
+@media (max-width: 930px) {
+  .item-registration {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 293px 60px;
+    grid-row-gap: 20px;
+
+    justify-self: center;
+
+    align-items: center;
+
+    .item-title {
+      text-align: center;
+
+      color: #000;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .reg-form {
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: repeat(4, auto);
+
+      grid-column-gap: none;
+      grid-row-gap: 12px;
+
+      align-items: center;
+      justify-items: center;
+
+      padding: 37px 21px;
+
+      background-color: #fff;
+      border-radius: 10px;
+
+      &:hover {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      input {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+
+        height: 43px;
+        width: 360px;
+
+        color: #000;
+        font-family: 'Montserrat',
+        sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+
+        padding: 0 18px;
+      }
+    }
+
+    input.btn-save {
+      justify-self: center;
+
+      height: 100%;
+      width: 440px;
+
+      background-color: @menu-active;
+      border-radius: 10px;
+
+      border: none;
+      outline: none;
+
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+}

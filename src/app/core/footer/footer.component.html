@@ -3,22 +3,28 @@
     <div class="footer__items">
       <div class="item-tel">
         <img class="tel-a" src="assets/img/icon_tel.svg" alt="телефон">
-        <span class="tel-b">+38 (050) <b>50-65-888</b></span>
-        <span class="tel-c">+38 (050) <b>50-65-888</b></span>
-        <span class="tel-d">+38 (073) <b>50-65-888</b></span>
+        <span
+          *ngFor="let telephone of telephones; let i = index"
+          [ngClass]="{ 'tel-b': i === 0, 'tel-c': i === 1, 'tel-d': i === 2 }">
+          {{ telephone | slice:0:9 }}
+          <b>{{ telephone | slice:10 }}</b>
+        </span>
       </div>
       <div class="item-location">
         <img src="assets/img/icon_watches.svg" alt="часы">
-        <span>Пн-Вс <b>11:00 - 00:00</b></span>
+        <span>{{ 'core.week' | translate }} <b>11:00 - 00:00</b></span>
         <img src="assets/img/icon_geolocation.svg" alt="геолокация">
-        <span>пр-т <b>Шевченко 8а</b></span>
+        <span>
+          {{ 'core.prospect' | translate }}
+          <b>{{ 'core.shevchenko' | translate }} 8а</b>
+        </span>
       </div>
       <div class="item-nav">
-        <a routerLink="/">Главная</a>
-        <a routerLink="/profile">Аккаунт</a>
-        <a routerLink="/delivery">Доставка и оплата</a>
-        <a routerLink="/about">О нас</a>
-        <a routerLink="/contacts">Контакты</a>
+        <a routerLink="/">{{ 'core.main' | translate }}</a>
+        <a routerLink="/profile">{{ 'core.account' | translate }}</a>
+        <a routerLink="/delivery">{{ 'core.delivery' | translate }}</a>
+        <a routerLink="/about">{{ 'core.about' | translate }}</a>
+        <a routerLink="/contacts">{{ 'core.contacts' | translate }}</a>
       </div>
       <div class="item-socials">
         <a href="#"><img src="assets/img/icon_25_social_vk.svg" alt="vk"></a>

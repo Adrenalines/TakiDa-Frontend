@@ -1,14 +1,13 @@
 @import '../../../_vars';
 
-/* BASKET */
-.checkout__main {
+/* ACCOUNT */
+.account__main {
   margin-top: -60px;
   margin-bottom: 160px;
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 25px auto auto 1fr;
-  grid-row-gap: 10px;
+  grid-template-rows: 25px auto 1fr;
 
   .breadcrumbs {
     margin: 0;
@@ -43,31 +42,26 @@
       content: "/";
     }
   }
-
-  .checkout__title {
-    color: #000;
-    font-size: 36px;
-    font-weight: 900;
-    line-height: 50px;
-    text-align: center;
-  }
-
-  .active {
-    display: grid;
-  }
 }
 
 
 
-@media (max-width: 1140px) {
-  /* BASKET */
-  .checkout__main {
+@media (max-width: 930px) {
+  /* ACCOUNT */
+  .account {
+    margin-left: -50px;
+    margin-bottom: -200px;
+    transform-origin: center top;
+    transform: scale(0.7);
+  }
+
+  .account__main {
+    margin-top: -20px;
     margin-bottom: 100px;
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 25px auto auto 1fr;
-    grid-row-gap: 10px;
+    grid-template-rows: 25px auto 1fr;
 
     .breadcrumbs {
       margin: 0;
@@ -102,26 +96,5 @@
         content: "/";
       }
     }
-
-    .checkout__title {
-      color: #000;
-      font-size: 36px;
-      font-weight: 900;
-      line-height: 50px;
-      text-align: center;
-    }
-  }
-}
-
-@media (max-width: 930px) {
-  /* BASKET */
-  .checkout__main {
-    margin-top: -20px;
-  }
-
-  .reducer {
-    margin-left: -50px;
-    transform-origin: center top;
-    transform: scale(0.7);
   }
 }

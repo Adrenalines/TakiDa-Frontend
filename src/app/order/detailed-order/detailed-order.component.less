@@ -1,0 +1,574 @@
+@import '../../../_vars';
+
+.form__detailed {
+  margin: 0 auto;
+
+  .registration {
+    display: grid;
+    grid-template-columns: 600px 232px 232px;
+    grid-template-rows: auto auto;
+    grid-template-areas: "a b c" "d d d";
+    grid-column-gap: 20px;
+  }
+
+  .form-bg {
+    grid-area: a;
+
+    display: grid;
+    grid-template-columns: 540px;
+    grid-template-rows: auto auto;
+    grid-row-gap: 25px;
+    padding: 30px 30px 40px;
+
+    background-color: #fff;
+    border-radius: 10px;
+
+    &:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-header {
+      display: flex;
+      align-items: center;
+
+      .form-title {
+        padding-left: 15px;
+      }
+    }
+
+    .form-fields {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .form-field-01 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        height: 135px;
+
+
+        input {
+          background: #fff;
+          border: 1px solid #e0e0e0;
+          border-radius: 5px;
+
+          height: 33px;
+          width: 208px;
+
+          color: #000;
+          font-family: 'Montserrat',
+          sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+
+          padding: 0 15px;
+        }
+      }
+
+      .form-field-02 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        height: 135px;
+
+
+        input {
+          background: #fff;
+          border: 1px solid #e0e0e0;
+          border-radius: 5px;
+
+          height: 33px;
+          width: 208px;
+
+          color: #000;
+          font-family: 'Montserrat',
+          sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+
+          padding: 0 15px;
+        }
+      }
+    }
+  }
+
+  .delivery-bg {
+    grid-area: b;
+
+    display: grid;
+    grid-template-columns: 172px;
+    grid-template-rows: auto auto;
+    grid-row-gap: 25px;
+    padding: 30px 30px 40px;
+
+    background-color: #fff;
+    border-radius: 10px;
+
+    &:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .delivery-header {
+      display: flex;
+      align-items: center;
+
+      .delivery-title {
+        padding-left: 15px;
+      }
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .form-field-01 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        height: 80px;
+
+        .item-radio {
+          display: flex;
+          align-items: center;
+
+          span {
+            color: #000;
+            font-family: 'Montserrat',
+            sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+
+            padding-left: 15px;
+          }
+        }
+      }
+
+      .form-field-02 {
+        display: flex;
+        justify-content: space-between;
+
+        height: 35px;
+
+
+        input {
+          background: #fff;
+          border: 1px solid #e0e0e0;
+          border-radius: 5px;
+
+          height: 33px;
+          width: 75px;
+
+          color: #000;
+          font-family: 'Montserrat',
+          sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .payment-bg {
+    grid-area: c;
+
+    display: grid;
+    grid-template-columns: 172px;
+    grid-template-rows: auto auto;
+    grid-row-gap: 25px;
+    padding: 30px 30px 40px;
+
+    background-color: #fff;
+    border-radius: 10px;
+
+    &:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .payment-header {
+      display: flex;
+      align-items: center;
+
+      .payment-title {
+        padding-left: 15px;
+      }
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .form-field-01 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        height: 80px;
+
+        .item-radio {
+          display: flex;
+          align-items: center;
+
+          span {
+            color: #000;
+            font-family: 'Montserrat',
+            sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+
+            padding-left: 15px;
+          }
+        }
+      }
+
+      .form-field-02 {
+        display: flex;
+        justify-content: center;
+        height: 35px;
+
+        input {
+          background: #fff;
+          border: 1px solid #e0e0e0;
+          border-radius: 5px;
+
+          height: 33px;
+          width: 100%;
+
+          color: #000;
+          font-family: 'Montserrat',
+          sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+
+  input.btn-checkout {
+    grid-area: d;
+    justify-self: center;
+
+    margin-top: 30px;
+    height: 60px;
+    width: 400px;
+
+    background-color: @menu-active;
+    border-radius: 10px;
+
+    border: none;
+    outline: none;
+
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+
+@media (max-width: 1140px) {
+  .form__detailed {
+    margin: 0 auto;
+
+    .registration {
+      justify-self: center;
+
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, auto);
+      grid-template-areas: "a""b""c""d";
+      grid-column-gap: 0;
+      grid-row-gap: 20px;
+    }
+
+    .form-bg {
+      grid-area: a;
+
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      grid-row-gap: 25px;
+      padding: 30px 30px 40px;
+
+      background-color: #fff;
+      border-radius: 10px;
+
+      &:hover {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .form-title {
+          padding-left: 15px;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+
+      .form-fields {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        height: 345px;
+
+        .form-field-01 {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          height: 165px;
+
+          input {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+
+            height: 43px;
+            width: 348px;
+
+            color: #000;
+            font-family: 'Montserrat',
+            sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+
+            padding: 0 15px;
+          }
+        }
+
+        .form-field-02 {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          height: 165px;
+
+          input {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+
+            height: 43px;
+            width: 348px;
+
+            color: #000;
+            font-family: 'Montserrat',
+            sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+
+            padding: 0 15px;
+          }
+        }
+      }
+    }
+
+    .delivery-bg {
+      grid-area: b;
+
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      grid-row-gap: 25px;
+      padding: 30px 30px 40px;
+
+      background-color: #fff;
+      border-radius: 10px;
+
+      &:hover {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .delivery-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .delivery-title {
+          padding-left: 15px;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+
+      .form-fields {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .form-field-01 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-column-gap: 20px;
+          align-items: center;
+
+          height: 80px;
+
+          .item-radio {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+
+            span {
+              color: #000;
+              font-family: 'Montserrat',
+              sans-serif;
+              font-size: 12px;
+              font-weight: 400;
+
+              padding-left: 15px;
+            }
+          }
+        }
+
+        .form-field-02 {
+          display: flex;
+          justify-content: space-between;
+
+          height: 45px;
+
+
+          input {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+
+            height: 43px;
+            width: 178px;
+
+            color: #000;
+            font-family: 'Montserrat',
+            sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .payment-bg {
+      grid-area: c;
+
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      grid-row-gap: 25px;
+      padding: 30px 30px 40px;
+
+      background-color: #fff;
+      border-radius: 10px;
+
+      &:hover {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .payment-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .payment-title {
+          padding-left: 15px;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+
+      .form-fields {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .form-field-01 {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          height: 60px;
+          padding: 20px 0;
+
+          .item-radio {
+            display: flex;
+            align-items: center;
+
+            span {
+              color: #000;
+              font-family: 'Montserrat',
+              sans-serif;
+              font-size: 12px;
+              font-weight: 400;
+
+              padding-left: 15px;
+            }
+          }
+        }
+
+        .form-field-02 {
+          display: flex;
+          justify-content: center;
+          height: 45px;
+
+          input {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+
+            height: 43px;
+            width: 378;
+
+            color: #000;
+            font-family: 'Montserrat',
+            sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+
+            padding-left: 15px;
+          }
+        }
+      }
+    }
+
+    input.btn-checkout {
+      grid-area: d;
+      justify-self: center;
+
+      margin-top: 0;
+      height: 60px;
+      width: 440px;
+
+      background-color: @menu-active;
+      border-radius: 10px;
+
+      border: none;
+      outline: none;
+
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+}
+
+@media (max-width: 930px) {
+  .form__detailed {
+    margin-bottom: -600px;
+  }
+}

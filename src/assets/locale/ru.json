@@ -1,8 +1,72 @@
 {
 	"core": {
 		"about": "О нас",
+		"account": "Аккаунт",
+		"back": "Назад",
+		"basket": "Корзина",
+		"callback": "Перезвоните мне",
 		"contacts": "Контакты",
 		"delivery": "Доставка и оплата",
-		"main": "Главная"
+		"item": "товар",
+		"item_plural_2": "а",
+		"item_plural_many": "ов",
+		"logo": "Логотип",
+		"main": "Главная",
+		"menu": "кнопка меню навигации",
+		"prospect": "пр-т",
+		"shevchenko": "Шевченко",
+		"week": "Пн-Вс"
+	},
+	"item": {
+		"cash": "Наличными",
+		"cashless": "Безналичным",
+		"delivery": "Доставка",
+		"delivery_price": "от 250 грн",
+		"free_delivery": "Бесплатная доставка",
+		"only_bar": "только в суши-баре",
+		"order_by_phone": "Заказ По Телефону",
+		"payment": "Оплата",
+		"share": "Поделиться"
+	},
+	"order": {
+		"by_time": "К определенному времени",
+		"change_with": "Сдача с",
+		"checkout": "Оформление заказа",
+		"checkout_button": "Оформить заказ",
+		"contact": "Контактные данные",
+		"delivery_time": "Время доставки",
+		"detailed": "Подробный заказ",
+		"fac": "Как можно скорее",
+		"fast": "Быстрый заказ",
+		"first_last_name": "Имя Фамилия",
+		"first_name": "Имя",
+		"flat_office": "Квартира / Офис",
+		"house": "Дом",
+		"in_cash": "Наличными курьеру",
+		"intercom": "Домофон",
+		"payment_type": "Тип оплаты",
+		"street": "Улица",
+		"to_pay": "К оплате",
+		"total": "Всего",
+		"type": "Тип заказа",
+		"your_basket": "Ваша корзина"
+	},
+	"product": {
+		"gram": "г.",
+		"new": "Новинка",
+		"pieces": "шт.",
+		"stock": "Акция",
+		"to_card": "В корзину"
+	},
+	"profile": {
+		"account": "Личный кабинет",
+		"confirm_new_password": "Подтвердить новый пароль",
+		"dd_mm_yyyy": "дд.мм.гггг",
+		"my_addresses": "Мои адреса",
+		"my_profile": "Мой профиль",
+		"new_password": "Новый пароль",
+		"orders": "Заказы",
+		"register_info": "Регистрационная информация",
+		"save": "Сохранить"
 	}
 }

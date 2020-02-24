@@ -1,47 +1,12 @@
 <div class="item-content">
   <div class="header-wrapper wrapper">
     <div class="item-content__main">
-      <ul class="breadcrumbs">
-        <li><a routerLink="/">Главная</a></li>
-        <li><a href="#">Роллы</a></li>
-        <li><a href="#">Роллы унаги с креветкой</a></li>
-      </ul>
-
-      <a class="btn-back" routerLink="/">
-        <span>&lt; Назад</span>
-      </a>
-      <div class="socials">
-        <span>Поделиться:</span>
-        <a href="#">
-          <img src="/assets/img/icon_35_social_vk(color).svg" alt="vk">
-        </a>
-        <a href="#">
-          <img src="/assets/img/icon_35_social_fb(color).svg" alt="fb">
-        </a>
-      </div>
-
+      <app-breadcrumbs></app-breadcrumbs>
       <div class="product">
         <app-product></app-product>
       </div>
-
       <div class="delivery">
-        <div class="icon-01"></div>
-        <div class="title-01">Доставка</div>
-        <div class="txt-01">
-          <p>Бесплатная доставка <br>от 250 грн</p>
-        </div>
-        <div class="icon-02"></div>
-        <div class="title-02">Оплата</div>
-        <div class="txt-02">
-          <p>Наличными</p>
-          <p>Безналичным <br>(только в суши-баре)</p>
-        </div>
-        <div class="icon-03"></div>
-        <div class="title-03">Заказ По Телефону</div>
-        <div class="txt-03">
-          <p>+38 (050) 50-65-888</p>
-          <p>+38 (073) 50-65-888</p>
-        </div>
+        <app-delivery-info></app-delivery-info>
       </div>
 
     </div>

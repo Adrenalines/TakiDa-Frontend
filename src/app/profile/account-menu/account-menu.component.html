@@ -1,0 +1,23 @@
+<div class="account__menu">
+  <div class="menu-title">{{ 'profile.account' | translate }}</div>
+  <div class="menu-items">
+    <a
+      [ngClass]="{ 'item': true, 'active': profileInfo === 'registration' }"
+      (click)="toggleProfileInfoType('registration')"
+    >
+      {{ 'profile.my_profile' | translate }}
+    </a>
+    <a
+      [ngClass]="{ 'item': true, 'active': profileInfo === 'address' }"
+      (click)="toggleProfileInfoType('address')"
+    >
+      {{ 'profile.my_addresses' | translate }}
+    </a>
+    <a
+      [ngClass]="{ 'item': true, 'active': profileInfo === 'history' }"
+      (click)="toggleProfileInfoType('history')"
+    >
+      {{ 'profile.orders' | translate }}
+    </a>
+  </div>
+</div>

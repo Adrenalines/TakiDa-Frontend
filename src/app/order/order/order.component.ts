@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order.component.less']
 })
 export class OrderComponent implements OnInit {
+  public orderType: 'fast' | 'detailed' = 'detailed';
 
   constructor() { }
 

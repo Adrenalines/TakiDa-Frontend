@@ -1,7 +1,7 @@
 <header class="header">
   <div class="header-grid wrapper">
     <a class="header__logo" routerLink="/">
-      <img src="/assets/img/logo_taki-da.png" alt="логотип TakiDa">
+      <img src="/assets/img/logo_taki-da.png" alt="{{ 'core.logo' | translate }} TakiDa">
     </a>
     <div class="header__nav">
       <a routerLink="/">{{ 'core.main' | translate }}</a>
@@ -20,7 +20,7 @@
           <option
             *ngFor="let language of languages | keyvalue : returnZero"
             value="{{ language.key }}"
-            (click)="useLanguage(language.key)"
+            (click)="useLanguage(language.key.toString())"
           >
             {{ language.value }}
           </option>
@@ -29,8 +29,8 @@
       <div class="acc">
         <a routerLink="/profile">
           <div class="acc">
-            <img src="/assets/img/icon_account.svg" alt="">
-            Аккаунт
+            <img src="/assets/img/icon_account.svg" alt="{{ 'core.account' | translate }}">
+            {{ 'core.account' | translate }}
           </div>
         </a>
       </div>
@@ -40,26 +40,30 @@
       <div class="contacts-b">
         <select name="tel" id="tel">
           <option *ngFor="let telephone of telephones" value="{{ telephone }}">
-            {{ telephone}}
+            {{ telephone }}
           </option>
         </select>
       </div>
       <img class="contacts-c" src="/assets/img/icon_watches.svg" alt="">
-      <span class="contacts-d">Пн-Вс <b>11:00 - 00:00</b></span>
+      <span class="contacts-d">{{ 'core.week' | translate }} <b>11:00 - 00:00</b></span>
       <img class="contacts-e" src="/assets/img/icon_geolocation.svg" alt="">
-      <span class="contacts-f">пр-т <b>Шевченко 8а</b></span>
+      <span class="contacts-f">
+        {{ 'core.prospect' | translate }}
+        <b>{{ 'core.shevchenko' | translate }} 8а</b>
+      </span>
     </div>
     <div class="header__call-me">
       <a class="call-me__btn" href="#">
-        <img src="/assets/img/icon_25_call.svg" alt="">
-        <span>Перезвоните мне</span>
+        <img src="/assets/img/icon_25_call.svg" alt="{{ 'core.callback' }}">
+        <span>{{ 'core.callback' | translate }}</span>
       </a>
     </div>
     <div class="header__basket">
       <a class="basket__btn" routerLink="/cart">
-        <img class="btn-a" src="/assets/img/icon_25_basket.svg" alt="">
-        <span class="btn-b">Корзина</span>
-        <span class="btn-c">5 товаров</span>
+        <img class="btn-a" src="/assets/img/icon_25_basket.svg" alt="{{ 'core.basket' | translate }}">
+        <span class="btn-b">{{ 'core.basket' | translate }}</span>
+        <span class="btn-c">5 {{ 'core.item' | translate }}{{ 'core.item_plural_2' | translate }}{{ 'core.item_plural_many' | translate }}
+        </span>
       </a>
     </div>
   </div>
@@ -68,23 +72,29 @@
 <div class="header-mobile">
   <div class="header-mobile-grid wrapper">
     <a class="header-mobile__logo" routerLink="/">
-      <img src="/assets/img/logo_taki-da.png" alt="логотип TakiDa">
+      <img src="/assets/img/logo_taki-da.png" alt="{{ 'core.logo' | translate }} TakiDa">
     </a>
     <div class="header-mobile__lang">
       <div class="lang">
         <select name="language" id="language-mobile">
-          <option *ngFor="let language of languages | keyvalue" value="{{ language.key }}">{{ language.value }}</option>
+          <option
+            *ngFor="let language of languages | keyvalue : returnZero"
+            value="{{ language.key }}"
+            (click)="useLanguage(language.key.toString())"
+          >
+            {{ language.value }}
+          </option>
         </select>
       </div>
     </div>
     <div class="header-mobile__nav" (click)="toggleMobileNav(true)">
-      <img src="/assets/img/icons_50px/icon_50_menu-active.svg" alt="кнопка меню навигации">
+      <img src="/assets/img/icons_50px/icon_50_menu-active.svg" alt="{{ 'core.menu' | translate }}">
     </div>
   </div>
 </div>
 <div class="header-mobile__contacts">
-  <img class="contacts-a" src="/assets/img/icon_tel.svg" alt="">
-  <img class="contacts-b" src="/assets/img/arrow-for-select-01.svg" alt="">
+  <img class="contacts-a" src="/assets/img/icon_tel.svg" alt="telephone">
+  <img class="contacts-b" src="/assets/img/arrow-for-select-01.svg" alt="arrow">
   <ul>
     <li *ngFor="let telephone of telephones">{{ telephone }}</li>
   </ul>
@@ -93,26 +103,29 @@
 <div id="nav-menu" [ngClass]="{ 'nav-menu': true, 'active': mobileNav }" class="nav-menu">
   <div class="nav-menu-grid wrapper">
     <a class="nav-menu__btn-back" (click)="toggleMobileNav(false)">
-      <img src="/assets/img/icons_50px/icon_50_arrow-active.svg" alt="Назад">
+      <img src="/assets/img/icons_50px/icon_50_arrow-active.svg" alt="{{ 'core.back' | translate }}">
     </a>
     <div class="nav-menu__list">
-      <a routerLink="/" (click)="toggleMobileNav(false)">Главная</a>
-      <a routerLink="/profile" (click)="toggleMobileNav(false)">Аккаунт</a>
-      <a routerLink="/delivery" (click)="toggleMobileNav(false)">Доставка И Оплата</a>
-      <a routerLink="/about" (click)="toggleMobileNav(false)">О Нас</a>
-      <a routerLink="/contacts" (click)="toggleMobileNav(false)">Контакты</a>
+      <a routerLink="/" (click)="toggleMobileNav(false)">{{ 'core.main' | translate }}</a>
+      <a routerLink="/profile" (click)="toggleMobileNav(false)">{{ 'core.account' | translate }}</a>
+      <a routerLink="/delivery" (click)="toggleMobileNav(false)">{{ 'core.delivery' | translate }}</a>
+      <a routerLink="/about" (click)="toggleMobileNav(false)">{{ 'core.about' | translate }}</a>
+      <a routerLink="/contacts" (click)="toggleMobileNav(false)">{{ 'core.contacts' | translate }}</a>
     </div>
     <div class="nav-menu__call-me">
       <a class="call-me__btn" href="#">
-        <img src="/assets/img/icon_25_call.svg" alt="">
-        <span>Перезвоните мне</span>
+        <img src="/assets/img/icon_25_call.svg" alt="{{ 'core.callback' | translate }}">
+        <span>{{ 'core.callback' | translate }}</span>
       </a>
     </div>
     <div class="nav-menu__basket">
       <a class="basket__btn" routerLink="/cart" (click)="toggleMobileNav(false)">
         <img class="btn-a" src="/assets/img/icon_25_basket.svg" alt="">
-        <span class="btn-b">Корзина</span>
-        <span class="btn-c">5 товаров</span>
+        <span class="btn-b">{{ 'core.basket' | translate }}</span>
+        <span class="btn-c">5 {{ 'core.item' | translate }}
+          {{ 'core.item_plural_2' | translate }}
+          {{ 'core.item_plural_many' | translate }}
+        </span>
       </a>
     </div>
     <div class="nav-menu__socials">

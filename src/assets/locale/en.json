@@ -1,8 +1,72 @@
 {
 	"core": {
 		"about": "About",
+		"account": "Account",
+		"back": "Back",
+		"basket": "Basket",
+		"callback": "Please call me back",
 		"contacts": "Contacts",
 		"delivery": "Delivery and payment",
-		"main": "Main"
+		"item": "item",
+		"item_plural_2": "s",
+		"item_plural_many": "s",
+		"logo": "Logo",
+		"main": "Main",
+		"menu": "navigation menu button",
+		"prospect": "ave",
+		"shevchenko": "Shevchenko",
+		"week": "Mon-Sun"
+	},
+	"item": {
+		"cash": "In cash",
+		"cashless": "Cashless",
+		"delivery": "Delivery",
+		"delivery_price": "from 250 uah",
+		"free_delivery": "Free delivery",
+		"only_bar": "only at sushi bar",
+		"order_by_phone": "Order By Phone",
+		"payment": "Payment",
+		"share": "Share"
+	},
+	"order": {
+		"by_time": "At specific time",
+		"change_with": "Change with",
+		"checkout": "Checkout",
+		"checkout_button": "Checkout",
+		"contact": "Contact details",
+		"delivery_time": "Delivery time",
+		"detailed": "Detailed order",
+		"fac": "As soon as possible",
+		"fast": "Fast order",
+		"first_last_name": "First Name Last Name",
+		"first_name": "First Name",
+		"flat_office": "Flat / Office",
+		"house": "House",
+		"in_cash": "In cash to courier",
+		"intercom": "Intercom",
+		"payment_type": "Payment type",
+		"street": "Street",
+		"to_pay": "To pay",
+		"total": "Total",
+		"type": "Order type",
+		"your_basket": "Your basket"
+	},
+	"product": {
+		"gram": "g.",
+		"new": "New",
+		"pieces": "pcs.",
+		"stock": "Stock",
+		"to_card": "Add to cart"
+	},
+	"profile": {
+		"account": "Account",
+		"confirm_new_password": "Confirm new password",
+		"dd_mm_yyyy": "dd.mm.yyyy",
+		"my_addresses": "My addresses",
+		"my_profile": "My profile",
+		"new_password": "New password",
+		"orders": "Orders",
+		"register_info": "Registration information",
+		"save": "Save"
 	}
 }

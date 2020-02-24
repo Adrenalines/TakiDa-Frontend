@@ -1,1 +1,21 @@
-<p>breadcrumbs works!</p>
+<div class="breadcrumbs-back-socials">
+  <ul class="breadcrumbs">
+    <li><a routerLink="/">{{ 'core.main' | translate }}</a></li>
+    <li><a href="#">Роллы</a></li>
+    <li><a href="#">Роллы унаги с креветкой</a></li>
+  </ul>
+
+  <a class="btn-back" routerLink="/">
+    <span>&lt; {{ 'core.back' | translate }}</span>
+  </a>
+  <div class="socials">
+    <span>{{ 'item.share' | translate }}:</span>
+    <a href="#">
+      <img src="/assets/img/icon_35_social_vk(color).svg" alt="vk">
+    </a>
+    <a href="#">
+      <img src="/assets/img/icon_35_social_fb(color).svg" alt="fb">
+    </a>
+  </div>
+</div>
+
