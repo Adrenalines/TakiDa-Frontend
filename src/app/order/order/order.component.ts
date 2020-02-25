@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderType } from '../../shared/types/types';
 
 @Component({
   selector: 'app-order',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order.component.less']
 })
 export class OrderComponent implements OnInit {
-  public orderType: 'fast' | 'detailed' = 'detailed';
+  public orderType: OrderType = 'detailed';
 
   constructor() { }
 

@@ -1,7 +1,17 @@
 @import '_vars';
 
+* {
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+   box-sizing: border-box;
+}
+
 html {
-  min-height: 100%;
+  height: 100%;
+  position: relative;
 }
 
 body {
@@ -20,7 +30,7 @@ body {
 
 .wrapper {
   margin: 0 auto;
-  max-width: 1110px;
+  max-width: 1140px;
   padding: 0 15px;
 }
 
@@ -30,6 +40,11 @@ body {
 
 .main {
   margin: 0 auto;
+  min-height: 100vh;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 60px;
 }
 
 a {
@@ -40,4 +55,12 @@ a:link, a:visited {
   text-decoration: none;
   color: blue;
   cursor: pointer;
+}
+
+
+
+@media (max-width: 1140px) {
+  .main {
+    padding-bottom: 0;
+  }
 }

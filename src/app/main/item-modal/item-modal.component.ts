@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-item-popup',
-  templateUrl: './item-popup.component.html',
-  styleUrls: ['./item-popup.component.less']
+  selector: 'app-item-modal',
+  templateUrl: './item-modal.component.html',
+  styleUrls: ['./item-modal.component.less']
 })
-export class ItemPopupComponent implements OnInit {
+export class ItemModalComponent implements OnInit {
   @Input() itemCard: string;
-  @Output() closedPopup = new EventEmitter();
+  @Output() closedPopup: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 

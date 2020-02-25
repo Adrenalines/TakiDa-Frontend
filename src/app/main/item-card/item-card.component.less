@@ -33,6 +33,9 @@
       grid-area: a;
 
       position: relative;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 47px;
 
       .picture {
         background-image: url('/assets/img/circle-bg.svg');
@@ -53,6 +56,8 @@
 
         display: flex;
         flex-direction: column;
+        font-size: 9px;
+        color: #fff;
 
         .extra-new.active {
           display: block;
@@ -60,8 +65,8 @@
 
         .extra-new {
           display: none;
-
-          background-image: url('/assets/img/icons_50px/icon_50_new.svg');
+          background: #94CD1B;
+          border-radius: 50%;
           min-height: 50px;
           min-width: 50px;
 
@@ -74,8 +79,8 @@
 
         .extra-stock {
           display: none;
-
-          background-image: url('/assets/img/icons_50px/icon_50_stock-active.svg');
+          background: #FF7A00;
+          border-radius: 50%;
           min-height: 50px;
           min-width: 50px;
 
@@ -282,7 +287,6 @@
           .extra-new {
             display: none;
 
-            background-image: url('/assets/img/icons_50px/icon_50_new.svg');
             min-height: 50px;
             min-width: 50px;
 
@@ -296,7 +300,6 @@
           .extra-stock {
             display: none;
 
-            background-image: url('/assets/img/icons_50px/icon_50_stock-active.svg');
             min-height: 50px;
             min-width: 50px;
 

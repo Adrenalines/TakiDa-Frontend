@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileInfoType } from '../../shared/types/types';
 
 @Component({
   selector: 'app-account',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account.component.less']
 })
 export class AccountComponent implements OnInit {
-  public profileInfo: 'registration' | 'address' | 'history' = 'registration';
+  public profileInfo: ProfileInfoType = 'registration';
 
   constructor() { }
 

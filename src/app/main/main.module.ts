@@ -8,7 +8,7 @@ import { SliderComponent } from './slider/slider.component';
 import { ItemsComponent } from './items/items.component';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { MainComponent } from './main/main.component';
-import { ItemPopupComponent } from './item-popup/item-popup.component';
+import { ItemModalComponent } from './item-modal/item-modal.component';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import { ItemPopupComponent } from './item-popup/item-popup.component';
     SliderComponent,
     ItemsComponent,
     ItemCardComponent,
-    ItemPopupComponent,
+    ItemModalComponent,
     MainComponent
   ],
   imports: [

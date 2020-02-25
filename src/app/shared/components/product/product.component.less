@@ -1,17 +1,32 @@
 @import '../../../../_vars';
 
 .item__image {
-  grid-area: b;
-
   display: grid;
-  justify-items: center;
+  justify-items: left;
+  margin-top: 20px;
+  margin-left: -20px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 75px;
+
+  .picture {
+    background-image: url('/assets/img/circle-bg.svg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+
+    img {
+      margin: -20px;
+    }
+  }
 
   .extra {
-    margin-top: -360px;
-    margin-right: -265px;
-
     display: flex;
     flex-direction: column;
+    margin-top: -370px;
+    margin-left: 280px;
+    font-size: 12px;
+    color: #fff;
 
     .extra-new.active {
       display: block;
@@ -20,7 +35,8 @@
     .extra-new {
       display: none;
 
-      background-image: url('/assets/img/icons_50px/icon_50_new.svg');
+      background: #94CD1B;
+      border-radius: 50%;
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
@@ -52,21 +68,21 @@
 
 .item__info {
   grid-area: c;
-  width: 430px;
+  width: 500px;
 
   background-color: #fff;
   border-radius: 10px;
   border: 2px dashed #e0e0e0;
   padding: 30px;
   position: relative;
-  top: -340px;
-  left: 400px;
+  margin-top: -370px;
+  margin-left: 380px;
 
   &:before {
     position: relative;
     right: 100%;
-    top: 18px;
-    left: -340px;
+    margin-top: 18px;
+    margin-left: -208px;
     content: url('/assets/img/pop-up_before.svg');
   }
 
@@ -300,17 +316,21 @@
 }
 
 @media (max-width: 1140px) {
-  .picture {
-    margin-left: -120px;
-  }
+  .item__image {
+    margin-left: -60px;
 
-  .extra {
-    margin-top: -30px;
-    margin-left: -170px;
+    .extra {
+      margin-left: 230px;
+    }
   }
 
   .item__info {
-    left: 300px;
+    margin-left: 275px;
+    width: 450px;
+
+    &:before {
+      margin-left: -160px;
+    }
   }
 }
 
@@ -321,7 +341,10 @@
 
     display: grid;
     justify-items: center;
-    margin: -30px 0 0 50px;
+    margin: 0 auto 0 -50px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 47px;
     .picture {
       img {
         object-fit: fill;
@@ -331,23 +354,18 @@
     }
 
     .extra {
-      margin-top: -220px;
-      margin-right: -220px;
-
+      margin-top: -230px;
+      margin-left: 130px;
+      font-size: 9px;
       .extra-new.active {
         display: block;
       }
 
       .extra-new {
         display: none;
-
-        background-image: url('/assets/img/icons_50px/icon_50_new.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        min-height: 50px;
         min-width: 50px;
-
+        min-height: 50px;
+        border-radius: 50%;
         margin-bottom: 10px;
       }
 
@@ -357,14 +375,8 @@
 
       .extra-stock {
         display: none;
-
-        background-image: url('/assets/img/icons_50px/icon_50_stock-active.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        min-height: 50px;
         min-width: 50px;
-
+        min-height: 50px;
         margin-bottom: 10px;
       }
     }
@@ -376,8 +388,8 @@
     background-color: #fff;
     border-radius: 10px;
     padding: 10px;
-    top: -20px;
-    left: -40px;
+    margin-top: -20px;
+    margin-left: -40px;
     margin-bottom: 5px;
     width: 105%;
 
