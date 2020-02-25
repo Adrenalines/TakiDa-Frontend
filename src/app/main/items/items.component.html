@@ -1,24 +1,26 @@
 <app-item-modal *ngIf="item" [itemCard]="item" (closedPopup)="closePopup()"></app-item-modal>
-
-<a class="anchor" id="rolls"></a>
-<div class="section">
-  <div class="section__title-rolls">
-    <img class="title-icon" src="/assets/img/icons_50px/icon_50_rolls-active.svg" alt="">
-    <div class="title-txt">Роллы</div>
-  </div>
-  <div class="wrapper">
-    <div class="section__items">
-      <div *ngFor="let item of rolls">
-        <a
-          (click)="showPopup($event, item)"
-          href="item/{{ item }}"
-        >
-          <app-item-card [itemCard]="item"></app-item-card>
-        </a>
+<div *ngFor="let category of categories | async">
+  <a class="anchor" id="{{ category.id }}"></a>
+  <div class="section">
+    <div class="section__title-rolls">
+      <img class="title-icon" src="/assets/img/icons_50px/icon_50_rolls-active.svg" alt="">
+      <div class="title-txt">{{ category.name }}</div>
+    </div>
+    <div class="wrapper">
+      <div class="section__items">
+        <div *ngFor="let item of rolls">
+          <a
+            (click)="showPopup($event, item)"
+            href="item/{{ item }}"
+          >
+            <app-item-card [itemCard]="item"></app-item-card>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <a class="anchor" id="sets"></a>
 <div class="section">

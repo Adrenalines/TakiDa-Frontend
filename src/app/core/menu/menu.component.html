@@ -1,11 +1,14 @@
-<div class="menu__container">
+<div class="menu__container wrapper">
   <div class="menu">
-    <a class="menu__bg" routerLink="/" fragment="rolls">
-      <div class="menu__item">
-        <div class="item-01"></div>
-        <div class="item-txt">Роллы</div>
-      </div>
-    </a>
+    <div *ngFor="let category of categories | async">
+      <a class="menu__bg" routerLink="/" fragment="rolls">
+        <div class="menu__item">
+          <div class="item-01"></div>
+          <div class="item-txt">Роллы</div>
+        </div>
+      </a>
+    </div>
+
     <a class="menu__bg" routerLink="/" fragment="sets">
       <div class="menu__item">
         <div class="item-02"></div>

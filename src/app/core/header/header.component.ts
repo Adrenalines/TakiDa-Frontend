@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { TELEPHONES } from '../../shared/data/telephones';
-import { LANGUAGES } from '../../shared/data/languages';
+import { defaultLocale, LANGUAGES } from '../../shared/data/languages';
 
 
 @Component({
@@ -11,6 +11,7 @@ import { LANGUAGES } from '../../shared/data/languages';
 })
 export class HeaderComponent implements OnInit {
   public languages = LANGUAGES;
+  public defaultLocale = defaultLocale;
   public telephones = TELEPHONES;
   public mobileNav = false;
 

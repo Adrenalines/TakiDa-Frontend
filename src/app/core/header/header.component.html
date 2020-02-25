@@ -16,7 +16,7 @@
     </div>
     <div class="header__lang-acc">
       <div class="lang">
-        <select name="language" id="language">
+        <select name="language" id="language" [(ngModel)]="defaultLocale">
           <option
             *ngFor="let language of languages | keyvalue : returnZero"
             value="{{ language.key }}"
@@ -76,7 +76,7 @@
     </a>
     <div class="header-mobile__lang">
       <div class="lang">
-        <select name="language" id="language-mobile">
+        <select name="language" id="language-mobile" [(ngModel)]="defaultLocale">
           <option
             *ngFor="let language of languages | keyvalue : returnZero"
             value="{{ language.key }}"
