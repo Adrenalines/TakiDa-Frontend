@@ -2,13 +2,12 @@
   <div class="header-wrapper wrapper">
     <div class="item-content__main">
       <app-breadcrumbs></app-breadcrumbs>
-      <div class="product">
-        <app-product></app-product>
+      <div *ngIf="item" class="product">
+        <app-product [item]="item"></app-product>
       </div>
       <div class="delivery">
         <app-delivery-info></app-delivery-info>
       </div>
-
     </div>
   </div>
 </div>

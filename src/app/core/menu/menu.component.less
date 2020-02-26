@@ -13,13 +13,15 @@
 .menu {
   position: absolute;
   bottom: -25px;
-
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
 
   .menu__bg {
     display: grid;
     justify-items: center;
+    flex: 1;
 
     background-color: @menu-rest;
     transition: background .1s linear;
@@ -178,8 +180,6 @@
   }
   .menu {
     position: absolute;
-    left: 15px;
-    right: 15px;
     bottom: -15px;
   }
 
@@ -198,9 +198,15 @@
 
 @media (max-width: 600px) {
   .menu {
-    left: 0;
-    right: 0;
     bottom: -25px;
+    justify-content: space-between;
+    transform-origin: center;
     transform: scale(0.85);
+  }
+}
+
+@media (max-width: 400px) {
+  .menu {
+    transform-origin: left;
   }
 }

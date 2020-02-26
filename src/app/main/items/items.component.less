@@ -51,7 +51,6 @@ a.anchor {
   /* SECTION */
   .section__items {
     margin-bottom: 98px;
-    margin-left: -20px;
     display: grid;
     grid-template-columns: auto;
     grid-row-gap: 10px;
@@ -60,8 +59,14 @@ a.anchor {
   }
 }
 
-@media (max-width: 880px) {
+@media (max-width: 930px) {
   a.anchor {
     top: -110px;
+  }
+}
+
+@media (max-width: 350px) {
+  .section__items {
+    margin-left: -25px;
   }
 }

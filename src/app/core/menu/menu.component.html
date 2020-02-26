@@ -1,50 +1,15 @@
 <div class="menu__container wrapper">
   <div class="menu">
-    <div *ngFor="let category of categories | async">
-      <a class="menu__bg" routerLink="/" fragment="rolls">
+      <a
+        *ngFor="let category of categories | async"
+        class="menu__bg"
+        routerLink="/"
+        fragment="{{ category.name.split(' ').join('_') }}"
+      >
         <div class="menu__item">
           <div class="item-01"></div>
-          <div class="item-txt">Роллы</div>
+          <div class="item-txt">{{ category.name }}</div>
         </div>
       </a>
-    </div>
-
-    <a class="menu__bg" routerLink="/" fragment="sets">
-      <div class="menu__item">
-        <div class="item-02"></div>
-        <div class="item-txt">Сеты</div>
-      </div>
-    </a>
-    <a class="menu__bg" href="#">
-      <div class="menu__item">
-        <div class="item-03"></div>
-        <div class="item-txt">Нигири</div>
-      </div>
-    </a>
-    <a class="menu__bg" href="#">
-      <div class="menu__item">
-        <div class="item-04"></div>
-        <div class="item-txt">Горячие Роллы</div>
-      </div>
-    </a>
-    <a class="menu__bg" href="#">
-      <div class="menu__item">
-        <div class="item-new active"></div>
-        <div class="item-05"></div>
-        <div class="item-txt">Вок</div>
-      </div>
-    </a>
-    <a class="menu__bg" href="#">
-      <div class="menu__item">
-        <div class="item-06"></div>
-        <div class="item-txt">Напитки</div>
-      </div>
-    </a>
-    <a class="menu__bg" href="#">
-      <div class="menu__item">
-        <div class="item-07"></div>
-        <div class="item-txt">Дополнительно</div>
-      </div>
-    </a>
   </div>
 </div>

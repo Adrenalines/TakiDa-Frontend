@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Item } from '../../shared/types/types';
 
 @Component({
   selector: 'app-item-card',
@@ -6,14 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./item-card.component.less']
 })
 export class ItemCardComponent implements OnInit {
-  @Input() itemCard: string;
-  public item: number;
+  @Input() item: Item;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.item = +this.itemCard;
   }
 
 }

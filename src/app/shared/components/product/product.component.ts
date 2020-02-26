@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Item } from '../../types/types';
 
 @Component({
   selector: 'app-product',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product.component.less']
 })
 export class ProductComponent implements OnInit {
-  number = 1;
+  @Input() item: Item;
+  public number = 1;
 
   constructor() { }
 

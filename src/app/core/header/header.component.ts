@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   public telephones = TELEPHONES;
   public mobileNav = false;
 
-  constructor(private translateService: TranslateService) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -26,7 +26,11 @@ export class HeaderComponent implements OnInit {
   }
 
   public useLanguage(language: string) {
-    this.translateService.use(language);
+    localStorage.setItem('language', language);
+    if (window.location.hash) {
+      window.location.hash = '';
+    }
+    window.location.reload();
   }
 
   public returnZero() {
