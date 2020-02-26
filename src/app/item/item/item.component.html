@@ -1,10 +1,10 @@
 <div class="item-content">
   <div class="header-wrapper wrapper">
-    <div class="item-content__main">
-      <app-breadcrumbs></app-breadcrumbs>
-      <div *ngIf="item" class="product">
-        <app-product [item]="item"></app-product>
-      </div>
+    <div *ngIf="item" class="item-content__main">
+        <app-breadcrumbs [categoryName]="categoryName" [itemName]="item.name"></app-breadcrumbs>
+        <div class="product">
+          <app-product [item]="item"></app-product>
+        </div>
       <div class="delivery">
         <app-delivery-info></app-delivery-info>
       </div>

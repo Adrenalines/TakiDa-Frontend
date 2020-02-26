@@ -1,8 +1,8 @@
 <div class="breadcrumbs-back-socials">
   <ul class="breadcrumbs">
     <li><a routerLink="/">{{ 'core.main' | translate }}</a></li>
-    <li><a href="#">Роллы</a></li>
-    <li><a href="#">Роллы унаги с креветкой</a></li>
+    <li><a href="/#{{ categoryName.split(' ').join('_') }}">{{ categoryName }}</a></li>
+    <li><a routerLink="./">{{ itemName }}</a></li>
   </ul>
 
   <a class="btn-back" routerLink="/">

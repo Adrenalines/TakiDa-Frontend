@@ -10,6 +10,7 @@ import { defaultLocale } from './shared/data/languages';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
+  private delay = 1000;
   constructor(
     private readonly router: Router,
     private translateService: TranslateService
@@ -25,11 +26,14 @@ export class AppComponent implements OnInit {
         delay(10)
       )
       .subscribe(e => {
-        if (e.position) {
-          window.scroll({ top: e.position[1] });
-        } else if (e.anchor) {
-          document.querySelector('#' + e.anchor).scrollIntoView({ behavior: 'smooth' });
-        }
+        setTimeout(() => {
+          if (e.position) {
+            window.scroll({ top: e.position[1] });
+          } else if (e.anchor) {
+            document.querySelector('#' + e.anchor).scrollIntoView({ behavior: 'smooth' });
+          }
+          this.delay = 200;
+        }, this.delay);
       });
   }
 

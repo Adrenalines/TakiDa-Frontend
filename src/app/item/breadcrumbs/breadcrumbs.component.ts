@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./breadcrumbs.component.less']
 })
 export class BreadcrumbsComponent implements OnInit {
+  @Input() categoryName: string;
+  @Input() itemName: string;
 
   constructor() { }
 

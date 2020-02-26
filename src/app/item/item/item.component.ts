@@ -12,7 +12,7 @@ import { CategoryService } from '../../main/services/category.service';
 })
 export class ItemComponent implements OnInit, OnDestroy {
   public item: Item;
-  public categories: Category[];
+  public categoryName = '';
 
   private categoriesSub: SubscriptionLike;
   private itemsSubs: SubscriptionLike[] = [];
@@ -32,6 +32,7 @@ export class ItemComponent implements OnInit, OnDestroy {
           items.forEach(item => {
             if (item.name.split(' ').join('_') === name) {
               this.item = item;
+              this.categoryName = category.name;
             }
           });
         })));
