@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { first, map, share } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, first, map, share } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Category, CategoryResponse, Item, ItemsResponse } from '../types/types';
 
@@ -14,10 +14,11 @@ export class ApiService {
   }
 
   public getCategories(): Observable<Category[]> {
-    return this.http.get<CategoryResponse>(`${ environment.url }/categories`)
-      .pipe(map((response: CategoryResponse) => {
+    return this.http.get<CategoryResponse>(`${ environment.url }/categories`).pipe(
+      map((response: CategoryResponse) => {
         return response.data;
       }),
+      catchError(this.handleError),
       share());
   }
 
@@ -26,5 +27,10 @@ export class ApiService {
       .pipe(first(), map((response: ItemsResponse) => {
         return response.data;
       }));
+  }
+
+  private handleError(error: Response) {
+    console.log('Http request error: ', error);
+    return throwError('HTTP Error');
   }
 }

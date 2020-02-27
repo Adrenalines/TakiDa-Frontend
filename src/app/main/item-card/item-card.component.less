@@ -207,17 +207,24 @@
       font-weight: 700;
 
       display: grid;
-      transition: color .1s linear;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
 
       &:hover {
         color: #fff;
         background-color: @menu-active;
       }
 
+      &_animate {
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+      }
+
       span {
         align-self: center;
       }
     }
+
   }
 }
 
@@ -227,17 +234,17 @@
 
     .item__info {
       display: grid;
-      grid-template-columns: 175px auto 1fr;
+      grid-template-columns: 155px auto 1fr;
 
 
-      grid-template-rows: auto 43px 63px 43px;
+      grid-template-rows: auto 53px 63px 43px;
 
       grid-template-areas: "a b b"
       "a e e"
       "a c d"
       "f g g";
 
-      grid-column-gap: 16px;
+      grid-column-gap: 12px;
 
       align-items: center;
       justify-items: center;
@@ -252,6 +259,8 @@
           background-image: url('/assets/img/circle-bg.svg');
           background-repeat: no-repeat;
           background-position: top center;
+          background-size: contain;
+
 
           img {
             height: 100%;
@@ -294,7 +303,7 @@
         text-align: left;
 
         color: #000;
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 700;
       }
 

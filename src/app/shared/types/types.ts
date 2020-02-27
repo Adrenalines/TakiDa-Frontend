@@ -27,7 +27,7 @@ export interface Item {
   name: string;
   pieces: number;
   weight: number;
-  oldPrice: number;
+  oldPrice?: number;
   price: number;
   components: Component[];
 }

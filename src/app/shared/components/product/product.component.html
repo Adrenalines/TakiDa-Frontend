@@ -17,7 +17,7 @@
     <div>{{ item.pieces }} {{ 'product.pieces' | translate }}</div>
     <div>{{ item.weight }} {{ 'product.gram' | translate }}</div>
   </div>
-  <div class="info-c">
+  <div *ngIf="item.components.length" class="info-c">
     <div
       *ngFor="let component of item.components"
       class="component"
@@ -38,11 +38,11 @@
     </div>
   </div>
   <div class="info-e">
-    <a class="minus" (click)="changeNumber(-1)"></a>
+    <div class="minus" (click)="changeNumber(-1)"></div>
     <div class="counter">{{ number }}</div>
-    <a class="plus" (click)="changeNumber(1)"></a>
+    <div class="plus" (click)="changeNumber(1)"></div>
   </div>
-  <a class="info-f" href="#">
+  <div class="info-f" (click)="replenishBasket($event, item)" #toCartButtonElement>
     <span>{{ 'product.to_card' | translate }}</span>
-  </a>
+  </div>
 </div>

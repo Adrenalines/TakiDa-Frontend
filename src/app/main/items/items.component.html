@@ -1,4 +1,20 @@
 <app-item-modal *ngIf="item" [item]="item" (closedPopup)="closePopup()"></app-item-modal>
+<div *ngIf="loadingError | async">Error of loading items...</div>
+<div *ngIf="!(categories | async | getItems)">
+  <div class="section">
+    <div class="section__title-rolls">
+      <img class="title-icon" src="/assets/img/icons_50px/icon_50_rolls-active.svg" alt="">
+      <div class="title-txt">...</div>
+    </div>
+    <div class="wrapper">
+      <div class="section__items">
+        <app-item-card [item]="itemPlaceholder"></app-item-card>
+        <app-item-card [item]="itemPlaceholder"></app-item-card>
+        <app-item-card [item]="itemPlaceholder"></app-item-card>
+      </div>
+    </div>
+  </div>
+</div>
 <div *ngFor="let category of categories | async | getItems">
   <a class="anchor" id="{{ category.name.split(' ').join('_') }}"></a>
   <div class="section">
@@ -11,7 +27,7 @@
         <div *ngFor="let item of category.items | async">
           <a
             (click)="showPopup($event, item)"
-            href="item/{{ item.name }}"
+            href="item/{{ item.name.split(' ').join('_') }}"
           >
             <app-item-card [item]="item"></app-item-card>
           </a>

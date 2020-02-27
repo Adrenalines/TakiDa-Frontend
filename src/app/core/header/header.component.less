@@ -8,7 +8,7 @@
   left: 0;
   right: 0;
   margin: 0 auto;
-  z-index: 1;
+  z-index: 2;
   height: 120px;
   background-color: #fcfcfc;
   background-image: url('/assets/img/fish-loop_for-title-01.svg');
@@ -217,6 +217,8 @@
 
   .header__basket {
     grid-area: g;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 
     .basket__btn {
       display: grid;
@@ -234,6 +236,11 @@
       padding: 5px 10px;
       border-radius: 10px;
 
+      .basket__empty {
+        margin-left: 25px;
+        justify-self: center;
+      }
+
       .btn-a {
         grid-area: a;
       }
@@ -249,10 +256,15 @@
         color: #878572;
         font-size: 10px;
         font-weight: 400;
-
+        white-space: nowrap;
         justify-self: flex-end;
       }
     }
+  }
+
+  .header__basket_animate {
+    -webkit-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
   }
 }
 
@@ -455,7 +467,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
     height: 110px;
     background-color: #fcfcfc;
     background-image: url('/assets/img/fish-loop_for-title-01.svg');

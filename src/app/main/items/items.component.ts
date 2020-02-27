@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Category, Item } from '../../shared/types/types';
-import { ApiService } from '../../shared/services/api.service';
 import { CategoryService } from '../services/category.service';
 
 
@@ -14,16 +14,31 @@ import { CategoryService } from '../services/category.service';
 export class ItemsComponent implements OnInit {
   public categories: Observable<Category[]>;
   public item: Item;
+  public itemPlaceholder: Item;
+  public loadingError = new Subject<boolean>();
 
   constructor(
     private location: Location,
-    private apiService: ApiService,
     private categoryService: CategoryService
   ) {
-    this.categories = this.categoryService.categories;
+    this.itemPlaceholder = {
+      id: '1',
+      name: '...',
+      price: 0,
+      weight: 0,
+      pieces: 1,
+      components: []
+    };
   }
 
   ngOnInit(): void {
+    this.categories = this.categoryService.categories.pipe(
+      catchError((error) => {
+        console.error('Error loading categories and items', error);
+        this.loadingError.next(true);
+        return of(error);
+      })
+    );
   }
 
   public showPopup(event: MouseEvent, item: Item) {

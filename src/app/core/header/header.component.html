@@ -16,11 +16,10 @@
     </div>
     <div class="header__lang-acc">
       <div class="lang">
-        <select name="language" id="language" [(ngModel)]="defaultLocale">
+        <select name="language" id="language" (ngModelChange)="useLanguage($event)" [(ngModel)]="defaultLocale">
           <option
             *ngFor="let language of languages | keyvalue : returnZero"
             value="{{ language.key }}"
-            (click)="useLanguage(language.key.toString())"
           >
             {{ language.value }}
           </option>
@@ -58,11 +57,15 @@
         <span>{{ 'core.callback' | translate }}</span>
       </a>
     </div>
-    <div class="header__basket">
+    <div class="header__basket" #basketElement>
       <a class="basket__btn" routerLink="/cart">
         <img class="btn-a" src="/assets/img/icon_25_basket.svg" alt="{{ 'core.basket' | translate }}">
-        <span class="btn-b">{{ 'core.basket' | translate }}</span>
-        <span class="btn-c">5 {{ 'core.item' | translate }}{{ 'core.item_plural_2' | translate }}{{ 'core.item_plural_many' | translate }}
+        <span class="basket__empty" *ngIf="!itemsCount">{{ 'core.basket' | translate }}</span>
+        <span *ngIf="itemsCount" class="btn-b">{{ 'core.basket' | translate }}</span>
+        <span *ngIf="itemsCount" class="btn-c">
+          <span>{{ itemsCount }} {{ 'core.item' | translate }}</span>
+          <span *ngIf="itemsCountPlural === 2">{{ 'core.item_plural_2' | translate }}</span>
+          <span *ngIf="itemsCountPlural === 3">{{ 'core.item_plural_many' | translate }}</span>
         </span>
       </a>
     </div>
@@ -76,11 +79,10 @@
     </a>
     <div class="header-mobile__lang">
       <div class="lang">
-        <select name="language" id="language-mobile" [(ngModel)]="defaultLocale">
+        <select name="language" id="language-mobile" (ngModelChange)="useLanguage($event)" [(ngModel)]="defaultLocale">
           <option
             *ngFor="let language of languages | keyvalue : returnZero"
             value="{{ language.key }}"
-            (click)="useLanguage(language.key.toString())"
           >
             {{ language.value }}
           </option>
@@ -121,10 +123,12 @@
     <div class="nav-menu__basket">
       <a class="basket__btn" routerLink="/cart" (click)="toggleMobileNav(false)">
         <img class="btn-a" src="/assets/img/icon_25_basket.svg" alt="">
-        <span class="btn-b">{{ 'core.basket' | translate }}</span>
-        <span class="btn-c">5 {{ 'core.item' | translate }}
-          {{ 'core.item_plural_2' | translate }}
-          {{ 'core.item_plural_many' | translate }}
+        <span class="basket__empty" *ngIf="!itemsCount">{{ 'core.basket' | translate }}</span>
+        <span *ngIf="itemsCount" class="btn-b">{{ 'core.basket' | translate }}</span>
+        <span *ngIf="itemsCount" class="btn-c">
+          <span>{{ itemsCount }} {{ 'core.item' | translate }}</span>
+          <span *ngIf="itemsCountPlural === 2">{{ 'core.item_plural_2' | translate }}</span>
+          <span *ngIf="itemsCountPlural === 3">{{ 'core.item_plural_many' | translate }}</span>
         </span>
       </a>
     </div>

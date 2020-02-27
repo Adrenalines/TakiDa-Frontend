@@ -11,14 +11,15 @@ export class GetItemsPipe implements PipeTransform {
   }
 
   transform(categories: Category[]): Category[] {
-    if (!categories) {
+    if (!categories || !Array.isArray(categories)) {
       return;
+    } else {
+      categories.forEach(category => {
+        const items: Observable<Item[]> = this.apiService.getItems(category.id);
+        category.items = items;
+      });
+      return categories;
     }
-    categories.forEach(category => {
-      const items: Observable<Item[]> = this.apiService.getItems(category.id);
-      category.items = items;
-    });
-    return categories;
   }
 
 }

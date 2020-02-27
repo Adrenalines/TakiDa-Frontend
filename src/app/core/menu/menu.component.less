@@ -6,7 +6,7 @@
   top: 120px;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   margin: 0 auto;
 }
 
@@ -176,7 +176,7 @@
 
 @media (max-width: 880px) {
   .menu__container {
-    z-index: 1;
+    z-index: 2;
   }
   .menu {
     position: absolute;
@@ -205,8 +205,10 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 380px) {
   .menu {
     transform-origin: left;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 }

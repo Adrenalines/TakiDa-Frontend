@@ -1,4 +1,25 @@
-<div class="item">
+<div *ngIf="!item" class="item">
+  <div class="item__info">
+    <div class="item__info-a">
+      <div class="picture">
+        <img src="/assets/img/lg/image_lg.png" alt="">
+      </div>
+    </div>
+    <div class="item__info-b">{{ itemPlaceholder.name }}</div>
+    <div class="item__info-c">{{ itemPlaceholder.pieces }} {{ 'product.pieces' | translate }}</div>
+    <div class="item__info-d">{{ itemPlaceholder.weight }} {{ 'product.gram' | translate }}</div>
+    <div class="item__info-f">
+      <div class="price__current">
+        {{ itemPlaceholder.price }} <span>₴</span>
+      </div>
+    </div>
+    <a class="item__info-g">
+      <span>+ {{ 'product.to_card' | translate }}</span>
+    </a>
+  </div>
+</div>
+
+<div *ngIf="item" class="item">
   <div class="item__info">
     <div class="item__info-a">
       <div class="picture">
@@ -15,7 +36,7 @@
     <div class="item__info-b">{{ item.name }}</div>
     <div class="item__info-c">{{ item.pieces }} {{ 'product.pieces' | translate }}</div>
     <div class="item__info-d">{{ item.weight }} {{ 'product.gram' | translate }}</div>
-    <div class="item__info-e">
+    <div *ngIf="item.components.length" class="item__info-e">
       <span>
         <span *ngFor="let component of item.components | slice:0:8">
           {{ component.name }}<span *ngIf="component.name !== item.components[item.components.slice(0, 8).length - 1].name">,</span>
@@ -31,8 +52,8 @@
         {{ item.price }} <span>₴</span>
       </div>
     </div>
-    <a class="item__info-g" href="#">
+    <div class="item__info-g" (click)="replenishBasket($event, item)" #toCartButtonElement>
       <span>+ {{ 'product.to_card' | translate }}</span>
-    </a>
+    </div>
   </div>
 </div>

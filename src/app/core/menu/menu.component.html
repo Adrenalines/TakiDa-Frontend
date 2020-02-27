@@ -1,4 +1,5 @@
 <div class="menu__container wrapper">
+  <div *ngIf="loadingError | async">Error of loading categories...</div>
   <div class="menu">
       <a
         *ngFor="let category of categories | async"
