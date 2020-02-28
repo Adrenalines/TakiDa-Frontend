@@ -236,13 +236,13 @@
       padding: 5px 10px;
       border-radius: 10px;
 
+      .btn-a {
+        grid-area: a;
+      }
+
       .basket__empty {
         margin-left: 25px;
         justify-self: center;
-      }
-
-      .btn-a {
-        grid-area: a;
       }
 
       .btn-b {
@@ -267,6 +267,8 @@
     transform: scale(1.1, 1.1);
   }
 }
+
+
 
 .header-mobile {
   display: none;
@@ -426,6 +428,18 @@
           text-align: center;
         }
 
+        .basket__empty {
+          margin-left: 25px;
+          color: #000;
+          font-size: 18px;
+          font-weight: 700;
+
+          width: 100%;
+          justify-self: center;
+
+          text-align: center;
+        }
+
         .btn-c {
           grid-area: c;
 
@@ -443,7 +457,7 @@
       justify-self: center;
 
       display: grid;
-      grid-template-columns: repeat(3, 35px);
+      grid-template-columns: repeat(2, 35px);
       grid-template-rows: 35px;
       grid-column-gap: 60px;
 

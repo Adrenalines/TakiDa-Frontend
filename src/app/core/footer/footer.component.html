@@ -22,14 +22,13 @@
       <div class="item-nav">
         <a routerLink="/">{{ 'core.main' | translate }}</a>
         <a routerLink="/profile">{{ 'core.account' | translate }}</a>
-        <a routerLink="/delivery">{{ 'core.delivery' | translate }}</a>
-        <a routerLink="/about">{{ 'core.about' | translate }}</a>
-        <a routerLink="/contacts">{{ 'core.contacts' | translate }}</a>
+        <a routerLink="/pages/delivery">{{ 'core.delivery' | translate }}</a>
+        <a routerLink="/pages/about">{{ 'core.about' | translate }}</a>
+        <a routerLink="/pages/contacts">{{ 'core.contacts' | translate }}</a>
       </div>
       <div class="item-socials">
-        <a href="#"><img src="assets/img/icon_25_social_vk.svg" alt="vk"></a>
-        <a href="#"><img src="assets/img/icon_25_social_fb.svg" alt="fb"></a>
-        <a href="#"><img src="assets/img/icon_25_social_inst.svg" alt="inst"></a>
+        <a href="{{ socials.fb }}" target="_blank"><img src="assets/img/icon_25_social_fb.svg" alt="fb"></a>
+        <a href="{{ socials.inst }}" target="_blank"><img src="assets/img/icon_25_social_inst.svg" alt="inst"></a>
       </div>
     </div>
   </div>

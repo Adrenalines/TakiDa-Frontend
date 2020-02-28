@@ -8,9 +8,9 @@ const routes: Routes = [
   { path: 'item', loadChildren: () => import('../item/item.module').then(m => m.ItemModule) },
   { path: 'profile', loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule) },
   { path: 'cart', loadChildren: () => import('../order/order.module').then(m => m.OrderModule) },
-  { path: 'delivery', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) },
-  { path: 'about', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) },
-  { path: 'contacts', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) },
+  { path: 'pages', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) },
+  { path: 'pages', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) },
+  { path: 'pages', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) },
   { path: '**', redirectTo: '/' }
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TELEPHONES } from '../../shared/data/telephones';
+import { SOCIALS } from '../../shared/data/socials';
 
 @Component({
   selector: 'app-footer',
@@ -8,6 +9,7 @@ import { TELEPHONES } from '../../shared/data/telephones';
 })
 export class FooterComponent implements OnInit {
   public telephones = TELEPHONES;
+  public socials = SOCIALS;
 
   constructor() { }
 

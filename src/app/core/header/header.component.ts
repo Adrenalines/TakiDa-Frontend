@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { animate, style } from '@angular/animations';
 import { TELEPHONES } from '../../shared/data/telephones';
 import { defaultLocale, LANGUAGES } from '../../shared/data/languages';
+import { SOCIALS } from '../../shared/data/socials';
 import { BasketService } from '../../shared/services/basket.service';
+
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
   public mobileNav = false;
   public itemsCount = 0;
   public itemsCountPlural = 1;
+  public socials = SOCIALS;
 
   constructor(private basketService: BasketService) {
   }
