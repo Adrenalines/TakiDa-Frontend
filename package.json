@@ -27,6 +27,7 @@
     "jquery": "^3.4.1",
     "rxjs": "~6.5.4",
     "slick-carousel": "^1.8.1",
+    "smoothscroll-polyfill": "^0.4.4",
     "tslib": "^1.10.0",
     "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"

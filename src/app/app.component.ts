@@ -4,6 +4,8 @@ import { Router, Scroll } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { defaultLocale } from './shared/data/languages';
 
+import smoothscroll from 'smoothscroll-polyfill';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,6 +17,7 @@ export class AppComponent implements OnInit {
     private readonly router: Router,
     private translateService: TranslateService
   ) {
+    smoothscroll.polyfill();
     this.router.events
       .pipe(
         filter((e: any): e is Scroll => e instanceof Scroll),
