@@ -5,6 +5,10 @@
 		"back": "Back",
 		"basket": "Basket",
 		"callback": "Please call me back",
+		"callback_error": "Error submitting",
+		"callback_pending": "Submitting process...",
+		"callback_success": "Submitted successfully",
+		"callback_where": "Where to call you back",
 		"contacts": "Contacts",
 		"delivery": "Delivery and payment",
 		"item": "item",
@@ -14,8 +18,11 @@
 		"main": "Main",
 		"menu": "navigation menu button",
 		"prospect": "ave",
+		"send": "Submit",
 		"shevchenko": "Shevchenko",
-		"week": "Mon-Sun"
+		"submit": "Submit",
+		"week": "Mon-Sun",
+		"your_name": "Your name"
 	},
 	"item": {
 		"cash": "In cash",
@@ -36,7 +43,7 @@
 		"contact": "Contact details",
 		"delivery_time": "Delivery time",
 		"detailed": "Detailed order",
-		"fac": "As soon as possible",
+		"fac": "As quickly as possible",
 		"fast": "Fast order",
 		"first_last_name": "First Name Last Name",
 		"first_name": "First Name",

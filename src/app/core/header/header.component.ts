@@ -1,17 +1,22 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TELEPHONES } from '../../shared/data/telephones';
 import { defaultLocale, LANGUAGES } from '../../shared/data/languages';
 import { SOCIALS } from '../../shared/data/socials';
 import { BasketService } from '../../shared/services/basket.service';
+import { ApiService } from '../../shared/services/api.service';
 
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.less']
+  styleUrls: [ './header.component.less' ]
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('basketElement') basketElement: ElementRef;
+  @ViewChild('callDialogElement') callDialogElement: ElementRef;
+  @ViewChild('callDialogButtonElement') callDialogButtonElement: ElementRef;
+  @ViewChild('callDialogButtonMobileElement') callDialogButtonMobileElement: ElementRef;
   public languages = LANGUAGES;
   public defaultLocale = defaultLocale;
   public telephones = TELEPHONES;
@@ -19,8 +24,18 @@ export class HeaderComponent implements OnInit {
   public itemsCount = 0;
   public itemsCountPlural = 1;
   public socials = SOCIALS;
+  public callDialogShow = false;
+  public callDialogResponseText = '';
 
-  constructor(private basketService: BasketService) {
+  public callDialogForm = new FormGroup({
+    clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
+    phone: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
+  });
+
+  constructor(
+    private apiService: ApiService,
+    private basketService: BasketService
+  ) {
   }
 
   ngOnInit(): void {
@@ -46,7 +61,9 @@ export class HeaderComponent implements OnInit {
       case 1: {
         return 1;
       }
-      case 2: case 3: case 4: {
+      case 2:
+      case 3:
+      case 4: {
         return 2;
       }
       default: {
@@ -70,4 +87,39 @@ export class HeaderComponent implements OnInit {
   public returnZero() {
     return 0;
   }
+
+  public toggleCallback() {
+    this.callDialogShow = !this.callDialogShow;
+  }
+
+  @HostListener('document:click', [ '$event' ])
+  @HostListener('document:touchstart', [ '$event' ])
+  private handleOutsideClick(event) {
+    if (this.callDialogElement &&
+      !this.callDialogElement.nativeElement.contains(event.target) &&
+      !(this.callDialogButtonElement.nativeElement.contains(event.target) ||
+        this.callDialogButtonMobileElement.nativeElement.contains(event.target))) {
+      this.toggleCallback();
+    }
+  }
+
+  public submitCallback() {
+    this.callDialogResponseText = 'pending';
+    this.apiService.callBack(this.callDialogForm.value).subscribe((response: boolean) => {
+        this.callDialogResponseText = response ? 'success' : 'error';
+      },
+      error => {
+        this.callDialogResponseText = 'error';
+        console.log('Submit callback error: ', error);
+      }
+    ).add(() => {
+      this.callDialogForm.reset();
+      setTimeout(() => {
+        this.callDialogShow = false;
+        this.callDialogResponseText = '';
+      }, 2000);
+    });
+
+  }
+
 }

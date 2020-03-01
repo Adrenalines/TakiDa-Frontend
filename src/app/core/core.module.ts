@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { CoreRoutingModule } from './core-routing.module';
 import { HeaderComponent } from './header/header.component';
@@ -19,7 +19,8 @@ import { MenuComponent } from './menu/menu.component';
     CommonModule,
     TranslateModule,
     CoreRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CoreRoutingModule,

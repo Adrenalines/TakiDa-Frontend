@@ -43,3 +43,13 @@ export interface Component {
   id: string;
   name: string;
 }
+
+export interface CallbackRequest {
+  clientName: string;
+  phone: string;
+}
+
+export interface CallbackResponse {
+  status: number;
+  success: boolean;
+}

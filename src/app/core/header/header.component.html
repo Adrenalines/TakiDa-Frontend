@@ -50,8 +50,8 @@
         <b>{{ 'core.shevchenko' | translate }} 8а</b>
       </span>
     </div>
-    <div class="header__call-me">
-      <a class="call-me__btn" href="#">
+    <div class="header__call-me" #callDialogButtonElement>
+      <a class="call-me__btn" (click)="toggleCallback()">
         <img src="/assets/img/icon_25_call.svg" alt="{{ 'core.callback' }}">
         <span>{{ 'core.callback' | translate }}</span>
       </a>
@@ -70,6 +70,46 @@
     </div>
   </div>
 </header>
+
+<div *ngIf="callDialogShow" class="wrapper call-me__popup" #callDialogElement>
+  <div class="triangle"></div>
+  <div *ngIf="callDialogResponseText" class="call-me__popup-text">
+    <div *ngIf="callDialogResponseText === 'pending'" >{{ 'core.callback_pending' | translate }}</div>
+    <div *ngIf="callDialogResponseText === 'success'" >{{ 'core.callback_success' | translate }}</div>
+    <div *ngIf="callDialogResponseText === 'error'" >{{ 'core.callback_error' | translate }}</div>
+  </div>
+  <div *ngIf="!callDialogResponseText">
+    <div class="call-me__popup-text">{{ 'core.callback_where' | translate }}</div>
+    <form [formGroup]="callDialogForm" (ngSubmit)="submitCallback()">
+      <div class="form-fields">
+        <input
+          type="text"
+          name="login"
+          placeholder="{{ 'core.your_name' | translate }}"
+          formControlName="clientName"
+          required
+          minlength="2"
+        >
+        <input
+          type="tel"
+          name="telephone"
+          placeholder="+380"
+          pattern="[0-9]+"
+          formControlName="phone"
+          required
+          minlength="6"
+        >
+      </div>
+      <input
+        class="btn-checkout"
+        type="submit"
+        value="{{ 'core.submit' | translate }}"
+        [disabled]="!callDialogForm.valid || !callDialogForm.touched"
+      >
+    </form>
+  </div>
+
+</div>
 
 <div class="header-mobile">
   <div class="header-mobile-grid wrapper">
@@ -113,8 +153,8 @@
       <a routerLink="/pages/about" (click)="toggleMobileNav(false)">{{ 'core.about' | translate }}</a>
       <a routerLink="/pages/contacts" (click)="toggleMobileNav(false)">{{ 'core.contacts' | translate }}</a>
     </div>
-    <div class="nav-menu__call-me">
-      <a class="call-me__btn" href="#">
+    <div class="nav-menu__call-me" #callDialogButtonMobileElement>
+      <a class="call-me__btn" (click)="toggleCallback()">
         <img src="/assets/img/icon_25_call.svg" alt="{{ 'core.callback' | translate }}">
         <span>{{ 'core.callback' | translate }}</span>
       </a>
