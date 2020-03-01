@@ -3,8 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TELEPHONES } from '../../shared/data/telephones';
 import { defaultLocale, LANGUAGES } from '../../shared/data/languages';
 import { SOCIALS } from '../../shared/data/socials';
-import { BasketService } from '../../shared/services/basket.service';
-import { ApiService } from '../../shared/services/api.service';
+import { BasketService } from '../services/basket.service';
+import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,6 +19,9 @@ export class HeaderComponent implements OnInit {
   @ViewChild('callDialogElement') callDialogElement: ElementRef;
   @ViewChild('callDialogButtonElement') callDialogButtonElement: ElementRef;
   @ViewChild('callDialogButtonMobileElement') callDialogButtonMobileElement: ElementRef;
+  @ViewChild('accountDialogElement') accountDialogElement: ElementRef;
+  @ViewChild('accountDialogButtonElement') accountDialogButtonElement: ElementRef;
+  @ViewChild('accountDialogButtonMobileElement') accountDialogButtonMobileElement: ElementRef;
   public languages = LANGUAGES;
   public defaultLocale = defaultLocale;
   public telephones = TELEPHONES;
@@ -26,14 +31,22 @@ export class HeaderComponent implements OnInit {
   public socials = SOCIALS;
   public callDialogShow = false;
   public callDialogResponseText = '';
+  public accountDialogShow = false;
+  public accountDialogResponseText = '';
 
   public callDialogForm = new FormGroup({
     clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
     phone: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
   });
+  public accountDialogForm = new FormGroup({
+    phone: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
+    password: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
+  });
 
   constructor(
+    private router: Router,
     private apiService: ApiService,
+    private authService: AuthService,
     private basketService: BasketService
   ) {
   }
@@ -72,10 +85,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  public toggleMobileNav(show: boolean) {
-    this.mobileNav = show;
-  }
-
   public useLanguage(language: string) {
     localStorage.setItem('language', language);
     if (window.location.hash) {
@@ -88,8 +97,20 @@ export class HeaderComponent implements OnInit {
     return 0;
   }
 
+  public toggleMobileNav(show: boolean) {
+    this.mobileNav = show;
+  }
+
   public toggleCallback() {
     this.callDialogShow = !this.callDialogShow;
+  }
+
+  public toggleAccount(event?: Event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.accountDialogShow = !this.accountDialogShow;
   }
 
   @HostListener('document:click', [ '$event' ])
@@ -100,6 +121,12 @@ export class HeaderComponent implements OnInit {
       !(this.callDialogButtonElement.nativeElement.contains(event.target) ||
         this.callDialogButtonMobileElement.nativeElement.contains(event.target))) {
       this.toggleCallback();
+    }
+    if (this.accountDialogElement &&
+      !this.accountDialogElement.nativeElement.contains(event.target) &&
+      !(this.accountDialogButtonElement.nativeElement.contains(event.target) ||
+        this.accountDialogButtonMobileElement.nativeElement.contains(event.target))) {
+      this.toggleAccount();
     }
   }
 
@@ -119,7 +146,25 @@ export class HeaderComponent implements OnInit {
         this.callDialogResponseText = '';
       }, 2000);
     });
-
   }
 
+  public submitAccount() {
+    this.authService.setAccountData(this.accountDialogForm.value);
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate([ '/profile' ]).then(
+        () => {
+          this.accountDialogForm.reset();
+          this.accountDialogShow = false;
+          this.toggleMobileNav(false);
+        }
+      );
+    } else {
+      this.accountDialogForm.reset();
+      this.accountDialogResponseText = 'error';
+      setTimeout(() => {
+        this.accountDialogResponseText = '';
+      }, 2000);
+    }
+
+  }
 }

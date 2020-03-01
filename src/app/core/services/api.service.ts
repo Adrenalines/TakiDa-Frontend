@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, first, map, share } from 'rxjs/operators';
+import { catchError, map, share } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { CallbackRequest, CallbackResponse, Category, CategoryResponse, Item, ItemsResponse } from '../types/types';
+import { CallbackRequest, CallbackResponse, Category, CategoryResponse, Item, ItemsResponse } from '../../shared/types/types';
 
 
 @Injectable({
@@ -40,7 +40,6 @@ export class ApiService {
   public callBack(callData: CallbackRequest): Observable<boolean> {
     return this.http.post<CallbackResponse>(`${ environment.url }/booking/callbacks`, callData).pipe(
       map((response: CallbackResponse) => {
-        console.log(response);
         return response.success;
       }),
       catchError(ApiService.handleError)

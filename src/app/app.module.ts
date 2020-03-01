@@ -6,9 +6,9 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CoreModule } from './core/core.module';
-import { MissingTranslationService } from './shared/services/missingTranslation.service';
+import { MissingTranslationService } from './core/services/missingTranslation.service';
 import { AppComponent } from './app.component';
-import { ParamInterceptor } from './shared/services/api.interceptor';
+import { ParamInterceptor } from './core/services/api.interceptor';
 
 
 @NgModule({

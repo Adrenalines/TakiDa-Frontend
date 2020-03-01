@@ -24,8 +24,8 @@
           </option>
         </select>
       </div>
-      <div class="acc">
-        <a routerLink="/profile">
+      <div class="acc" #accountDialogButtonElement>
+        <a href="/profile" (click)="toggleAccount($event)">
           <div class="acc">
             <img src="/assets/img/icon_account.svg" alt="{{ 'core.account' | translate }}">
             {{ 'core.account' | translate }}
@@ -104,11 +104,47 @@
         class="btn-checkout"
         type="submit"
         value="{{ 'core.submit' | translate }}"
-        [disabled]="!callDialogForm.valid || !callDialogForm.touched"
+        [disabled]="!callDialogForm.valid"
       >
     </form>
   </div>
+</div>
 
+<div *ngIf="accountDialogShow" class="wrapper account__popup" #accountDialogElement>
+  <div class="triangle"></div>
+  <div *ngIf="accountDialogResponseText" class="account__popup-text">
+    <div *ngIf="accountDialogResponseText === 'error'" >{{ 'profile.auth_error' | translate }}</div>
+  </div>
+  <div *ngIf="!accountDialogResponseText">
+    <div class="account__popup-text">{{ 'profile.account' | translate }}</div>
+    <form [formGroup]="accountDialogForm" (ngSubmit)="submitAccount()">
+      <div class="form-fields">
+        <input
+          type="tel"
+          name="telephone"
+          placeholder="+380"
+          pattern="[0-9]+"
+          formControlName="phone"
+          required
+          minlength="6"
+        >
+        <input
+          type="password"
+          name="login"
+          placeholder="{{ 'profile.password' | translate }}"
+          formControlName="password"
+          required
+          minlength="6"
+        >
+      </div>
+      <input
+        class="btn-checkout"
+        type="submit"
+        value="{{ 'profile.enter' | translate }}"
+        [disabled]="!accountDialogForm.valid"
+      >
+    </form>
+  </div>
 </div>
 
 <div class="header-mobile">
@@ -148,7 +184,13 @@
     </a>
     <div class="nav-menu__list">
       <a routerLink="/" (click)="toggleMobileNav(false)">{{ 'core.main' | translate }}</a>
-      <a routerLink="/profile" (click)="toggleMobileNav(false)">{{ 'core.account' | translate }}</a>
+      <a
+        routerLink="/profile"
+        (click)="toggleAccount()"
+        #accountDialogButtonMobileElement
+      >
+        {{ 'core.account' | translate }}
+      </a>
       <a routerLink="/pages/delivery" (click)="toggleMobileNav(false)">{{ 'core.delivery' | translate }}</a>
       <a routerLink="/pages/about" (click)="toggleMobileNav(false)">{{ 'core.about' | translate }}</a>
       <a routerLink="/pages/contacts" (click)="toggleMobileNav(false)">{{ 'core.contacts' | translate }}</a>

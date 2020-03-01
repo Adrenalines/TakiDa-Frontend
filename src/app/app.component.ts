@@ -1,20 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { delay, filter, tap } from 'rxjs/operators';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, Scroll } from '@angular/router';
+import { delay, filter, tap } from 'rxjs/operators';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { TranslateService } from '@ngx-translate/core';
+import smoothscroll from 'smoothscroll-polyfill';
 import { defaultLocale } from './shared/data/languages';
 
-import smoothscroll from 'smoothscroll-polyfill';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  styleUrls: ['./app.component.less'],
+  animations: [
+    trigger('fadeIn', [
+      state('out', style({opacity: 0})),
+      state('in', style({opacity: 1})),
+      transition('out => in', animate('1000ms ease-in')),
+    ])
+  ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
+  public state = 'out';
   private delay = 1000;
+
   constructor(
     private readonly router: Router,
+    private cd: ChangeDetectorRef,
     private translateService: TranslateService
   ) {
     smoothscroll.polyfill();
@@ -42,5 +54,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.translateService.use(defaultLocale);
+  }
+
+  ngAfterViewInit(): void {
+    this.state = this.state && this.state === 'in' ? 'out' : 'in';
+    this.cd.detectChanges();
   }
 }

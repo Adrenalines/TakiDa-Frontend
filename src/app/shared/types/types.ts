@@ -53,3 +53,8 @@ export interface CallbackResponse {
   status: number;
   success: boolean;
 }
+
+export interface AccountAccessData {
+  phone: string;
+  password: string;
+}

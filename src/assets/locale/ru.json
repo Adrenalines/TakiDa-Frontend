@@ -66,12 +66,15 @@
 	},
 	"profile": {
 		"account": "Личный кабинет",
+		"auth_error": "Ошибка авторизации",
 		"confirm_new_password": "Подтвердить новый пароль",
 		"dd_mm_yyyy": "дд.мм.гггг",
+		"enter": "Войти в личный кабинет",
 		"my_addresses": "Мои адреса",
 		"my_profile": "Мой профиль",
 		"new_password": "Новый пароль",
 		"orders": "Заказы",
+		"password": "Пароль",
 		"register_info": "Регистрационная информация",
 		"save": "Сохранить"
 	}

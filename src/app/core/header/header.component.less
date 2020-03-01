@@ -327,7 +327,7 @@
     }
 
     input.ng-invalid {
-      border-color: #ff8989;
+      border-color: #ffb9b7;
     }
   }
 
@@ -353,7 +353,91 @@
   }
 }
 
+.account__popup {
+  position: fixed;
+  top: 43px;
+  margin-left: 430px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 280px;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  background: #FFFFFF;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  z-index: 7;
 
+  .triangle {
+    position: absolute;
+    margin-top: -8px;
+    margin-left: 150px;
+    width: 16px;
+    height: 16px;
+
+    background: #FFFFFF;
+    transform: rotate(45deg);
+  }
+
+  &-text {
+    margin-top: 18px;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+
+    input {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      margin-top: 15px;
+      height: 35px;
+      width: 99%;
+
+      color: #000;
+      font-size: 14px;
+      font-weight: 400;
+
+      padding: 15px 15px;
+    }
+
+    input.ng-invalid {
+      border-color: #ffb9b7;
+    }
+  }
+
+  input.btn-checkout {
+    margin-top: 20px;
+    height: 45px;
+    width: 100%;
+    align-items: center;
+
+    background-color: rgba(107, 107, 102, 0.51);
+    border-radius: 10px;
+    border: none;
+    outline: none;
+
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    &:enabled {
+      cursor: pointer;
+      background-color: @menu-active;
+    }
+  }
+}
 
 .header-mobile {
   display: none;
@@ -554,9 +638,13 @@
   }
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1060px) {
   .call-me__popup {
     margin-left: 200px;
+    left: 50%;
+  }
+  .account__popup {
+    margin-left: 350px;
     left: 50%;
   }
 }
@@ -573,6 +661,23 @@
     .triangle {
       position: absolute;
       margin-top: 220px;
+      width: 16px;
+      height: 16px;
+
+      background: #FFFFFF;
+      transform: rotate(45deg);
+    }
+  }
+
+  .account__popup {
+    top: 200px;
+    margin-left: 0;
+
+    .triangle {
+      position: absolute;
+      margin-top: -8px;
+
+      margin-left: 0;
       width: 16px;
       height: 16px;
 

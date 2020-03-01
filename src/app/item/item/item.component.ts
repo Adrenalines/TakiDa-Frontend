@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { of, Subject, SubscriptionLike } from 'rxjs';
 import { Category, Item } from '../../shared/types/types';
-import { ApiService } from '../../shared/services/api.service';
+import { ApiService } from '../../core/services/api.service';
 import { CategoryService } from '../../main/services/category.service';
 import { catchError } from 'rxjs/operators';
 

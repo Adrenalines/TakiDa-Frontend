@@ -67,12 +67,15 @@
 	},
 	"profile": {
 		"account": "Account",
+		"auth_error": "Authentication error",
 		"confirm_new_password": "Confirm new password",
 		"dd_mm_yyyy": "dd.mm.yyyy",
+		"enter": "Log in to your account",
 		"my_addresses": "My addresses",
 		"my_profile": "My profile",
 		"new_password": "New password",
 		"orders": "Orders",
+		"password": "Password",
 		"register_info": "Registration information",
 		"save": "Save"
 	}
