@@ -4,6 +4,7 @@ import { Observable, of, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Category, Item } from '../../shared/types/types';
 import { CategoryService } from '../services/category.service';
+import { ScrollService } from '../../core/services/scroll.service';
 
 
 @Component({
@@ -18,10 +19,12 @@ export class ItemsComponent implements OnInit {
 
   constructor(
     private location: Location,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private scrollService: ScrollService
   ) { }
 
   ngOnInit(): void {
+    this.scrollService.delay = 1000;
     this.categories = this.categoryService.categories.pipe(
       catchError((error) => {
         console.error('Error loading categories and items', error);

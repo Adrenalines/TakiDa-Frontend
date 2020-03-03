@@ -58,10 +58,12 @@ export class HeaderComponent implements OnInit {
       this.itemsCountPlural = this.num2word(itemsCount);
 
       // Animation of basket button
-      this.basketElement.nativeElement.classList.add('header__basket_animate');
-      setTimeout(() => {
-        this.basketElement.nativeElement.classList.remove('header__basket_animate');
-      }, 300);
+      if (this.basketElement) {
+        this.basketElement.nativeElement.classList.add('header__basket_animate');
+        setTimeout(() => {
+          this.basketElement.nativeElement.classList.remove('header__basket_animate');
+        }, 300);
+      }
     });
   }
 

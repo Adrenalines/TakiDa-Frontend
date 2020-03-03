@@ -6,7 +6,9 @@ import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('../main/main.module').then(m => m.MainModule) },
-  { path: 'item', loadChildren: () => import('../item/item.module').then(m => m.ItemModule) },
+  { path: 'item',
+    loadChildren: () => import('../item/item.module').then(m => m.ItemModule)
+  },
   {
     path: 'profile',
     loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule),
@@ -24,3 +26,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class CoreRoutingModule { }
+

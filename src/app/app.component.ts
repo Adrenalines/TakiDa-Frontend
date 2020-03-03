@@ -5,7 +5,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { TranslateService } from '@ngx-translate/core';
 import smoothscroll from 'smoothscroll-polyfill';
 import { defaultLocale } from './shared/data/languages';
-
+import { ScrollService } from './core/services/scroll.service';
 
 
 @Component({
@@ -22,12 +22,12 @@ import { defaultLocale } from './shared/data/languages';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   public state = 'out';
-  private delay = 1000;
 
   constructor(
     private readonly router: Router,
     private cd: ChangeDetectorRef,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private scrollService: ScrollService
   ) {
     smoothscroll.polyfill();
     this.router.events
@@ -47,8 +47,8 @@ export class AppComponent implements OnInit, AfterViewInit {
           } else if (e.anchor) {
             document.querySelector('#' + e.anchor).scrollIntoView({ behavior: 'smooth' });
           }
-          this.delay = 200;
-        }, this.delay);
+          this.scrollService.delay = 100;
+        }, this.scrollService.delay);
       });
   }
 
