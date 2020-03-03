@@ -32,6 +32,11 @@ export interface Item {
   components: Component[];
 }
 
+export interface ItemsCount {
+  item: Item;
+  count: number;
+}
+
 export interface ItemsResponse {
   status: number;
   success: boolean;

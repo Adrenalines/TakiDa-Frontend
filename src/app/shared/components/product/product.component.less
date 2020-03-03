@@ -165,13 +165,9 @@
     justify-content: space-around;
     align-items: center;
 
-    .price__stock.active {
+    .price__stock {
       display: flex;
       align-items: center;
-    }
-
-    .price__stock {
-      display: none;
       color: #bdbdbd;
       font-size: 18px;
       font-weight: 700;
@@ -272,11 +268,10 @@
       line-height: 30px;
       user-select: none;
       width: 100%;
-
+      user-select: none;
       background-color: #fff;
       border-radius: 10px;
       border: 1px solid #fff5f4;
-
     }
   }
 
@@ -483,13 +478,9 @@
       margin-top: -50px;
       margin-left: 10px;
 
-      .price__stock.active {
+      .price__stock {
         display: flex;
         align-items: center;
-      }
-
-      .price__stock {
-        display: none;
         color: #bdbdbd;
         font-size: 16px;
         font-weight: 700;
@@ -552,6 +543,8 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
+        cursor: pointer;
+        user-select: none;
 
         &:hover {
           background-image: url('/assets/img/icons_30px/icon_30_minus-active.svg');
@@ -567,6 +560,8 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
+        cursor: pointer;
+        user-select: none;
 
         &:hover {
           background-image: url('/assets/img/icons_30px/icon_30_plus-active.svg');
@@ -583,7 +578,7 @@
         font-size: 18px;
         font-weight: 400;
         line-height: 30px;
-
+        user-select: none;
         width: 100%;
 
         background-color: #fff;

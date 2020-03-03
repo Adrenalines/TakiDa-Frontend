@@ -43,6 +43,8 @@
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
+      cursor: pointer;
+      user-select: none;
 
       width: 100%;
       min-height: 20px;
@@ -109,6 +111,8 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
+        cursor: pointer;
+        user-select: none;
 
         &:hover {
           background-image: url('/assets/img/icons_30px/icon_30_minus-active.svg');
@@ -124,6 +128,8 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
+        cursor: pointer;
+        user-select: none;
 
         &:hover {
           background-image: url('/assets/img/icons_30px/icon_30_plus-active.svg');
@@ -141,7 +147,7 @@
         font-size: 14px;
         font-weight: 400;
         line-height: 30px;
-
+        user-select: none;
         width: 100%;
 
         background-color: #fff;
@@ -158,13 +164,9 @@
       justify-content: space-around;
       align-items: center;
 
-      .price__stock.active {
+      .price__stock {
         display: flex;
         align-items: center;
-      }
-
-      .price__stock {
-        display: none;
         color: #bdbdbd;
         font-size: 18px;
         font-weight: 700;
@@ -449,6 +451,8 @@
           background-repeat: no-repeat;
           background-position: center;
           background-size: contain;
+          cursor: pointer;
+          user-select: none;
 
           &:hover {
             background-image: url('/assets/img/icon_100_minus-active.svg');
@@ -464,6 +468,8 @@
           background-repeat: no-repeat;
           background-position: center;
           background-size: contain;
+          cursor: pointer;
+          user-select: none;
 
           &:hover {
             background-image: url('/assets/img/icon_100_plus-active.svg');
@@ -481,7 +487,7 @@
           font-size: 18px;
           font-weight: 400;
           line-height: 45px;
-
+          user-select: none;
           width: 100%;
 
           background-color: #fff;
@@ -501,13 +507,9 @@
         justify-content: space-around;
         align-items: center;
 
-        .price__stock.active {
-          display: none;
-          align-items: center;
-        }
-
         .price__stock {
-          display: none;
+          display: flex;
+          align-items: center;
           color: #bdbdbd;
           font-size: 18px;
           font-weight: 700;

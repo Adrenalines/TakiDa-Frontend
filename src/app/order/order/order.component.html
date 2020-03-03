@@ -6,11 +6,12 @@
         <li><a routerLink="/cart">{{ 'order.checkout' | translate }}</a></li>
       </ul>
       <div class="reducer">
-        <div class="checkout__title">{{ 'order.checkout' | translate }}</div>
+        <div *ngIf="!itemsCount" class="checkout__title">{{ 'order.checkout' | translate }}</div>
+        <div *ngIf="itemsCount" class="checkout__title">В корзине пока нет товаров.</div>
         <app-basket></app-basket>
-        <app-order-type (orderType)="orderType = $event"></app-order-type>
-        <app-fast-order *ngIf="orderType === 'fast'"></app-fast-order>
-        <app-detailed-order *ngIf="orderType === 'detailed'"></app-detailed-order>
+        <app-order-type *ngIf="itemsCount" (orderType)="orderType = $event"></app-order-type>
+        <app-fast-order *ngIf="itemsCount && orderType === 'fast'"></app-fast-order>
+        <app-detailed-order *ngIf="itemsCount && orderType === 'detailed'"></app-detailed-order>
       </div>
     </div>
   </div>
