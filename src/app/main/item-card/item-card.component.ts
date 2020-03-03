@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Item } from '../../shared/types/types';
 import { BasketService } from '../../core/services/basket.service';
 
@@ -11,6 +12,9 @@ export class ItemCardComponent implements OnInit {
   @ViewChild('toCartButtonElement') toCartButtonElement: ElementRef;
   @Input() item: Item;
   public itemPlaceholder: Item;
+  public environment = environment;
+  public image: string;
+
 
   constructor(private basketService: BasketService) {
     this.itemPlaceholder = {
@@ -24,6 +28,9 @@ export class ItemCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.item) {
+      this.image = `${this.environment.imageStore}/${this.item.id}_regular.png`;
+    }
   }
 
   public replenishBasket(event: Event, item: Item) {

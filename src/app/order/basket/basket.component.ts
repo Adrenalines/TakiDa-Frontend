@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BasketService } from '../../core/services/basket.service';
 import { Item } from '../../shared/types/types';
 
@@ -11,21 +11,17 @@ export class BasketComponent implements OnInit {
   public items: Map<Item, number>;
 
   constructor(private basketService: BasketService) {
-    this.items = new Map<Item, number>(this.basketService.items);
+    this.items = this.basketService.items;
   }
 
   ngOnInit(): void {
   }
 
   public removeItem(itemKey: Item) {
-    this.basketService.items.delete(itemKey);
+    this.basketService.removeFromBasket(itemKey);
   }
 
-  public changeNumber(amount: number, item: Item) {
-    if (amount < 1) {
-      this.removeItem(item);
-    } else {
-      this.basketService.items.set(item, amount);
-    }
+  public changeNumber(item: Item, count: number) {
+    this.basketService.replenishBasket(item, count);
   }
 }

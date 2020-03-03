@@ -13,7 +13,16 @@ export class BasketService {
   }
 
   public replenishBasket(item: Item, count: number) {
-    this.items.set(item, (this.items.get(item) || 0) + count);
+    if ((this.items.get(item) + count) === 0) {
+      this.removeFromBasket(item);
+    } else {
+      this.items.set(item, (this.items.get(item) || 0) + count);
+    }
+    this.itemsCount$.next([...this.items.values()].reduce((a, b) => a + b, 0));
+  }
+
+  public removeFromBasket(item: Item) {
+    this.items.delete(item);
     this.itemsCount$.next([...this.items.values()].reduce((a, b) => a + b, 0));
   }
 }

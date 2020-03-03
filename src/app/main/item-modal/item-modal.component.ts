@@ -24,7 +24,7 @@ export class ItemModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  closePopup() {
+  public closePopup() {
     this.closedPopup.emit();
   }
 }

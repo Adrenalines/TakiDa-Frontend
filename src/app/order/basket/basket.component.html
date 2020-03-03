@@ -1,46 +1,44 @@
 <div class="basket">
-  <div *ngIf="items.size">
-    <div class="basket__title">{{ 'order.your_basket' | translate }}</div>
-    <div class="basket__list">
-      <div
-        *ngFor="let item of items | keyvalue"
-        class="basket__item"
-      >
-        <a class="btn-delete" (click)="removeItem(item.key)"></a>
-        <img class="item__image" src="/assets/img/mid/image_mid-01.png" alt="{{ item.key.name }}">
-        <div class="item__title">{{ item.key.name }}</div>
-        <div class="item__info">
-          <div>{{ item.key.pieces }} {{ 'product.pieces' | translate }}</div>
-          <div>{{ item.key.weight }} {{ 'product.gram' | translate }}</div>
+  <div class="basket__title">{{ 'order.your_basket' | translate }}</div>
+  <div class="basket__list">
+    <div
+      *ngFor="let item of items | keyvalue"
+      class="basket__item"
+    >
+      <a class="btn-delete" (click)="removeItem(item.key)"></a>
+      <img class="item__image" src="/assets/images/mid/image_mid-01.png" alt="{{ item.key.name }}">
+      <div class="item__title">{{ item.key.name }}</div>
+      <div class="item__info">
+        <div>{{ item.key.pieces }} {{ 'product.pieces' | translate }}</div>
+        <div>{{ item.key.weight }} {{ 'product.gram' | translate }}</div>
+      </div>
+      <div class="item__amount">
+        <a class="minus" (click)="changeNumber(item.key, -1)"></a>
+        <div class="counter">{{ item.value }}</div>
+        <a class="plus" (click)="changeNumber(item.key, 1)"></a>
+      </div>
+      <div class="item__price">
+        <div *ngIf="item.key.oldPrice" class="price__stock">
+          {{ item.key.oldPrice * item.value }} <span>₴</span>
         </div>
-        <div class="item__amount">
-          <a class="minus" (click)="changeNumber(item.value - 1, item.key)"></a>
-          <div class="counter">{{ item.value }}</div>
-          <a class="plus" (click)="changeNumber(item.value + 1, item.key)"></a>
-        </div>
-        <div class="item__price">
-          <div *ngIf="item.key.oldPrice" class="price__stock">
-            {{ item.key.oldPrice * item.value }} <span>₴</span>
-          </div>
-          <div class="price__current">
-            {{ item.key.price * item.value }} <span>₴</span>
-          </div>
+        <div class="price__current">
+          {{ item.key.price * item.value }} <span>₴</span>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="basket__total">
-      <div class="total-sum">
-        <div class="total">{{ 'order.total' | translate }}</div>
-        <div class="sum">{{ items | keyvalue | sum:'value' }}<span>₴</span></div>
-      </div>
+  <div class="basket__total">
+    <div class="total-sum">
+      <div class="total">{{ 'order.total' | translate }}</div>
+      <div class="sum">{{ items | keyvalue | sum }}<span>₴</span></div>
     </div>
+  </div>
 
-    <div  class="basket__to-pay">
-      <div class="to-pay-sum">
-        <div class="to-pay">{{ 'order.to_pay' | translate }}</div>
-        <div class="sum">{{ items | keyvalue | sum:'value' }}<span>₴</span></div>
-      </div>
+  <div  class="basket__to-pay">
+    <div class="to-pay-sum">
+      <div class="to-pay">{{ 'order.to_pay' | translate }}</div>
+      <div class="sum">{{ items | keyvalue | sum }}<span>₴</span></div>
     </div>
   </div>
 </div>

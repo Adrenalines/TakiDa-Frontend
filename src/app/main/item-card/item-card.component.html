@@ -2,7 +2,7 @@
   <div class="item__info">
     <div class="item__info-a">
       <div class="picture">
-        <img src="/assets/img/lg/image_lg.png" alt="">
+        <img src="/assets/images/circle-bg.svg" alt="">
       </div>
     </div>
     <div class="item__info-b">{{ itemPlaceholder.name }}</div>
@@ -23,7 +23,7 @@
   <div class="item__info">
     <div class="item__info-a">
       <div class="picture">
-        <img src="/assets/img/lg/image_lg.png" alt="">
+        <img [defaultImage]="'/assets/images/circle-bg.svg'" [lazyLoad]="image" alt="">
       </div>
       <div
         *ngIf="item.oldPrice"

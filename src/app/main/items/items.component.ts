@@ -14,22 +14,12 @@ import { CategoryService } from '../services/category.service';
 export class ItemsComponent implements OnInit {
   public categories: Observable<Category[]>;
   public item: Item;
-  public itemPlaceholder: Item;
   public loadingError = new Subject<boolean>();
 
   constructor(
     private location: Location,
     private categoryService: CategoryService
-  ) {
-    this.itemPlaceholder = {
-      id: '1',
-      name: '...',
-      price: 0,
-      weight: 0,
-      pieces: 1,
-      components: []
-    };
-  }
+  ) { }
 
   ngOnInit(): void {
     this.categories = this.categoryService.categories.pipe(

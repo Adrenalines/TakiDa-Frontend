@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="footer__items">
       <div class="item-tel">
-        <img class="tel-a" src="assets/img/icon_tel.svg" alt="телефон">
+        <img class="tel-a" src="/assets/images/icon_tel.svg" alt="телефон">
         <span
           *ngFor="let telephone of telephones; let i = index"
           [ngClass]="{ 'tel-b': i === 0, 'tel-c': i === 1, 'tel-d': i === 2 }">
@@ -11,9 +11,9 @@
         </span>
       </div>
       <div class="item-location">
-        <img src="assets/img/icon_watches.svg" alt="часы">
+        <img src="/assets/images/icon_watches.svg" alt="часы">
         <span>{{ 'core.week' | translate }} <b>11:00 - 00:00</b></span>
-        <img src="assets/img/icon_geolocation.svg" alt="геолокация">
+        <img src="/assets/images/icon_geolocation.svg" alt="геолокация">
         <span>
           {{ 'core.prospect' | translate }}
           <b>{{ 'core.shevchenko' | translate }} 8а</b>
@@ -27,8 +27,8 @@
         <a routerLink="/pages/contacts">{{ 'core.contacts' | translate }}</a>
       </div>
       <div class="item-socials">
-        <a href="{{ socials.fb }}" target="_blank"><img src="assets/img/icon_25_social_fb.svg" alt="fb"></a>
-        <a href="{{ socials.inst }}" target="_blank"><img src="assets/img/icon_25_social_inst.svg" alt="inst"></a>
+        <a href="{{ socials.fb }}" target="_blank"><img src="/assets/images/icon_25_social_fb.svg" alt="fb"></a>
+        <a href="{{ socials.inst }}" target="_blank"><img src="/assets/images/icon_25_social_inst.svg" alt="inst"></a>
       </div>
     </div>
   </div>

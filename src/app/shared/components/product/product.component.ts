@@ -17,11 +17,11 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public changeNumber(amount: number) {
-    if (amount === -1 && this.number === 1) {
+  public changeNumber(count: number) {
+    if (count === -1 && this.number === 1) {
       return;
     }
-    this.number += amount;
+    this.number += count;
   }
 
   public replenishBasket($event: Event, item: Item) {

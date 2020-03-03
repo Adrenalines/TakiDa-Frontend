@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderType } from '../../shared/types/types';
+import { Item, OrderType } from '../../shared/types/types';
 import { BasketService } from '../../core/services/basket.service';
 
 @Component({
@@ -9,14 +9,13 @@ import { BasketService } from '../../core/services/basket.service';
 })
 export class OrderComponent implements OnInit {
   public orderType: OrderType = 'detailed';
-  public itemsCount: number;
+  public items: Map<Item, number>;
 
-  constructor(private basketService: BasketService) { }
+  constructor(private basketService: BasketService) {
+    this.items = this.basketService.items;
+  }
 
   ngOnInit(): void {
-    this.basketService.itemsCount$.subscribe(itemsCount => {
-      this.itemsCount = itemsCount;
-    });
   }
 
 }

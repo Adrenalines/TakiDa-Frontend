@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   url: 'http://localhost:9999/api/rest/open',
-  imageStore: '/assets/img'
+  imageStore: 'http://localhost:9999/images'
 };
 
 /*
