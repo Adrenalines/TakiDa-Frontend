@@ -1,6 +1,6 @@
 <div class="item__image">
   <div class="picture">
-    <img src="/assets/images/lg/image_item-content.png" alt="">
+    <img src="{{ image }}" alt="">
   </div>
   <div
     *ngIf="item.oldPrice"
@@ -22,7 +22,11 @@
       *ngFor="let component of item.components"
       class="component"
     >
-      <img src="/assets/images/composition_components/cc_01.png" alt="{{ component.name }}">
+      <img
+        [defaultImage]="'/assets/images/cc-blank.png'"
+        [lazyLoad]="this.environment.imageStore + '/' + component.id + '_small.png'"
+        alt="{{ component.name }}"
+      >
       <span>{{ component.name }}</span>
     </div>
   </div>

@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { ProductComponent } from './components/product/product.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { GetItemsPipe } from './pipes/get-items.pipe';
 import { SumPipe } from './pipes/sum.pipe';
+import { ProductComponent } from './components/product/product.component';
 
 
 @NgModule({
   declarations: [
-    ProductComponent,
     GetItemsPipe,
     SumPipe,
+    ProductComponent
   ],
   imports: [
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    LazyLoadImageModule
   ],
   exports: [
-    ProductComponent,
     GetItemsPipe,
-    SumPipe
+    SumPipe,
+    ProductComponent
   ]
 })
 export class SharedModule { }

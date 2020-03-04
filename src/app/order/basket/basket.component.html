@@ -6,7 +6,11 @@
       class="basket__item"
     >
       <a class="btn-delete" (click)="removeItem(item.key)"></a>
-      <img class="item__image" src="/assets/images/mid/image_mid-01.png" alt="{{ item.key.name }}">
+      <img
+        class="item__image"
+        [src]="this.environment.imageStore + '/' + item.key.id + '_small.png'"
+        alt="{{ item.key.name }}"
+      >
       <div class="item__title">{{ item.key.name }}</div>
       <div class="item__info">
         <div>{{ item.key.pieces }} {{ 'product.pieces' | translate }}</div>

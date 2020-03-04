@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BasketService } from '../../core/services/basket.service';
+import { environment } from '../../../environments/environment';
 import { Item } from '../../shared/types/types';
+import { BasketService } from '../../core/services/basket.service';
+
 
 @Component({
   selector: 'app-basket',
@@ -9,6 +11,7 @@ import { Item } from '../../shared/types/types';
 })
 export class BasketComponent implements OnInit {
   public items: Map<Item, number>;
+  public environment = environment;
 
   constructor(private basketService: BasketService) {
     this.items = this.basketService.items;
