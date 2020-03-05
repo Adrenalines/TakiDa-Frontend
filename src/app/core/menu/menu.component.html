@@ -2,13 +2,13 @@
   <div *ngIf="loadingError | async">Error of loading categories...</div>
   <div class="menu">
       <a
-        *ngFor="let category of categories | async"
+        *ngFor="let category of categories | async; let i = index"
         class="menu__bg"
         routerLink="/"
         fragment="{{ category.name.split(' ').join('_') }}"
       >
         <div class="menu__item">
-          <div class="item-01"></div>
+          <div class="item-{{ i + 1 }}"></div>
           <div class="item-txt">{{ category.name }}</div>
         </div>
       </a>

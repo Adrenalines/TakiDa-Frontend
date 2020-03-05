@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Category } from '../../shared/types/types';
 import { ApiService } from '../services/api.service';
 import { CategoryService } from '../../main/services/category.service';
+
 
 @Component({
   selector: 'app-menu',
@@ -15,6 +17,7 @@ export class MenuComponent implements OnInit {
   public loadingError = new Subject<boolean>();
 
   constructor(
+    private route: ActivatedRoute,
     private apiService: ApiService,
     private categoryService: CategoryService
   ) {
@@ -28,6 +31,8 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.fragment.subscribe(fragment => {
+    });
 
   }
 

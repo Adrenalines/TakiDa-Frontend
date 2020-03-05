@@ -19,7 +19,7 @@
   <a class="anchor" id="{{ category.name.split(' ').join('_') }}"></a>
   <div class="section">
     <div class="section__title-rolls">
-      <img class="title-icon" src="/assets/images/icons_50px/icon_50_rolls-active.svg" alt="">
+      <img class="title-icon" [src]="'/assets/images/categories/' + category.id + '_regular.svg'" alt="">
       <div class="title-txt">{{ category.name }}</div>
     </div>
     <div class="wrapper">
