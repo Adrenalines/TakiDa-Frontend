@@ -36,10 +36,10 @@ export class HeaderComponent implements OnInit {
 
   public callDialogForm = new FormGroup({
     clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
-    phone: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
+    phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
   });
   public accountDialogForm = new FormGroup({
-    phone: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
+    phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
     password: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
   });
 

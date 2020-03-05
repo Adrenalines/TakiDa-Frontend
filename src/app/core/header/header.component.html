@@ -84,7 +84,7 @@
       <div class="form-fields">
         <input
           type="text"
-          name="login"
+          name="clientName"
           placeholder="{{ 'core.your_name' | translate }}"
           formControlName="clientName"
           required
@@ -92,9 +92,9 @@
         >
         <input
           type="tel"
-          name="telephone"
+          name="phone"
           placeholder="+380"
-          pattern="[0-9]+"
+          pattern="^[\d\(\)\-+]+$"
           formControlName="phone"
           required
           minlength="6"
@@ -121,7 +121,7 @@
       <div class="form-fields">
         <input
           type="tel"
-          name="telephone"
+          name="phone"
           placeholder="+380"
           pattern="[0-9]+"
           formControlName="phone"
@@ -130,7 +130,7 @@
         >
         <input
           type="password"
-          name="login"
+          name="password"
           placeholder="{{ 'profile.password' | translate }}"
           formControlName="password"
           required

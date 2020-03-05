@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 import { OrderRoutingModule } from './order-routing.module';
@@ -9,7 +10,6 @@ import { OrderTypeComponent } from './order-type/order-type.component';
 import { FastOrderComponent } from './fast-order/fast-order.component';
 import { DetailedOrderComponent } from './detailed-order/detailed-order.component';
 import { OrderComponent } from './order/order.component';
-
 
 
 @NgModule({
@@ -22,8 +22,10 @@ import { OrderComponent } from './order/order.component';
   ],
   imports: [
     CommonModule,
-    OrderRoutingModule,
     TranslateModule,
+    OrderRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })

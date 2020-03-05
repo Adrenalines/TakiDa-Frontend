@@ -1,5 +1,9 @@
 <div class="form__detailed">
-  <form class="registration" action="#" method="post">
+  <form
+    [formGroup]="detailedOrderForm"
+    (ngSubmit)="submitDetailedOrder()"
+    class="registration"
+  >
     <div class="form-bg">
       <div class="form-header">
         <img src="/assets/images/icon_delivery-04.svg" alt="{{ 'order.contact' | translate }}">
@@ -7,14 +11,51 @@
       </div>
       <div class="form-fields">
         <div class="form-field-01">
-          <input type="text" name="login" placeholder="{{ 'order.first_name' | translate }}">
-          <input type="text" name="street" placeholder="{{ 'order.street' | translate }}">
-          <input type="text" name="house" placeholder="{{ 'order.house' | translate }}">
+          <input
+            type="text"
+            name="clientName"
+            placeholder="{{ 'order.first_name' | translate }}"
+            formControlName="clientName"
+            required
+            minlength="2"
+          >
+          <input
+            type="text"
+            name="street"
+            placeholder="{{ 'order.street' | translate }}"
+            formControlName="street"
+            required
+            minlength="3"
+          >
+          <input
+            type="text"
+            name="houseNo"
+            placeholder="{{ 'order.house' | translate }}"
+            formControlName="houseNo"
+          >
         </div>
         <div class="form-field-02">
-          <input type="text" name="office" placeholder="{{ 'order.flat_office' | translate }}">
-          <input type="text" name="flat" placeholder="{{ 'order.intercom' | translate }}">
-          <input type="tel" name="telephone" placeholder="+380">
+          <input
+            type="text"
+            name="apartment"
+            placeholder="{{ 'order.flat_office' | translate }}"
+            formControlName="apartment"
+          >
+          <input
+            type="text"
+            name="addressMemo"
+            placeholder="{{ 'order.intercom' | translate }}"
+            formControlName="addressMemo"
+          >
+          <input
+            type="tel"
+            name="phone"
+            placeholder="+380"
+            pattern="^[\d\(\)\-+]+$"
+            formControlName="phone"
+            required
+            minlength="6"
+          >
         </div>
       </div>
     </div>
@@ -26,15 +67,37 @@
       <div class="form-fields">
         <div class="form-field-01">
           <div class="item-radio">
-            <input type="radio" name="time" value="Имя"><span>{{ 'order.fac' | translate }}</span>
+            <input
+              type="radio"
+              name="deliveryType"
+              [value]="null"
+              formControlName="deliveryType"
+            >
+            <span>{{ 'order.fac' | translate }}</span>
           </div>
           <div class="item-radio">
-            <input type="radio" name="time" value="Имя"><span>{{ 'order.by_time' | translate }}</span>
+            <input
+              type="radio"
+              name="deliveryType"
+              value="Date"
+              formControlName="deliveryType"
+            >
+            <span>{{ 'order.by_time' | translate }}</span>
           </div>
         </div>
         <div class="form-field-02">
-          <input type="date" name="date" placeholder="21.11.19">
-          <input type="time" name="time" placeholder="19:40">
+          <input
+            type="date"
+            name="deliveryDate"
+            placeholder="21.11.19"
+            formControlName="deliveryDate"
+          >
+          <input
+            type="time"
+            name="deliveryDate"
+            placeholder="19:40"
+            formControlName="deliveryDate"
+          >
         </div>
       </div>
     </div>
@@ -46,15 +109,32 @@
       <div class="form-fields">
         <div class="form-field-01">
           <div class="item-radio">
-            <input type="radio" name="time" value="Имя"><span>{{ 'order.in_cash' | translate }}</span>
+            <input
+              type="radio"
+              name="paymentType"
+              value="CASH"
+              formControlName="paymentType"
+              required
+            >
+            <span>{{ 'order.in_cash' | translate }}</span>
           </div>
           <div>{{ 'order.change_with' | translate }}:</div>
         </div>
         <div class="form-field-02">
-          <input type="text" name="date" placeholder="500 грн">
+          <input
+            type="text"
+            name="paymentMemo"
+            placeholder="500 грн"
+            formControlName="paymentMemo"
+          >
         </div>
       </div>
     </div>
-    <input class="btn-checkout" type="submit" value="{{ 'order.checkout_button' | translate }}">
+    <input
+      class="btn-checkout"
+      type="submit"
+      value="{{ 'order.checkout_button' | translate }}"
+      [disabled]="!detailedOrderForm.valid"
+    >
   </form>
 </div>
