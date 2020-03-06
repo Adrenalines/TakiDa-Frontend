@@ -268,13 +268,14 @@
   }
 }
 
+
 .call-me__popup {
   position: fixed;
   top: 93px;
   margin-left: 290px;
   left: 50%;
   transform: translate(-50%, 0);
-  width: 280px;
+  width: 310px;
   height: 230px;
   display: flex;
   flex-direction: column;
@@ -288,6 +289,90 @@
   .triangle {
     position: absolute;
     margin-top: -8px;
+    width: 16px;
+    height: 16px;
+
+    background: #FFFFFF;
+    transform: rotate(45deg);
+  }
+
+  &-text {
+    margin-top: 18px;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+
+    input {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      margin-top: 15px;
+      height: 35px;
+      width: 99%;
+
+      color: #000;
+      font-size: 14px;
+      font-weight: 400;
+
+      padding: 15px 15px;
+    }
+
+    input.ng-invalid {
+      border-color: #ffb9b7;
+    }
+  }
+
+  input.btn-checkout {
+    margin-top: 20px;
+    height: 45px;
+    width: 100%;
+    align-items: center;
+
+    background-color: rgba(107, 107, 102, 0.51);
+    border-radius: 10px;
+    border: none;
+    outline: none;
+
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    &:enabled {
+      cursor: pointer;
+      background-color: @menu-active;
+    }
+  }
+}
+
+.call-me__popup__from_main {
+  position: fixed;
+  bottom: 23%;
+  right: 6%;
+  width: 280px;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  background: #FFFFFF;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  z-index: 9;
+
+  .triangle {
+    position: absolute;
+    margin-top: 220px;
+    margin-left: 170px;
     width: 16px;
     height: 16px;
 
@@ -444,6 +529,10 @@
 }
 
 .header-mobile__contacts {
+  display: none;
+}
+
+.call-me__button {
   display: none;
 }
 
@@ -771,6 +860,7 @@
 
     .header-mobile__nav {
       grid-area: d;
+      margin-right: 8px;
 
       &:hover {
         img {
@@ -801,7 +891,7 @@
 
     position: fixed;
     top: 13px;
-    left: 140px;
+    left: 120px;
     z-index: 3;
     font-size: 18px;
     font-weight: normal;
@@ -857,5 +947,14 @@
         }
       }
     }
+  }
+
+  .call-me__button {
+    display: block;
+    position: fixed;
+    bottom: 6%;
+    right: 2%;
+    z-index: 8;
+    cursor: pointer;
   }
 }

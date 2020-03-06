@@ -16,8 +16,6 @@ const routes: Routes = [
   },
   { path: 'cart', loadChildren: () => import('../order/order.module').then(m => m.OrderModule) },
   { path: 'pages', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) },
-  { path: 'pages', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) },
-  { path: 'pages', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) },
   { path: '**', redirectTo: '/' }
 ];
 

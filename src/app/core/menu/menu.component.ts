@@ -15,6 +15,7 @@ import { CategoryService } from '../../main/services/category.service';
 export class MenuComponent implements OnInit {
   public categories: Observable<Category[]>;
   public loadingError = new Subject<boolean>();
+  public fragment: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,8 +33,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.fragment.subscribe(fragment => {
+      this.fragment = fragment;
     });
-
   }
 
 }

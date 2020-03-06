@@ -1,12 +1,13 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { TELEPHONES } from '../../shared/data/telephones';
 import { defaultLocale, LANGUAGES } from '../../shared/data/languages';
 import { SOCIALS } from '../../shared/data/socials';
 import { BasketService } from '../services/basket.service';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
   @ViewChild('callDialogElement') callDialogElement: ElementRef;
   @ViewChild('callDialogButtonElement') callDialogButtonElement: ElementRef;
   @ViewChild('callDialogButtonMobileElement') callDialogButtonMobileElement: ElementRef;
+  @ViewChild('callDialogButtonMobileMainElement') callDialogButtonMobileMainElement: ElementRef;
   @ViewChild('accountDialogElement') accountDialogElement: ElementRef;
   @ViewChild('accountDialogButtonElement') accountDialogButtonElement: ElementRef;
   @ViewChild('accountDialogButtonMobileElement') accountDialogButtonMobileElement: ElementRef;
@@ -33,6 +35,8 @@ export class HeaderComponent implements OnInit {
   public callDialogResponseText = '';
   public accountDialogShow = false;
   public accountDialogResponseText = '';
+  public routeHasParams = false;
+  public callBackFromMain = false;
 
   public callDialogForm = new FormGroup({
     clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
@@ -45,6 +49,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
+    private location: Location,
     private apiService: ApiService,
     private authService: AuthService,
     private basketService: BasketService
@@ -65,6 +71,10 @@ export class HeaderComponent implements OnInit {
         }, 300);
       }
     });
+
+    setInterval(() => {
+      this.routeHasParams = !!this.location.path();
+    }, 200);
   }
 
   private num2word(num): 1 | 2 | 3 {
@@ -103,7 +113,8 @@ export class HeaderComponent implements OnInit {
     this.mobileNav = show;
   }
 
-  public toggleCallback() {
+  public toggleCallback(fromMain?: boolean) {
+    this.callBackFromMain = fromMain;
     this.callDialogShow = !this.callDialogShow;
   }
 
@@ -121,7 +132,8 @@ export class HeaderComponent implements OnInit {
     if (this.callDialogElement &&
       !this.callDialogElement.nativeElement.contains(event.target) &&
       !(this.callDialogButtonElement.nativeElement.contains(event.target) ||
-        this.callDialogButtonMobileElement.nativeElement.contains(event.target))) {
+        this.callDialogButtonMobileElement.nativeElement.contains(event.target) ||
+        this.callDialogButtonMobileMainElement.nativeElement.contains(event.target))) {
       this.toggleCallback();
     }
     if (this.accountDialogElement &&

@@ -7,8 +7,9 @@
         routerLink="/"
         fragment="{{ category.name.split(' ').join('_') }}"
       >
-        <div class="menu__item">
-          <div class="item-{{ i + 1 }}"></div>
+        <div [ngClass]="{ 'menu__item': true, 'active': fragment === category.name.split(' ').join('_') }">
+          <div *ngIf="fragment !== category.name.split(' ').join('_')" class="item-{{ i + 1 }}"></div>
+          <div *ngIf="fragment === category.name.split(' ').join('_')" class="active-{{ i + 1 }}"></div>
           <div class="item-txt">{{ category.name }}</div>
         </div>
       </a>
