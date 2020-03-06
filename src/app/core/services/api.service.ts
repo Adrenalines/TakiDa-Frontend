@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, publishReplay, refCount, shareReplay } from 'rxjs/operators';
+import { catchError, map, shareReplay } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { CallbackRequest, CallbackResponse, Category, CategoryResponse, Item, ItemsResponse, Slide } from '../../shared/types/types';
+import {
+  CallbackRequest,
+  PostResponse,
+  Category,
+  CategoryResponse,
+  Item,
+  ItemsResponse,
+  Slide,
+  DetailedOrderRequest
+} from '../../shared/types/types';
 
 
 @Injectable({
@@ -37,14 +46,25 @@ export class ApiService {
     );
   }
 
-  public callBack(callData: CallbackRequest): Observable<boolean> {
-    return this.http.post<CallbackResponse>(`${ environment.url }/booking/callbacks`, callData).pipe(
-      map((response: CallbackResponse) => {
+  public postCallBack(callData: CallbackRequest): Observable<boolean> {
+    return this.http.post<PostResponse>(`${ environment.url }/booking/callbacks`, callData).pipe(
+      map((response: PostResponse) => {
         return response.success;
       }),
       catchError(ApiService.handleError)
     );
   }
+
+  public postOrder(orderData: DetailedOrderRequest): Observable<boolean> {
+    return this.http.post<PostResponse>(`${ environment.url }/booking`, orderData).pipe(
+      map((response: PostResponse) => {
+        console.log(response);
+        return response.success;
+      }),
+      catchError(ApiService.handleError)
+    );
+  }
+
 
   public getSlides(): Observable<Slide[]> {
     return this.http.get<Slide[]>('/assets/slidesStore.json').pipe(

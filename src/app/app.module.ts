@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouteReuseStrategy } from '@angular/router';
-import { CustomReuseStrategy } from './core/services/custom-reuse-strategy';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CoreModule } from './core/core.module';
@@ -40,9 +38,6 @@ import { ParamInterceptor } from './core/services/api.interceptor';
     provide: HTTP_INTERCEPTORS,
     useClass: ParamInterceptor,
     multi: true
-  }, {
-    provide: RouteReuseStrategy,
-    useClass: CustomReuseStrategy
   }],
   bootstrap: [AppComponent]
 })

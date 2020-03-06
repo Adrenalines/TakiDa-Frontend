@@ -27,6 +27,8 @@ export class HeaderComponent implements OnInit {
   public languages = LANGUAGES;
   public defaultLocale = defaultLocale;
   public telephones = TELEPHONES;
+  public callDialogForm: FormGroup;
+  public accountDialogForm: FormGroup;
   public mobileNav = false;
   public itemsCount = 0;
   public itemsCountPlural = 1;
@@ -38,15 +40,6 @@ export class HeaderComponent implements OnInit {
   public routeHasParams = false;
   public callBackFromMain = false;
 
-  public callDialogForm = new FormGroup({
-    clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
-    phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
-  });
-  public accountDialogForm = new FormGroup({
-    phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
-    password: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
-  });
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -55,6 +48,14 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     private basketService: BasketService
   ) {
+    this.callDialogForm = new FormGroup({
+      clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
+      phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
+    });
+    this.accountDialogForm = new FormGroup({
+      phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
+      password: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
+    });
   }
 
   ngOnInit(): void {
@@ -146,7 +147,7 @@ export class HeaderComponent implements OnInit {
 
   public submitCallback() {
     this.callDialogResponseText = 'pending';
-    this.apiService.callBack(this.callDialogForm.value).subscribe((response: boolean) => {
+    this.apiService.postCallBack(this.callDialogForm.value).subscribe((response: boolean) => {
         this.callDialogResponseText = response ? 'success' : 'error';
       },
       error => {

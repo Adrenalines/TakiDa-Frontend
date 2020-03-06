@@ -3,6 +3,14 @@
 .form__fast {
   margin: 0 auto;
 
+  .order-succeed {
+    color: #000;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 50px;
+    text-align: center;
+  }
+
   .registration {
     display: flex;
     flex-direction: column;
@@ -53,6 +61,10 @@
 
         padding: 0 15px;
       }
+
+      input.ng-invalid {
+        border-color: #ffb9b7;
+      }
     }
   }
 
@@ -61,7 +73,7 @@
     height: 60px;
     width: 400px;
 
-    background-color: @menu-active;
+    background-color: rgba(107, 107, 102, 0.51);
     border-radius: 10px;
 
     border: none;
@@ -71,6 +83,11 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     font-weight: 700;
+
+    &:enabled {
+      cursor: pointer;
+      background-color: @menu-active;
+    }
   }
 }
 
@@ -137,6 +154,10 @@
 
           padding: 0 15px;
         }
+
+        input.ng-invalid {
+          border-color: #ffb9b7;
+        }
       }
     }
 
@@ -145,7 +166,7 @@
       height: 60px;
       width: 440px;
 
-      background-color: @menu-active;
+      background-color: rgba(107, 107, 102, 0.51);
       border-radius: 10px;
 
       border: none;
@@ -155,6 +176,11 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 18px;
       font-weight: 700;
+
+      &:enabled {
+        cursor: pointer;
+        background-color: @menu-active;
+      }
     }
   }
 }

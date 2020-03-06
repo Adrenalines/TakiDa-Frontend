@@ -32,23 +32,22 @@ export interface Item {
   components: Component[];
 }
 
-export interface Slide {
-  id: string;
-  title: string;
-  alt: string;
-  src: string;
-}
-
-export interface ItemsCount {
-  item: Item;
-  count: number;
-}
-
 export interface ItemsResponse {
   status: number;
   success: boolean;
   data: Item[];
   meta: MetaResponse;
+}
+
+export interface ItemsOrder {
+  [itemId: string]: number;
+}
+
+export interface Slide {
+  id: string;
+  title: string;
+  alt: string;
+  src: string;
 }
 
 export interface Component {
@@ -61,7 +60,7 @@ export interface CallbackRequest {
   phone: string;
 }
 
-export interface CallbackResponse {
+export interface PostResponse {
   status: number;
   success: boolean;
 }
@@ -69,4 +68,32 @@ export interface CallbackResponse {
 export interface AccountAccessData {
   phone: string;
   password: string;
+}
+
+export interface DetailedOrderFormData {
+  clientName: string;
+  phone: string;
+  street: string;
+  houseNo: number;
+  apartment: number;
+  addressMemo: string;
+  deliveryType: boolean;
+  deliveryDate: Date;
+  deliveryTime: string;
+  paymentType: 'CASH';
+  paymentMemo: string;
+}
+
+export interface DetailedOrderRequest {
+  clientName: string;
+  phone: string;
+  street: string;
+  houseNo: number;
+  apartment: number;
+  addressMemo: string;
+  deliveryDate: number;
+  paymentType: 'CASH';
+  paymentMemo: string;
+  metadata: string;
+  goods: ItemsOrder;
 }

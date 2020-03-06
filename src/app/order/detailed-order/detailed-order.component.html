@@ -1,5 +1,11 @@
 <div class="form__detailed">
+  <div *ngIf="submitOrderResponseText" class="order-succeed">
+    <div *ngIf="submitOrderResponseText === 'pending'" >Оформление заказа...</div>
+    <div *ngIf="submitOrderResponseText === 'success'" >Заказ успешно оформлен!</div>
+    <div *ngIf="submitOrderResponseText === 'error'" >Ошибка оформления заказа...</div>
+  </div>
   <form
+    *ngIf="!submitOrderResponseText"
     [formGroup]="detailedOrderForm"
     (ngSubmit)="submitDetailedOrder()"
     class="registration"
@@ -70,7 +76,7 @@
             <input
               type="radio"
               name="deliveryType"
-              [value]="null"
+              [value]="false"
               formControlName="deliveryType"
             >
             <span>{{ 'order.fac' | translate }}</span>
@@ -79,7 +85,7 @@
             <input
               type="radio"
               name="deliveryType"
-              value="Date"
+              [value]="true"
               formControlName="deliveryType"
             >
             <span>{{ 'order.by_time' | translate }}</span>
@@ -90,13 +96,14 @@
             type="date"
             name="deliveryDate"
             placeholder="21.11.19"
+            value="0"
             formControlName="deliveryDate"
           >
           <input
             type="time"
-            name="deliveryDate"
+            name="deliveryTime"
             placeholder="19:40"
-            formControlName="deliveryDate"
+            formControlName="deliveryTime"
           >
         </div>
       </div>
