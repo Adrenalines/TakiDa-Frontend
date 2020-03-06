@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, share } from 'rxjs/operators';
+import { catchError, map, publishReplay, refCount, shareReplay } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { CallbackRequest, CallbackResponse, Category, CategoryResponse, Item, ItemsResponse } from '../../shared/types/types';
+import { CallbackRequest, CallbackResponse, Category, CategoryResponse, Item, ItemsResponse, Slide } from '../../shared/types/types';
 
 
 @Injectable({
@@ -24,7 +24,7 @@ export class ApiService {
         return response.data;
       }),
       catchError(ApiService.handleError),
-      share()
+      shareReplay()
     );
   }
 
@@ -42,6 +42,12 @@ export class ApiService {
       map((response: CallbackResponse) => {
         return response.success;
       }),
+      catchError(ApiService.handleError)
+    );
+  }
+
+  public getSlides(): Observable<Slide[]> {
+    return this.http.get<Slide[]>('/assets/slidesStore.json').pipe(
       catchError(ApiService.handleError)
     );
   }

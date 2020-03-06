@@ -1,9 +1,17 @@
 <div class="sl">
+  <div *ngIf="!slides">
+    <img src="/assets/images/bg-slide_blank.jpg">
+  </div>
   <div
-    *ngFor="let slide of slidesStore"
+    *ngFor="let slide of slides"
     class="sl__slide"
   >
-    <img src="{{ slide.src }}" id="{{ slide.id }}" alt="{{ slide.alt }}">
+    <img
+      [defaultImage]="'/assets/images/bg-slide_blank.jpg'"
+      [lazyLoad]="slide.src"
+      id="{{ slide.id }}"
+      alt="{{ slide.alt }}"
+    >
   </div>
 </div>
 

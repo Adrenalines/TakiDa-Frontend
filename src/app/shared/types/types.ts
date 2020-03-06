@@ -32,6 +32,13 @@ export interface Item {
   components: Component[];
 }
 
+export interface Slide {
+  id: string;
+  title: string;
+  alt: string;
+  src: string;
+}
+
 export interface ItemsCount {
   item: Item;
   count: number;

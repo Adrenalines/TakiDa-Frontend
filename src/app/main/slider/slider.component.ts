@@ -1,36 +1,45 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { SubscriptionLike } from 'rxjs';
 import * as jQuery from 'jquery';
 import 'slick-carousel';
-import * as slidesStore from './slidesStore.json';
+import { Slide } from '../../shared/types/types';
+import { ApiService } from '../../core/services/api.service';
+import { delay, map } from 'rxjs/operators';
 
-interface Slide {
-  id: string;
-  title: string;
-  alt: string;
-  src: string;
-}
+
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.less']
 })
-export class SliderComponent implements OnInit, AfterViewInit {
-  slidesStore: Slide[] = (slidesStore as any).default;
+export class SliderComponent implements OnInit, OnDestroy {
+  slides: Slide[];
+  slidesSub: SubscriptionLike;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.slidesSub = this.apiService.getSlides().pipe(
+      map(slides => {
+        this.slides = slides;
+      }),
+      delay(0)
+    ).subscribe(() => {
+      jQuery('.sl').slick({
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: false,
+        dots: true,
+        fade: true
+      });
+    });
   }
 
-  ngAfterViewInit(): void {
-    jQuery('.sl').slick({
-      autoplay: true,
-      autoplaySpeed: 3000,
-      arrows: false,
-      dots: true,
-      fade: true
-    });
+  ngOnDestroy(): void {
+    if (this.slidesSub) {
+      this.slidesSub.unsubscribe();
+    }
   }
 
 }

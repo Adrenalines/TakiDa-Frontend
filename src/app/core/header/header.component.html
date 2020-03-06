@@ -71,7 +71,10 @@
   </div>
 </header>
 
-<div *ngIf="callDialogShow" class="wrapper call-me__popup" #callDialogElement>
+<div
+  *ngIf="callDialogShow"
+  [ngClass]="{ 'wrapper': true, 'call-me__popup': !callBackFromMain, 'call-me__popup__from_main': callBackFromMain }"
+  #callDialogElement>
   <div class="triangle"></div>
   <div *ngIf="callDialogResponseText" class="call-me__popup-text">
     <div *ngIf="callDialogResponseText === 'pending'" >{{ 'core.callback_pending' | translate }}</div>
@@ -173,7 +176,7 @@
   <img class="contacts-a" src="/assets/images/icon_tel.svg" alt="telephone">
   <img class="contacts-b" src="/assets/images/arrow-for-select-01.svg" alt="arrow">
   <ul>
-    <li *ngFor="let telephone of telephones">{{ telephone }}</li>
+    <li *ngFor="let telephone of telephones"><a href="tel:{{ telephone }}">{{ telephone }}</a></li>
   </ul>
 </div>
 
@@ -218,4 +221,13 @@
       <a href="{{ socials.inst }}" target="_blank"><img src="/assets/images/icon_15_social_inst.svg" alt="inst"></a>
     </div>
   </div>
+</div>
+
+<div
+  *ngIf="!routeHasParams"
+  class="call-me__button"
+  (click)="toggleCallback(true)"
+  #callDialogButtonMobileMainElement
+>
+  <img src="/assets/images/icon_140_call.svg" alt="{{ 'core.callback' }}">
 </div>
