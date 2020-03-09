@@ -5,6 +5,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ContactsComponent } from './contacts/contacts.component';
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    TranslateModule
   ]
 })
 export class PagesModule { }

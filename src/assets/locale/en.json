@@ -1,4 +1,21 @@
 {
+	"about": {
+		"text1": "Do you want tasty and quality sushi?",
+		"text2": "We are the physical point TakiDa making sushi and rolls",
+		"text3": "Sushi Odessa, Fast delivery of the best sushi in Odessa",
+		"text4": "adequate prices and pleasant dishes, you will be satisfied with us, dispel all doubts, it is better not to find in Odessa. We have Japanese technology and cooking methodology.",
+		"text5": "Logistics is thought out - we deliver on time.",
+		"text6": "We also have pickup.",
+		"text7": "Order by phone or online. Quickly! Conveniently! Profitable!",
+		"text8": "We accept orders - either by phone or on our website, where convenient navigation and detailed descriptions of all dishes allow you to place your order quickly and deliberately.",
+		"text9": "Order rolls quickly - only here in Odessa in the Takida restaurant, leave your phone number and we will immediately contact you."
+	},
+	"contacts": {
+		"address": "Odessa, Shevchenko Avenue 8a",
+		"text1": "Acceptance of orders",
+		"text2": "Phone for complaints and suggestions",
+		"text3": "Address"
+	},
 	"core": {
 		"about": "About",
 		"account": "Account",
@@ -23,6 +40,20 @@
 		"submit": "Submit",
 		"week": "Mon-Sun",
 		"your_name": "Your name"
+	},
+	"delivery": {
+		"text1": "Our internet site offers delivery of goods. All orders are carefully checked before shipping. Delivery time depends on the time of placing the order and preparation. Delivery is from Mon-Sun",
+		"text10": "Contact phones",
+		"text11": "Pickup at the address",
+		"text12": "Having placed an order for sushi with us, you will receive only a quality and fresh product. Only here you can feel the pleasure of our food.",
+		"text2": "You can pick up the order at the address",
+		"text3": "Estimated delivery time in the city takes from 30 to 80 minutes.",
+		"text4": "You can make a pre-order for a certain time, after specifying the details with the manager by phone.",
+		"text5": "Payment Methods",
+		"text6": "You can pay the order in cash to the courier upon delivery. You can pay for the order at the point of delivery for pickup, in cash or by credit card, at the address",
+		"text7": "Order Methods",
+		"text8": "There are several ways to make an order",
+		"text9": "Checkout the basket and delivery on the site"
 	},
 	"item": {
 		"cash": "In cash",
