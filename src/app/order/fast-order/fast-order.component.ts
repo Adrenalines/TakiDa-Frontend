@@ -16,14 +16,11 @@ export class FastOrderComponent implements OnInit {
     private orderService: OrderService,
     private apiService: ApiService
   ) {
-    this.fastOrderForm = new FormGroup({
-      clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
-      phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
-      paymentType: new FormControl('CASH', [ Validators.required ])
-    });
+
   }
 
   ngOnInit(): void {
+    this.resetForm();
   }
 
   public submitFastOrder() {
@@ -38,13 +35,21 @@ export class FastOrderComponent implements OnInit {
         console.log('Submit order error: ', error);
       }
     ).add(() => {
-      this.fastOrderForm.reset();
+      this.resetForm();
       if (this.submitOrderResponseText === 'success') {
         localStorage.removeItem('items');
       }
       setTimeout(() => {
         this.submitOrderResponseText = '';
       }, 5000);
+    });
+  }
+
+  private resetForm() {
+    this.fastOrderForm = new FormGroup({
+      clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
+      phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
+      paymentType: new FormControl('CASH', [ Validators.required ])
     });
   }
 

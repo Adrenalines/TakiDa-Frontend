@@ -5,7 +5,7 @@
         <li><a routerLink="/">{{ 'core.main' | translate }}</a></li>
         <li><a routerLink="/cart">{{ 'order.checkout' | translate }}</a></li>
       </ul>
-      <div class="reducer">
+      <div class="reducer" [ngStyle]="{ 'margin-bottom': 180 - 40 * items.size + 'px' }">
         <div *ngIf="items.size" class="checkout__title">{{ 'order.checkout' | translate }}</div>
         <div *ngIf="!items.size" class="checkout__title">В корзине пока нет товаров</div>
         <app-basket *ngIf="items.size"></app-basket>

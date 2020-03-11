@@ -1,12 +1,17 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Scroll } from '@angular/router';
-import { delay, filter, tap } from 'rxjs/operators';
+import { catchError, delay, filter, tap } from 'rxjs/operators';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { TranslateService } from '@ngx-translate/core';
 import smoothscroll from 'smoothscroll-polyfill';
 import { defaultLocale } from './shared/data/languages';
 import { ScrollService } from './core/services/scroll.service';
 import { HttpParams } from '@angular/common/http';
+import { of, Subject, SubscriptionLike } from 'rxjs';
+import { Category, Item } from './shared/types/types';
+import { ApiService } from './core/services/api.service';
+import { CategoryService } from './main/services/category.service';
+import { BasketService } from './core/services/basket.service';
 
 
 @Component({
@@ -23,13 +28,18 @@ import { HttpParams } from '@angular/common/http';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   public state = 'out';
+  public loadingError = new Subject<boolean>();
+  private itemsSubs: SubscriptionLike[] = [];
 
   constructor(
     private readonly router: Router,
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
     private translateService: TranslateService,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private apiService: ApiService,
+    private categoryService: CategoryService,
+    private basketService: BasketService
   ) {
     smoothscroll.polyfill();
     this.router.events
@@ -61,6 +71,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     // чтобы впоследствие добавить к данным в order
     const utmCampaignValue = this.getParamValueQueryString('utm_campaign');
     document.cookie = `utm_campaign=${utmCampaignValue}`;
+
+    this.checkBasket();
   }
 
   ngAfterViewInit(): void {
@@ -76,6 +88,39 @@ export class AppComponent implements OnInit, AfterViewInit {
       paramValue = httpParams.get(paramName);
     }
     return paramValue;
+  }
+
+  private checkBasket() {
+    const oldBasket = new Map<Item, number>(this.basketService.items);
+    this.categoryService.categories.pipe(
+      catchError((error) => {
+        console.error('Error loading categories and items', error);
+        this.loadingError.next(true);
+        return of(error);
+      })
+    ).subscribe((categories: Category[]) => {
+      if (!Array.isArray(categories)) {
+        return;
+      } else {
+        categories.forEach(category => this.itemsSubs.push(this.apiService.getItems(category.id)
+          .subscribe((items: Item[]) => {
+            Array.from(oldBasket.keys()).forEach(itemBasket => {
+              let itemExists = false;
+              items.forEach(item => {
+                if (itemBasket.id === item.id) {
+                  this.basketService.removeFromBasket(itemBasket);
+                  this.basketService.replenishBasket(item, (oldBasket.get(itemBasket)));
+                  itemExists = true;
+                }
+              });
+              if (!itemExists) {
+                this.basketService.removeFromBasket(itemBasket);
+              }
+            });
+          })
+        ));
+      }
+    });
   }
 
 }

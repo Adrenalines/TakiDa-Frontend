@@ -17,19 +17,7 @@ export class DetailedOrderComponent implements OnInit {
     private orderService: OrderService,
     private apiService: ApiService
   ) {
-    this.detailedOrderForm = new FormGroup({
-      clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
-      phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
-      street: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
-      houseNo: new FormControl(''),
-      apartment: new FormControl(''),
-      addressMemo: new FormControl(''),
-      deliveryType: new FormControl( false),
-      deliveryDate: new FormControl(new Date().toISOString().slice(0, 10)),
-      deliveryTime: new FormControl('12:00'),
-      paymentType: new FormControl('CASH', [ Validators.required ]),
-      paymentMemo: new FormControl('')
-    });
+    this.resetForm();
   }
 
   ngOnInit(): void {
@@ -47,13 +35,29 @@ export class DetailedOrderComponent implements OnInit {
         console.log('Submit order error: ', error);
       }
     ).add(() => {
-      this.detailedOrderForm.reset();
+      this.resetForm();
       if (this.submitOrderResponseText === 'success') {
         localStorage.removeItem('items');
       }
       setTimeout(() => {
         this.submitOrderResponseText = '';
       }, 5000);
+    });
+  }
+
+  private resetForm() {
+    this.detailedOrderForm = new FormGroup({
+      clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
+      phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
+      street: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
+      houseNo: new FormControl(''),
+      apartment: new FormControl(''),
+      addressMemo: new FormControl(''),
+      deliveryType: new FormControl( false),
+      deliveryDate: new FormControl(new Date().toISOString().slice(0, 10)),
+      deliveryTime: new FormControl('12:00'),
+      paymentType: new FormControl('CASH', [ Validators.required ]),
+      paymentMemo: new FormControl('')
     });
   }
 }
