@@ -19,7 +19,10 @@ import {
   providedIn: 'root'
 })
 export class ApiService {
+  itemsByCategory: Map<string, Observable<Item[]>>;
+
   constructor(private http: HttpClient) {
+    this.itemsByCategory = new Map<string, Observable<Item[]>>();
   }
 
   private static handleError(error: Response) {
@@ -38,12 +41,19 @@ export class ApiService {
   }
 
   public getItems(id: string): Observable<Item[]> {
-    return this.http.get<ItemsResponse>(`${ environment.url }/categories/${id}/goods`).pipe(
-      map((response: ItemsResponse) => {
-        return response.data;
-      }),
-      catchError(ApiService.handleError)
-    );
+    if (this.itemsByCategory.has(id)) {
+      return this.itemsByCategory.get(id);
+    } else {
+      const items = this.http.get<ItemsResponse>(`${ environment.url }/categories/${ id }/goods`).pipe(
+        map((response: ItemsResponse) => {
+          return response.data;
+        }),
+        catchError(ApiService.handleError),
+        shareReplay()
+      );
+      this.itemsByCategory.set(id, items);
+      return items;
+    }
   }
 
   public postCallBack(callData: CallbackRequest): Observable<boolean> {
@@ -68,7 +78,8 @@ export class ApiService {
 
   public getSlides(): Observable<Slide[]> {
     return this.http.get<Slide[]>('/assets/slidesStore.json').pipe(
-      catchError(ApiService.handleError)
+      catchError(ApiService.handleError),
+      shareReplay()
     );
   }
 }
