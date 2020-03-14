@@ -42,6 +42,7 @@
 		"your_name": "Your name"
 	},
 	"delivery": {
+		"free": "Free delivery in the city of Odessa is carried out when ordering from 250 hryvnia. The order amount for free delivery depends on the delivery address. You can obtain more detailed information from our manager by phone.",
 		"text1": "Our internet site offers delivery of goods. All orders are carefully checked before shipping. Delivery time depends on the time of placing the order and preparation. Delivery is from Mon-Sun",
 		"text10": "Contact phones",
 		"text11": "Pickup at the address",
