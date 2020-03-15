@@ -52,8 +52,21 @@
         {{ item.price }} <span>₴</span>
       </div>
     </div>
-    <div class="item__info-g" (click)="replenishBasket($event, item)" #toCartButtonElement>
+    <div
+      *ngIf="number === 0"
+      class="item__info-g"
+      (click)="replenishBasket($event, item, 1); changeNumber($event, 1);"
+      #toCartButtonElement
+    >
       <span>+ {{ 'product.to_card' | translate }}</span>
+    </div>
+    <div
+      *ngIf="number > 0"
+      class="item__info-h"
+    >
+      <div class="minus" (click)="replenishBasket($event, item, -1); changeNumber($event, -1)"></div>
+      <div class="counter">{{ number }}</div>
+      <div class="plus" (click)="replenishBasket($event, item, 1); changeNumber($event, 1)"></div>
     </div>
   </div>
 </div>

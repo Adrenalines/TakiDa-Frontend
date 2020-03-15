@@ -14,6 +14,7 @@ export class ItemCardComponent implements OnInit {
   public itemPlaceholder: Item;
   public environment = environment;
   public image: string;
+  public number = 0;
 
 
   constructor(private basketService: BasketService) {
@@ -33,13 +34,25 @@ export class ItemCardComponent implements OnInit {
     }
   }
 
-  public replenishBasket(event: Event, item: Item) {
+  public replenishBasket(event: Event, item: Item, count: number) {
     event.preventDefault();
     event.stopPropagation();
-    this.toCartButtonElement.nativeElement.classList.add('item__info-g_animate');
-    setTimeout(() => {
-      this.toCartButtonElement.nativeElement.classList.remove('item__info-g_animate');
-    }, 300);
-    this.basketService.replenishBasket(item, 1);
+
+    if (count === 1) {
+      this.basketService.replenishBasket(item, 1);
+    } else if (count === -1) {
+      this.basketService.replenishBasket(item, -1);
+    }
+  }
+
+  public changeNumber(event: Event, count: number) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (count === -1 && this.number === 1) {
+      this.number = 0;
+      return;
+    }
+    this.number += count;
   }
 }
