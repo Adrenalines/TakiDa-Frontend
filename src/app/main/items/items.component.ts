@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -16,6 +16,7 @@ export class ItemsComponent implements OnInit {
   public categories: Observable<Category[]>;
   public item: Item;
   public loadingError = new Subject<boolean>();
+  private anchors: HTMLCollectionOf<Element>;
 
   constructor(
     private location: Location,
@@ -32,6 +33,8 @@ export class ItemsComponent implements OnInit {
         return of(error);
       })
     );
+
+    this.anchors = document.getElementsByClassName('anchor');
   }
 
   public showPopup(event: MouseEvent, item: Item) {
@@ -44,5 +47,22 @@ export class ItemsComponent implements OnInit {
   public closePopup() {
     this.item = null;
     this.location.replaceState( '/');
+  }
+
+  @HostListener('window:scroll', [ '$event' ])
+  private handleOutsideClick(event) {
+    setTimeout(() => {
+      const anchors = [].slice.call(this.anchors);
+      for (let i = 1; i < this.anchors.length; i++) {
+        if (window.scrollY + 40 < (this.anchors[i] as HTMLElement).offsetTop &&
+          window.scrollY + 40 > (this.anchors[i - 1] as HTMLElement).offsetTop) {
+          this.scrollService.activeItemsCategory.next(this.anchors[i - 1]);
+        }
+      }
+      if (window.scrollY + 40 > (this.anchors[this.anchors.length - 1] as HTMLElement).offsetTop) {
+        this.scrollService.activeItemsCategory.next(this.anchors[this.anchors.length - 1]);
+      }
+    }, 10);
+
   }
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of, Subject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, of, pipe, Subject } from 'rxjs';
+import { catchError, debounce, debounceTime, delay, last, takeLast } from 'rxjs/operators';
 import { Category } from '../../shared/types/types';
 import { ApiService } from '../services/api.service';
 import { CategoryService } from '../../main/services/category.service';
+import { ScrollService } from '../services/scroll.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class MenuComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private scrollService: ScrollService
   ) {
     this.categories = this.categoryService.categories.pipe(
       catchError((error) => {
@@ -32,8 +34,13 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.fragment.subscribe(fragment => {
-      this.fragment = fragment;
+
+    this.scrollService.activeItemsCategory.pipe(debounceTime(50)).subscribe(category => {
+      if (category === null) {
+        this.fragment = '';
+      } else {
+        this.fragment = category.id;
+      }
     });
   }
 

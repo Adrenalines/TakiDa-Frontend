@@ -30,6 +30,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   public state = 'out';
   public loadingError = new Subject<boolean>();
   private itemsSubs: SubscriptionLike[] = [];
+  private savedAnchor: string;
 
   constructor(
     private readonly router: Router,
@@ -48,6 +49,9 @@ export class AppComponent implements OnInit, AfterViewInit {
         tap(e => {
           if (!e.anchor && !e.position) {
             window.scroll(0, 0);
+            setTimeout(() => {
+              this.scrollService.activeItemsCategory.next(null);
+            }, 100);
           }
         }),
         delay(10)
