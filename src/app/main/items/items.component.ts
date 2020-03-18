@@ -52,15 +52,14 @@ export class ItemsComponent implements OnInit {
   @HostListener('window:scroll', [ '$event' ])
   private handleOutsideClick(event) {
     setTimeout(() => {
-      const anchors = [].slice.call(this.anchors);
       for (let i = 1; i < this.anchors.length; i++) {
-        if (window.scrollY + 40 < (this.anchors[i] as HTMLElement).offsetTop &&
-          window.scrollY + 40 > (this.anchors[i - 1] as HTMLElement).offsetTop) {
-          this.scrollService.activeItemsCategory.next(this.anchors[i - 1]);
+        if (window.scrollY + window.innerHeight / 3 < (this.anchors[i] as HTMLElement).offsetTop &&
+          window.scrollY + window.innerHeight / 3 > (this.anchors[i - 1] as HTMLElement).offsetTop) {
+          this.scrollService.activeItemsCategory.next(this.anchors[i - 1].id.split(' ').join('_'));
         }
       }
-      if (window.scrollY + 40 > (this.anchors[this.anchors.length - 1] as HTMLElement).offsetTop) {
-        this.scrollService.activeItemsCategory.next(this.anchors[this.anchors.length - 1]);
+      if (window.scrollY + window.innerHeight / 3 > (this.anchors[this.anchors.length - 1] as HTMLElement).offsetTop) {
+        this.scrollService.activeItemsCategory.next(this.anchors[this.anchors.length - 1].id.split(' ').join('_'));
       }
     }, 10);
 

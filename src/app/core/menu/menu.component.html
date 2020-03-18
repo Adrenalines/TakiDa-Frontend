@@ -3,11 +3,12 @@
   <div class="menu">
       <a
         *ngFor="let category of categories | async; let i = index"
-        class="menu__bg"
+        [ngClass]="{ 'menu__bg': true, 'active': fragment === category.name.split(' ').join('_') }"
         routerLink="/"
         fragment="{{ category.name.split(' ').join('_') }}"
+        (click)="forceScroll(category)"
       >
-        <div [ngClass]="{ 'menu__item': true, 'active': fragment === category.name.split(' ').join('_') }">
+        <div class="menu__item">
           <div *ngIf="fragment !== category.name.split(' ').join('_')" class="item-{{ i + 1 }}"></div>
           <div *ngIf="fragment === category.name.split(' ').join('_')" class="active-{{ i + 1 }}"></div>
           <div class="item-txt">{{ category.name }}</div>

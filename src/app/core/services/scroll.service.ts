@@ -6,9 +6,9 @@ import { Subject } from 'rxjs';
 })
 export class ScrollService {
   public delay = 1000;
-  public activeItemsCategory: Subject<Element>;
+  public activeItemsCategory: Subject<string>;
 
   constructor() {
-    this.activeItemsCategory = new Subject<Element>();
+    this.activeItemsCategory = new Subject<string>();
   }
 }

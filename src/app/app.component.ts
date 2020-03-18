@@ -30,7 +30,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   public state = 'out';
   public loadingError = new Subject<boolean>();
   private itemsSubs: SubscriptionLike[] = [];
-  private savedAnchor: string;
 
   constructor(
     private readonly router: Router,

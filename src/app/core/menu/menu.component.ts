@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of, pipe, Subject } from 'rxjs';
-import { catchError, debounce, debounceTime, delay, last, takeLast } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
+import { catchError, debounceTime } from 'rxjs/operators';
 import { Category } from '../../shared/types/types';
 import { ApiService } from '../services/api.service';
 import { CategoryService } from '../../main/services/category.service';
@@ -34,14 +34,21 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.fragment.subscribe(fragment => {
+      this.fragment = fragment;
+    });
 
     this.scrollService.activeItemsCategory.pipe(debounceTime(50)).subscribe(category => {
       if (category === null) {
         this.fragment = '';
       } else {
-        this.fragment = category.id;
+        this.fragment = category;
       }
     });
   }
 
+  public forceScroll(category: Category) {
+    this.fragment = category.name.split(' ').join('_');
+    document.querySelector('#' + this.fragment).scrollIntoView({ behavior: 'smooth' });
+  }
 }
