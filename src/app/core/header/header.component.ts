@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { TELEPHONES } from '../../shared/data/telephones';
 import { defaultLocale, LANGUAGES } from '../../shared/data/languages';
 import { SOCIALS } from '../../shared/data/socials';
@@ -10,10 +11,24 @@ import { AuthService } from '../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: [ './header.component.less' ]
+  styleUrls: [ './header.component.less' ],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({ opacity: 1, transform: 'translateY(0)' })),
+      transition('void => *', [
+        style({ opacity: 0, transform: 'translateY(100%)' }),
+        animate(200)
+      ]),
+      transition('* => void', [
+        animate(200, style({ opacity: 0, transform: 'translateY(100%)' }))
+      ])
+    ])
+
+  ]
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('basketElement') basketElement: ElementRef;

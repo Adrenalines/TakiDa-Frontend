@@ -38,6 +38,7 @@
 		"send": "Submit",
 		"shevchenko": "Shevchenko",
 		"submit": "Submit",
+		"to_cart": "Go to basket",
 		"week": "Mon-Sun",
 		"your_name": "Your name"
 	},
@@ -95,7 +96,7 @@
 		"new": "New",
 		"pieces": "pcs.",
 		"stock": "Stock",
-		"to_card": "Add to cart"
+		"to_cart": "Add to cart"
 	},
 	"profile": {
 		"account": "Account",

@@ -15,24 +15,27 @@
     </div>
   </div>
 </div>
-<div *ngFor="let category of categories | async | getItems">
-  <a class="anchor" id="{{ category.name.split(' ').join('_') }}"></a>
-  <div class="section">
-    <div class="section__title-rolls">
-      <img class="title-icon" [src]="'/assets/images/categories/' + category.id + '_regular.svg'" alt="">
-      <div class="title-txt">{{ category.name }}</div>
-    </div>
-    <div class="wrapper">
-      <div class="section__items">
-        <div *ngFor="let item of category.items | async">
-          <a
-            (click)="showPopup($event, item)"
-            href="item/{{ item.name.split(' ').join('_') }}"
-          >
-            <app-item-card [item]="item"></app-item-card>
-          </a>
+<div *ngIf="(categories | async | getItems) as categories">
+  <div *ngFor="let category of categories">
+    <a class="anchor" id="{{ category.name.split(' ').join('_') }}"></a>
+    <div class="section">
+      <div class="section__title-rolls">
+        <img class="title-icon" [src]="'/assets/images/categories/' + category.id + '_regular.svg'" alt="">
+        <div class="title-txt">{{ category.name }}</div>
+      </div>
+      <div class="wrapper">
+        <div class="section__items">
+          <div *ngFor="let item of category.items | async">
+            <a
+              (click)="showPopup($event, item)"
+              href="item/{{ item.name.split(' ').join('_') }}"
+            >
+              <app-item-card [item]="item"></app-item-card>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+

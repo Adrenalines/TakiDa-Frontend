@@ -727,6 +727,10 @@
   }
 }
 
+.header__basket-mobile {
+  display: none;
+}
+
 @media (max-width: 1060px) {
   .call-me__popup {
     margin-left: 200px;
@@ -957,5 +961,65 @@
     transform: scale(0.8);
     z-index: 5;
     cursor: pointer;
+  }
+
+  .header__basket-mobile {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 98px;
+    background: #FFFFFF;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    z-index: 3;
+
+    .basket-mobile-icon {
+      position: absolute;
+      width: 45px;
+      height: 45px;
+      top: 28px;
+      left: 12px;
+    }
+
+    .basket-mobile-text {
+      position: absolute;
+      top: 27px;
+      left: 70px;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    .basket-mobile-items {
+      position: absolute;
+      left: 71px;
+      top: 55px;
+      font-size: 12px;
+      line-height: 15px;
+      color: #878572;
+    }
+
+    .basket-mobile-button {
+      position: absolute;
+      top: 28px;
+      right: 10px;
+      width: 50%;
+      height: 45px;
+      background: #C3C1AA;
+      border-radius: 10px;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-weight: bold;
+        font-size: 14px;
+        color: #FFFFFF;
+      }
+    }
   }
 }

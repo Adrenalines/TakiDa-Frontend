@@ -14,7 +14,7 @@
       </div>
     </div>
     <a class="item__info-g">
-      <span>+ {{ 'product.to_card' | translate }}</span>
+      <span>+ {{ 'product.to_cart' | translate }}</span>
     </a>
   </div>
 </div>
@@ -58,7 +58,7 @@
       (click)="replenishBasket($event, item, 1); changeNumber($event, 1);"
       #toCartButtonElement
     >
-      <span>+ {{ 'product.to_card' | translate }}</span>
+      <span>+ {{ 'product.to_cart' | translate }}</span>
     </div>
     <div
       *ngIf="number > 0"

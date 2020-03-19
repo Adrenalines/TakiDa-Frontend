@@ -77,9 +77,9 @@
   #callDialogElement>
   <div class="triangle"></div>
   <div *ngIf="callDialogResponseText" class="call-me__popup-text">
-    <div *ngIf="callDialogResponseText === 'pending'" >{{ 'core.callback_pending' | translate }}</div>
-    <div *ngIf="callDialogResponseText === 'success'" >{{ 'core.callback_success' | translate }}</div>
-    <div *ngIf="callDialogResponseText === 'error'" >{{ 'core.callback_error' | translate }}</div>
+    <div *ngIf="callDialogResponseText === 'pending'">{{ 'core.callback_pending' | translate }}</div>
+    <div *ngIf="callDialogResponseText === 'success'">{{ 'core.callback_success' | translate }}</div>
+    <div *ngIf="callDialogResponseText === 'error'">{{ 'core.callback_error' | translate }}</div>
   </div>
   <div *ngIf="!callDialogResponseText">
     <div class="call-me__popup-text">{{ 'core.callback_where' | translate }}</div>
@@ -116,7 +116,7 @@
 <div *ngIf="accountDialogShow" class="wrapper account__popup" #accountDialogElement>
   <div class="triangle"></div>
   <div *ngIf="accountDialogResponseText" class="account__popup-text">
-    <div *ngIf="accountDialogResponseText === 'error'" >{{ 'profile.auth_error' | translate }}</div>
+    <div *ngIf="accountDialogResponseText === 'error'">{{ 'profile.auth_error' | translate }}</div>
   </div>
   <div *ngIf="!accountDialogResponseText">
     <div class="account__popup-text">{{ 'profile.account' | translate }}</div>
@@ -231,3 +231,20 @@
 >
   <img src="/assets/images/icon_140_call.svg" alt="{{ 'core.callback' }}">
 </div>
+
+<div *ngIf="itemsCount" [@flyInOut] class="header__basket-mobile" #basketMobileElement>
+  <a routerLink="/cart">
+    <img class="basket-mobile-icon" src="/assets/images/icon_25_basket.svg" alt="{{ 'core.basket' | translate }}">
+    <span class="basket-mobile-text">{{ 'core.basket' | translate }}</span>
+    <span class="basket-mobile-items">
+      <span>{{ itemsCount }} {{ 'core.item' | translate }}</span>
+      <span *ngIf="itemsCountPlural === 2">{{ 'core.item_plural_2' | translate }}</span>
+      <span *ngIf="itemsCountPlural === 3">{{ 'core.item_plural_many' | translate }}</span>
+    </span>
+    <div class="basket-mobile-button">
+      <span>{{ 'core.to_cart' | translate }}</span>
+    </div>
+  </a>
+</div>
+
+
