@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Category, Item } from '../../shared/types/types';
 import { CategoryService } from '../services/category.service';
 import { ScrollService } from '../../core/services/scroll.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,10 +20,13 @@ export class ItemsComponent implements OnInit {
   private anchors: HTMLCollectionOf<Element>;
 
   constructor(
+    private router: Router,
     private location: Location,
     private categoryService: CategoryService,
     private scrollService: ScrollService
-  ) { }
+  ) {
+    this.router.routeReuseStrategy.shouldDetach(undefined);
+  }
 
   ngOnInit(): void {
     this.scrollService.delay = 1000;
@@ -66,5 +70,5 @@ export class ItemsComponent implements OnInit {
       }
     }, 30);
   }
-  
+
 }
