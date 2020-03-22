@@ -79,7 +79,6 @@ export interface DetailedOrderFormData {
   addressMemo: string;
   deliveryType: boolean;
   deliveryDate: Date;
-  deliveryTime: string;
   paymentType: 'CASH';
   paymentMemo: string;
 }

@@ -49,6 +49,8 @@ export class MenuComponent implements OnInit {
 
   public forceScroll(category: Category) {
     this.fragment = category.name.split(' ').join('_');
-    document.querySelector('#' + this.fragment).scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      document.querySelector('#' + this.fragment).scrollIntoView({ behavior: 'smooth' });
+    }, 10);
   }
 }

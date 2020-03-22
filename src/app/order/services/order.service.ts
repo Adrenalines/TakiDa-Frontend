@@ -19,9 +19,8 @@ export class OrderService {
       return itemsTransformed;
     }, {});
 
-    const deliveryDate = rawOrderData.deliveryType ? rawOrderData.deliveryDate ? rawOrderData.deliveryTime ?
-      new Date(rawOrderData.deliveryDate + ' ' + rawOrderData.deliveryTime).getTime() :
-      new Date(rawOrderData.deliveryDate).getTime() : null : null;
+    const deliveryDate = rawOrderData.deliveryType ?
+      new Date(rawOrderData.deliveryDate).getTime() : null;
 
     const transformedOrderData = {
       ...rawOrderData,
@@ -35,7 +34,6 @@ export class OrderService {
       goods: itemsOrder
     };
     delete transformedOrderData.deliveryType;
-    delete transformedOrderData.deliveryTime;
     return transformedOrderData;
   }
 

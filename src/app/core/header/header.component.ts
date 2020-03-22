@@ -8,7 +8,8 @@ import { SOCIALS } from '../../shared/data/socials';
 import { BasketService } from '../services/basket.service';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, Scroll } from '@angular/router';
+import { delay, filter, tap } from 'rxjs/operators';
 
 
 
@@ -88,9 +89,11 @@ export class HeaderComponent implements OnInit {
       }
     });
 
-    setInterval(() => {
-      this.routeHasParams = !!this.location.path();
-    }, 200);
+    this.router.events.pipe(
+      filter((e: any): e is NavigationEnd => e instanceof NavigationEnd),
+    ).subscribe(path => {
+      this.routeHasParams = path.url === '/cart';
+    });
   }
 
   private num2word(num): 1 | 2 | 3 {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../core/services/api.service';
 import { OrderService } from '../services/order.service';
+import { calendarLocales, defaultLocale } from '../../shared/data/languages';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { OrderService } from '../services/order.service';
 export class DetailedOrderComponent implements OnInit {
   public detailedOrderForm: FormGroup;
   public submitOrderResponseText: string;
+  public calendarLocales = calendarLocales;
+  public defaultLocale = defaultLocale;
 
   constructor(
     private orderService: OrderService,
@@ -27,7 +30,6 @@ export class DetailedOrderComponent implements OnInit {
     this.submitOrderResponseText = 'pending';
     const transformedOrderData = this.orderService.transformOrderData(this.detailedOrderForm.value);
     this.apiService.postOrder(transformedOrderData).subscribe((response: boolean) => {
-        console.log(response);
         this.submitOrderResponseText = response ? 'success' : 'error';
       },
       error => {
@@ -54,8 +56,7 @@ export class DetailedOrderComponent implements OnInit {
       apartment: new FormControl(''),
       addressMemo: new FormControl(''),
       deliveryType: new FormControl( false),
-      deliveryDate: new FormControl(new Date().toISOString().slice(0, 10)),
-      deliveryTime: new FormControl('12:00'),
+      deliveryDate: new FormControl({ value: new Date(), disabled: true }),
       paymentType: new FormControl('CASH', [ Validators.required ]),
       paymentMemo: new FormControl('')
     });

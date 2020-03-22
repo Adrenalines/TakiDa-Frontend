@@ -54,9 +54,8 @@ export class ItemsComponent implements OnInit {
   }
 
   @HostListener('window:scroll', [ '$event' ])
-  private handleOutsideClick(event) {
-    setTimeout(() => {
-      if (!this.anchors) {
+  private handleOutsideClick() {
+      if (!this.anchors?.length) {
         return;
       }
       for (let i = 1; i < this.anchors.length; i++) {
@@ -68,7 +67,6 @@ export class ItemsComponent implements OnInit {
       if (window.scrollY + window.innerHeight / 3 > (this.anchors[this.anchors.length - 1] as HTMLElement).offsetTop) {
         this.scrollService.activeItemsCategory.next(this.anchors[this.anchors.length - 1].id.split(' ').join('_'));
       }
-    }, 30);
   }
 
 }

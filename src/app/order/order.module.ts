@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { CalendarModule } from 'primeng/calendar';
 import { SharedModule } from '../shared/shared.module';
 import { OrderRoutingModule } from './order-routing.module';
 import { BasketComponent } from './basket/basket.component';
@@ -26,7 +27,8 @@ import { OrderComponent } from './order/order.component';
     OrderRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    CalendarModule
   ]
 })
 export class OrderModule { }
