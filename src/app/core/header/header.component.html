@@ -82,6 +82,9 @@
     <div *ngIf="callDialogResponseText === 'error'">{{ 'core.callback_error' | translate }}</div>
   </div>
   <div *ngIf="!callDialogResponseText">
+    <ul *ngIf="callBackFromMain">
+      <li *ngFor="let telephone of telephones"><a href="tel:{{ telephone }}">{{ telephone }}</a></li>
+    </ul>
     <div class="call-me__popup-text">{{ 'core.callback_where' | translate }}</div>
     <form [formGroup]="callDialogForm" (ngSubmit)="submitCallback()">
       <div class="form-fields">
@@ -172,12 +175,13 @@
     </div>
   </div>
 </div>
-<div class="header-mobile__contacts">
+<div
+  class="header-mobile__contacts"
+  (click)="toggleCallback(true)"
+  #callDialogButtonMobileMainElement
+>
   <img class="contacts-a" src="/assets/images/icon_tel.svg" alt="telephone">
   <img class="contacts-b" src="/assets/images/arrow-for-select-01.svg" alt="arrow">
-  <ul>
-    <li *ngFor="let telephone of telephones"><a href="tel:{{ telephone }}">{{ telephone }}</a></li>
-  </ul>
 </div>
 
 <div id="nav-menu" [ngClass]="{ 'nav-menu': true, 'active': mobileNav }" class="nav-menu">
@@ -221,15 +225,6 @@
       <a href="{{ socials.inst }}" target="_blank"><img src="/assets/images/icon_15_social_inst.svg" alt="inst"></a>
     </div>
   </div>
-</div>
-
-<div
-  *ngIf="!routeHasParams"
-  class="call-me__button"
-  (click)="toggleCallback(true)"
-  #callDialogButtonMobileMainElement
->
-  <img src="/assets/images/icon_140_call.svg" alt="{{ 'core.callback' }}">
 </div>
 
 <a routerLink="/cart">

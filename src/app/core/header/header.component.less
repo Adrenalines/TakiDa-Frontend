@@ -356,10 +356,10 @@
 
 .call-me__popup__from_main {
   position: fixed;
-  bottom: 150px;
-  right: 15px;
+  top: 80px;
+  left: 20px;
   width: 280px;
-  height: 230px;
+  height: 310px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -371,13 +371,38 @@
 
   .triangle {
     position: absolute;
-    margin-top: 220px;
-    margin-left: 170px;
+    margin-top: -8px;
     width: 16px;
     height: 16px;
 
     background: #FFFFFF;
     transform: rotate(45deg);
+  }
+
+  ul {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+
+    a {
+      margin: 0 auto;
+      text-decoration: none;
+      color: #000;
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    li {
+      list-style-type: none;
+      text-align: center;
+
+      border-radius: 5px;
+      margin-left: -40px;
+      padding: 2px;
+
+      &:hover {
+        background-color: #ddd;
+      }
+    }
   }
 
   &-text {
@@ -394,13 +419,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-top: 8px;
 
     input {
       background: #fff;
       border: 1px solid #e0e0e0;
       border-radius: 5px;
-      margin-top: 15px;
+      margin-top: 12px;
       height: 35px;
       width: 99%;
 
@@ -902,12 +926,7 @@
 
     &:hover {
       background-color: #ddd;
-
-      ul {
-        visibility: visible;
-      }
     }
-
 
     .contacts-a {
       width: 21px;
@@ -918,49 +937,6 @@
       width: 8px;
       height: auto;
     }
-
-    ul {
-      position: absolute;
-      bottom: -70px;
-      left: -42px;
-
-      visibility: hidden;
-
-      a {
-        text-decoration: none;
-
-        color: #000;
-        font-size: 18px;
-        font-weight: 400;
-      }
-
-      li {
-        list-style-type: none;
-        text-align: center;
-
-        background-color: #f9f9f4;
-        border-radius: 5px;
-
-        width: 188px;
-
-        padding: 2px;
-        margin: 2px;
-
-        &:hover {
-          background-color: #ddd;
-        }
-      }
-    }
-  }
-
-  .call-me__button {
-    display: block;
-    position: fixed;
-    bottom: 30px;
-    right: 0;
-    transform: scale(0.8);
-    z-index: 5;
-    cursor: pointer;
   }
 
   .header__basket-mobile {
