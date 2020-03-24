@@ -19,10 +19,10 @@ import {
   providedIn: 'root'
 })
 export class ApiService {
-  itemsByCategory: Map<string, Observable<Item[]>>;
+  itemsByCategory: Map<string, Observable<ItemsResponse>>;
 
   constructor(private http: HttpClient) {
-    this.itemsByCategory = new Map<string, Observable<Item[]>>();
+    this.itemsByCategory = new Map<string, Observable<ItemsResponse>>();
   }
 
   private static handleError(error: Response) {
@@ -40,14 +40,17 @@ export class ApiService {
     );
   }
 
-  public getItems(id: string): Observable<Item[]> {
+  public getItems(id: string, limit?: number, offset?: number): Observable<ItemsResponse> {
+    console.log(limit);
     if (this.itemsByCategory.has(id)) {
       return this.itemsByCategory.get(id);
     } else {
-      const items = this.http.get<ItemsResponse>(`${ environment.url }/categories/${ id }/goods`).pipe(
-        map((response: ItemsResponse) => {
-          return response.data;
-        }),
+      const items = this.http.get<ItemsResponse>(`${ environment.url }/categories/${ id }/goods`, {
+        params: {
+          limit: limit.toString(),
+          offset: offset.toString()
+        }
+      }).pipe(
         catchError(ApiService.handleError),
         shareReplay()
       );
@@ -68,7 +71,6 @@ export class ApiService {
   public postOrder(orderData: DetailedOrderRequest): Observable<boolean> {
     return this.http.post<PostResponse>(`${ environment.url }/booking`, orderData).pipe(
       map((response: PostResponse) => {
-        console.log(response);
         return response.success;
       }),
       catchError(ApiService.handleError)

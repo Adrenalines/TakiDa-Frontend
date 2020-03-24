@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { of, Subject, SubscriptionLike } from 'rxjs';
-import { Category, Item } from '../../shared/types/types';
+import { Category, Item, ItemsResponse } from '../../shared/types/types';
 import { ApiService } from '../../core/services/api.service';
 import { CategoryService } from '../../main/services/category.service';
 import { catchError } from 'rxjs/operators';
@@ -40,8 +40,8 @@ export class ItemComponent implements OnInit, OnDestroy {
         return;
       } else {
         categories.forEach(category => this.itemsSubs.push(this.apiService.getItems(category.id)
-          .subscribe((items: Item[]) => {
-            items.forEach(item => {
+          .subscribe((items: ItemsResponse) => {
+            items.data.forEach(item => {
               if (item.name.split(' ').join('_') === name) {
                 this.item = item;
                 this.categoryName = category.name;

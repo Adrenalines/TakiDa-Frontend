@@ -8,7 +8,7 @@ import { defaultLocale } from './shared/data/languages';
 import { ScrollService } from './core/services/scroll.service';
 import { HttpParams } from '@angular/common/http';
 import { of, Subject, SubscriptionLike } from 'rxjs';
-import { Category, Item } from './shared/types/types';
+import { Category, Item, ItemsResponse } from './shared/types/types';
 import { ApiService } from './core/services/api.service';
 import { CategoryService } from './main/services/category.service';
 import { BasketService } from './core/services/basket.service';
@@ -105,11 +105,11 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (!Array.isArray(categories)) {
         return;
       } else {
-        categories.forEach(category => this.itemsSubs.push(this.apiService.getItems(category.id)
-          .subscribe((items: Item[]) => {
+       /* categories.forEach(category => this.itemsSubs.push(this.apiService.getItems(category.id, 100, 0)
+          .subscribe((items: ItemsResponse) => {
             Array.from(oldBasket.keys()).forEach(itemBasket => {
               let itemExists = false;
-              items.forEach(item => {
+              items.data.forEach(item => {
                 if (itemBasket.id === item.id) {
                   this.basketService.removeFromBasket(itemBasket);
                   this.basketService.replenishBasket(item, (oldBasket.get(itemBasket)));
@@ -121,7 +121,7 @@ export class AppComponent implements OnInit, AfterViewInit {
               }
             });
           })
-        ));
+        ));*/
       }
     });
   }

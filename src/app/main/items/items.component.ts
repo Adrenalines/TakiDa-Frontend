@@ -6,6 +6,7 @@ import { Category, Item } from '../../shared/types/types';
 import { CategoryService } from '../services/category.service';
 import { ScrollService } from '../../core/services/scroll.service';
 import { Router } from '@angular/router';
+import { ApiService } from '../../core/services/api.service';
 
 
 @Component({
@@ -17,15 +18,20 @@ export class ItemsComponent implements OnInit {
   public categories: Observable<Category[]>;
   public item: Item;
   public loadingError = new Subject<boolean>();
+  public limit: number;
+  public offset: number;
   private anchors: HTMLCollectionOf<Element>;
 
   constructor(
     private router: Router,
     private location: Location,
+    private apiService: ApiService,
     private categoryService: CategoryService,
     private scrollService: ScrollService
   ) {
     this.router.routeReuseStrategy.shouldDetach(undefined);
+    this.limit = window.screen.width < 930 ? 4 : 4;
+    this.offset = 0;
   }
 
   ngOnInit(): void {
@@ -69,4 +75,7 @@ export class ItemsComponent implements OnInit {
       }
   }
 
+  public showMoreItems(id: string) {
+    return this.apiService.getItems(id, 100, 5);
+  }
 }
