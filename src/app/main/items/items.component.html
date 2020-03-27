@@ -15,17 +15,23 @@
     </div>
   </div>
 </div>
-<div *ngIf="(categories | async | getItems:4:0) as categories">
+<div *ngIf="(categories | async) as categories">
   <div *ngFor="let category of categories">
     <a class="anchor" id="{{ category.name.split(' ').join('_') }}"></a>
-    <div class="section">
+    <div
+      *ngIf="(category.id | getItems:4:0 | async) as itemsResponse"
+      class="section"
+    >
       <div class="section__title-rolls">
         <img class="title-icon" [src]="'/assets/images/categories/' + category.id + '_regular.svg'" alt="">
         <div class="title-txt">{{ category.name }}</div>
       </div>
       <div class="wrapper">
-        <div class="section__items">
-          <div *ngFor="let item of (category.items | async)?.data">
+        <div
+          *ngIf="itemsResponse.data as items"
+          class="section__items"
+        >
+          <div *ngFor="let item of items">
             <a
               (click)="showPopup($event, item)"
               href="item/{{ item.name.split(' ').join('_') }}"
@@ -34,20 +40,28 @@
             </a>
           </div>
         </div>
-      </div>
+
       <div
-        *ngIf="category.limit < (category.items | async)?.meta.count"
+        *ngIf="itemsResponse.meta.count > 4 && !category.expanded"
         class="section__more"
-        (click)="category.limit = 100; category.items = showMoreItems(category.id)"
+        (click)="category.expanded = true;"
       >
         <button>Показать все</button>
       </div>
       <div
-        *ngIf="category.limit === 100"
-        class="wrapper"
+        *ngIf="category.expanded && !(category.id | getItems:0:4 | async)"
+        class="section__more"
       >
-        <div class="section__items">
-          <div *ngFor="let item of (category.items | async)?.data">
+        <button>Показать все</button>
+      </div>
+      <div
+        *ngIf="category.expanded && (category.id | getItems:0:4 | async) as itemsFullResponse"
+      >
+        <div
+          *ngIf="itemsFullResponse.data as items"
+          class="section__items"
+        >
+          <div *ngFor="let item of items">
             <a
               (click)="showPopup($event, item)"
               href="item/{{ item.name.split(' ').join('_') }}"
@@ -56,6 +70,7 @@
             </a>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div>

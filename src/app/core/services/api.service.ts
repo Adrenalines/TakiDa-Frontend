@@ -8,10 +8,9 @@ import {
   PostResponse,
   Category,
   CategoryResponse,
-  Item,
   ItemsResponse,
   Slide,
-  DetailedOrderRequest
+  DetailedOrderRequest, ItemResponse, Item
 } from '../../shared/types/types';
 
 
@@ -41,9 +40,8 @@ export class ApiService {
   }
 
   public getItems(id: string, limit?: number, offset?: number): Observable<ItemsResponse> {
-    console.log(limit);
-    if (this.itemsByCategory.has(id)) {
-      return this.itemsByCategory.get(id);
+    if (this.itemsByCategory.has(`${id}${limit}`)) {
+      return this.itemsByCategory.get(`${id}${limit}`);
     } else {
       const items = this.http.get<ItemsResponse>(`${ environment.url }/categories/${ id }/goods`, {
         params: {
@@ -54,9 +52,19 @@ export class ApiService {
         catchError(ApiService.handleError),
         shareReplay()
       );
-      this.itemsByCategory.set(id, items);
+      this.itemsByCategory.set(`${id}${limit}`, items);
       return items;
     }
+  }
+
+  public getItem(id: string): Observable<Item> {
+    return this.http.get<ItemResponse>(`${ environment.url }/goods/${ id }`).pipe(
+      map((response: ItemResponse) => {
+        return response.data;
+      }),
+      catchError(ApiService.handleError),
+      shareReplay()
+    );
   }
 
   public postCallBack(callData: CallbackRequest): Observable<boolean> {

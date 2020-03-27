@@ -13,10 +13,7 @@ export interface MetaResponse {
 export interface Category {
   id: string;
   name: string;
-  items: Observable<ItemsResponse>;
-  count: number;
-  limit: number;
-  offset: number;
+  expanded: boolean;
 }
 
 export interface CategoryResponse {
@@ -33,6 +30,12 @@ export interface Item {
   oldPrice?: number;
   price: number;
   components: Component[];
+}
+
+export interface ItemResponse {
+  status: number;
+  success: boolean;
+  data: Item;
 }
 
 export interface ItemsResponse {

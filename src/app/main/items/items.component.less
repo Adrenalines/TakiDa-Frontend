@@ -7,6 +7,10 @@ a.anchor {
   visibility: hidden;
 }
 
+.section {
+  margin-bottom: 60px;
+}
+
 /* SECTION */
 .section__title-popular {
   margin-bottom: 14px;
@@ -18,7 +22,7 @@ a.anchor {
 }
 
 .section__items {
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fit, 246px);
   grid-gap: 30px;
@@ -26,7 +30,8 @@ a.anchor {
 }
 
 .section__title-rolls {
-  margin-bottom: 14px;
+  margin-top: 50px;
+  margin-bottom: 10px;
 
   background-image: url('/assets/images/fish-loop_for-title-01.svg');
   background-repeat: repeat;
@@ -49,7 +54,7 @@ a.anchor {
 
 .section__more {
   text-align: center;
-  margin-top: -40px;
+  margin-top: -10px;
   margin-bottom: 60px;
 
   button {
@@ -86,9 +91,18 @@ a.anchor {
   a.anchor {
     top: -140px;
   }
+
   .section__title-rolls {
     font-size: 28px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+  }
+
+  .section__items {
+    margin-bottom: 10px;
+  }
+
+  .section__more {
+    margin-top: 0;
   }
 }
 

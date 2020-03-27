@@ -10,7 +10,12 @@ export class BasketService {
   public itemsCount$: BehaviorSubject<number>;
 
   constructor() {
-    this.items = new Map(JSON.parse(localStorage.getItem('items'))) || new Map<Item, number>();
+    try {
+      this.items = new Map(JSON.parse(localStorage.getItem('items'))) || new Map<Item, number>();
+    } catch (e) {
+      this.items = new Map<Item, number>();
+    }
+
     this.itemsCount$ = new BehaviorSubject<number>(0);
     if (this.items.size) {
       this.itemsCount$.next([...this.items.values()].reduce((a, b) => a + b, 0));

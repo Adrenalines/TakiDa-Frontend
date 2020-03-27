@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:9999/api/rest/open',
-  imageStore: 'http://localhost:9999/images'
+  url: 'http://157.230.112.201/api/rest/open',
+  imageStore: 'http://157.230.112.201/images'
 };
 
 /*
