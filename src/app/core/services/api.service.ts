@@ -10,7 +10,7 @@ import {
   CategoryResponse,
   ItemsResponse,
   Slide,
-  DetailedOrderRequest, ItemResponse, Item
+  OrderRequest, ItemResponse, Item
 } from '../../shared/types/types';
 
 
@@ -76,7 +76,7 @@ export class ApiService {
     );
   }
 
-  public postOrder(orderData: DetailedOrderRequest): Observable<boolean> {
+  public postOrder(orderData: OrderRequest): Observable<boolean> {
     return this.http.post<PostResponse>(`${ environment.url }/booking`, orderData).pipe(
       map((response: PostResponse) => {
         return response.success;

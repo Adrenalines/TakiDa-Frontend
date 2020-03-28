@@ -12,14 +12,13 @@ import { ApiService } from '../../core/services/api.service';
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
-  styleUrls: ['./items.component.less']
+  styleUrls: [ './items.component.less' ]
 })
 export class ItemsComponent implements OnInit {
   public categories: Observable<Category[]>;
   public item: Item;
   public loadingError = new Subject<boolean>();
   public limit: number;
-  public offset: number;
   private anchors: HTMLCollectionOf<Element>;
 
   constructor(
@@ -30,8 +29,7 @@ export class ItemsComponent implements OnInit {
     private scrollService: ScrollService
   ) {
     this.router.routeReuseStrategy.shouldDetach(undefined);
-    this.limit = window.screen.width < 930 ? 4 : 4;
-    this.offset = 0;
+    this.limit = window.screen.width < 930 ? 4 : 8;
   }
 
   ngOnInit(): void {
@@ -48,7 +46,7 @@ export class ItemsComponent implements OnInit {
   }
 
   public showPopup(event: MouseEvent, item: Item) {
-    this.location.replaceState( '/item/' + item.name.split(' ').join('_'));
+    this.location.replaceState('/item/' + item.name.split(' ').join('_'));
     event.preventDefault();
     event.stopPropagation();
     this.item = item;
@@ -56,26 +54,22 @@ export class ItemsComponent implements OnInit {
 
   public closePopup() {
     this.item = null;
-    this.location.replaceState( '/');
+    this.location.replaceState('/');
   }
 
   @HostListener('window:scroll', [ '$event' ])
   private handleOutsideClick() {
-      if (!this.anchors?.length) {
-        return;
+    if (!this.anchors?.length) {
+      return;
+    }
+    for (let i = 1; i < this.anchors.length; i++) {
+      if (window.scrollY + window.innerHeight / 3 < (this.anchors[i] as HTMLElement).offsetTop &&
+        window.scrollY + window.innerHeight / 3 > (this.anchors[i - 1] as HTMLElement).offsetTop) {
+        this.scrollService.activeItemsCategory.next(this.anchors[i - 1].id.split(' ').join('_'));
       }
-      for (let i = 1; i < this.anchors.length; i++) {
-        if (window.scrollY + window.innerHeight / 3 < (this.anchors[i] as HTMLElement).offsetTop &&
-          window.scrollY + window.innerHeight / 3 > (this.anchors[i - 1] as HTMLElement).offsetTop) {
-          this.scrollService.activeItemsCategory.next(this.anchors[i - 1].id.split(' ').join('_'));
-        }
-      }
-      if (window.scrollY + window.innerHeight / 3 > (this.anchors[this.anchors.length - 1] as HTMLElement).offsetTop) {
-        this.scrollService.activeItemsCategory.next(this.anchors[this.anchors.length - 1].id.split(' ').join('_'));
-      }
-  }
-
-  public showMoreItems(id: string) {
-    return this.apiService.getItems(id, 100, 5);
+    }
+    if (window.scrollY + window.innerHeight / 3 > (this.anchors[this.anchors.length - 1] as HTMLElement).offsetTop) {
+      this.scrollService.activeItemsCategory.next(this.anchors[this.anchors.length - 1].id.split(' ').join('_'));
+    }
   }
 }

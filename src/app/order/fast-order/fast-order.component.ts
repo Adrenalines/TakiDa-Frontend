@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { OrderService } from '../services/order.service';
+import { calendarLocales, defaultLocale } from '../../shared/data/languages';
 import { ApiService } from '../../core/services/api.service';
+import { OrderService } from '../services/order.service';
+
 
 @Component({
   selector: 'app-fast-order',
@@ -11,13 +13,15 @@ import { ApiService } from '../../core/services/api.service';
 export class FastOrderComponent implements OnInit {
   public fastOrderForm: FormGroup;
   public submitOrderResponseText: string;
+  public minDateValue = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours() + 1, new Date().getMinutes() + 5);
+  public maxDateValue = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 5, new Date().getHours(), new Date().getMinutes());
+  public calendarLocales = calendarLocales;
+  public defaultLocale = defaultLocale;
 
   constructor(
     private orderService: OrderService,
     private apiService: ApiService
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
     this.resetForm();
@@ -27,7 +31,6 @@ export class FastOrderComponent implements OnInit {
     this.submitOrderResponseText = 'pending';
     const transformedOrderData = this.orderService.transformOrderData(this.fastOrderForm.value);
     this.apiService.postOrder(transformedOrderData).subscribe((response: boolean) => {
-        console.log(response);
         this.submitOrderResponseText = response ? 'success' : 'error';
       },
       error => {
@@ -49,7 +52,9 @@ export class FastOrderComponent implements OnInit {
     this.fastOrderForm = new FormGroup({
       clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
       phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
-      paymentType: new FormControl('CASH', [ Validators.required ])
+      paymentType: new FormControl('CASH', [ Validators.required ]),
+      pickup: new FormControl(false, [ Validators.required ]),
+      deliveryDate: new FormControl(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours() + 1, new Date().getMinutes() + 5))
     });
   }
 

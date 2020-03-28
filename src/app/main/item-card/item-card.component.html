@@ -38,8 +38,8 @@
     <div class="item__info-d">{{ item.weight }} {{ 'product.gram' | translate }}</div>
     <div *ngIf="item.components.length" class="item__info-e">
       <span>
-        <span *ngFor="let component of item.components | slice:0:7">
-          {{ component.name }}<span *ngIf="component.name !== item.components[item.components.slice(0, 7).length - 1].name">,</span>
+        <span *ngFor="let component of item.components | slice:0:6">
+          {{ component.name }}<span *ngIf="component.name !== item.components[item.components.slice(0, 6).length - 1].name">,</span>
         </span>
       </span>
 

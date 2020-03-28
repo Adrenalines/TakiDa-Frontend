@@ -98,6 +98,8 @@
             showTime="true"
             hourFormat="24"
             [dateFormat]="calendarLocales[defaultLocale].dateFormat"
+            [minDate]="minDateValue"
+            [maxDate]="maxDateValue"
             [locale]="calendarLocales[defaultLocale]"
             [disabled]="!detailedOrderForm.get('deliveryType').value"
           ></p-calendar>

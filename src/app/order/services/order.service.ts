@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DetailedOrderFormData, DetailedOrderRequest, Item, ItemsOrder } from '../../shared/types/types';
+import { OrderFormData, OrderRequest, ItemsOrder } from '../../shared/types/types';
 import { BasketService } from '../../core/services/basket.service';
 
 @Injectable({
@@ -13,13 +13,13 @@ export class OrderService {
       this.getCookie('utm_campaign') : null;
   }
 
-  public transformOrderData(rawOrderData: DetailedOrderFormData): DetailedOrderRequest {
+  public transformOrderData(rawOrderData: OrderFormData): OrderRequest {
     const itemsOrder = Array.from(this.basketService.items).reduce((itemsTransformed: ItemsOrder, [item, count]) => {
       itemsTransformed[item.id] = count;
       return itemsTransformed;
     }, {});
 
-    const deliveryDate = rawOrderData.deliveryType ?
+    const deliveryDate = (rawOrderData.deliveryType || rawOrderData.pickup) ?
       new Date(rawOrderData.deliveryDate).getTime() : null;
 
     const transformedOrderData = {

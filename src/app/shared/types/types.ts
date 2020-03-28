@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs';
-
 export type OrderType = 'fast' | 'detailed';
 
 export type ProfileInfoType = 'registration' | 'address' | 'history';
@@ -76,7 +74,7 @@ export interface AccountAccessData {
   password: string;
 }
 
-export interface DetailedOrderFormData {
+export interface OrderFormData {
   clientName: string;
   phone: string;
   street: string;
@@ -87,9 +85,10 @@ export interface DetailedOrderFormData {
   deliveryDate: Date;
   paymentType: 'CASH';
   paymentMemo: string;
+  pickup: boolean;
 }
 
-export interface DetailedOrderRequest {
+export interface OrderRequest {
   clientName: string;
   phone: string;
   street: string;
@@ -99,6 +98,7 @@ export interface DetailedOrderRequest {
   deliveryDate: number;
   paymentType: 'CASH';
   paymentMemo: string;
+  pickup: boolean;
   metadata: string;
   goods: ItemsOrder;
 }

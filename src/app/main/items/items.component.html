@@ -19,7 +19,7 @@
   <div *ngFor="let category of categories">
     <a class="anchor" id="{{ category.name.split(' ').join('_') }}"></a>
     <div
-      *ngIf="(category.id | getItems:4:0 | async) as itemsResponse"
+      *ngIf="(category.id | getItems:limit:0 | async) as itemsResponse"
       class="section"
     >
       <div class="section__title-rolls">
@@ -42,20 +42,20 @@
         </div>
 
       <div
-        *ngIf="itemsResponse.meta.count > 4 && !category.expanded"
+        *ngIf="itemsResponse.meta.count > limit && !category.expanded"
         class="section__more"
         (click)="category.expanded = true;"
       >
         <button>Показать все</button>
       </div>
       <div
-        *ngIf="category.expanded && !(category.id | getItems:0:4 | async)"
+        *ngIf="category.expanded && !(category.id | getItems:0:limit | async)"
         class="section__more"
       >
         <button>Показать все</button>
       </div>
       <div
-        *ngIf="category.expanded && (category.id | getItems:0:4 | async) as itemsFullResponse"
+        *ngIf="category.expanded && (category.id | getItems:0:limit | async) as itemsFullResponse"
       >
         <div
           *ngIf="itemsFullResponse.data as items"

@@ -34,6 +34,29 @@
           minlength="6"
         >
       </div>
+      <div class="form-pickup">
+        <input
+          type="checkbox"
+          id="pickup"
+          name="pickup"
+          [value]="false"
+          formControlName="pickup"
+        >
+        <label for="pickup">{{ 'order.pickup' | translate }}</label>
+      </div>
+      <div class="form-pickup">
+        <p-calendar
+          [panelStyle]="{'margin-left':'-70px'}"
+          formControlName="deliveryDate"
+          showTime="true"
+          hourFormat="24"
+          [dateFormat]="calendarLocales[defaultLocale].dateFormat"
+          [minDate]="minDateValue"
+          [maxDate]="maxDateValue"
+          [locale]="calendarLocales[defaultLocale]"
+          [disabled]="!fastOrderForm.get('pickup').value"
+        ></p-calendar>
+      </div>
     </div>
     <input
       class="btn-checkout"
