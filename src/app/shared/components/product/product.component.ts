@@ -14,6 +14,7 @@ export class ProductComponent implements OnInit {
   public image: string;
   public environment = environment;
   public number = 1;
+  public purchased = false;
 
   constructor(private basketService: BasketService) { }
 
@@ -30,10 +31,12 @@ export class ProductComponent implements OnInit {
     this.number += count;
   }
 
-  public replenishBasket($event: Event, item: Item) {
+  public replenishBasket(item: Item) {
     this.toCartButtonElement.nativeElement.classList.add('info-f_animate');
+    this.purchased = true;
     setTimeout(() => {
       this.toCartButtonElement.nativeElement.classList.remove('info-f_animate');
+      this.purchased = false;
     }, 300);
     this.basketService.replenishBasket(item, this.number);
   }

@@ -24,6 +24,12 @@
     <div class="item__info-a">
       <div class="picture">
         <img [defaultImage]="'/assets/images/circle-bg.svg'" [lazyLoad]="image" alt="">
+        <img
+          *ngIf="purchased"
+          class="picture__animation"
+          [src]="image"
+          alt=""
+        >
       </div>
       <div
         *ngIf="item.oldPrice"

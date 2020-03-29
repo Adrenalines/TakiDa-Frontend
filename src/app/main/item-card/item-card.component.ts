@@ -15,6 +15,7 @@ export class ItemCardComponent implements OnInit {
   public environment = environment;
   public image: string;
   public number = 0;
+  public purchased = false;
 
 
   constructor(private basketService: BasketService) {
@@ -40,6 +41,10 @@ export class ItemCardComponent implements OnInit {
 
     if (count === 1) {
       this.basketService.replenishBasket(item, 1);
+      this.purchased = true;
+      setTimeout(() => {
+        this.purchased = false;
+      }, 500);
     } else if (count === -1) {
       this.basketService.replenishBasket(item, -1);
     }

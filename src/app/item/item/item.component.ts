@@ -39,7 +39,7 @@ export class ItemComponent implements OnInit, OnDestroy {
         this.item = null;
         return;
       } else {
-        categories.forEach(category => this.itemsSubs.push(this.apiService.getItems(category.id)
+        categories.forEach(category => this.itemsSubs.push(this.apiService.getItems(category.id, 0, 0)
           .subscribe((items: ItemsResponse) => {
             items.data.forEach(item => {
               if (item.name.split(' ').join('_') === name) {

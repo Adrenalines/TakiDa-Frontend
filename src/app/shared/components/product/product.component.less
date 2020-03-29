@@ -59,6 +59,26 @@
       margin-bottom: 10px;
     }
   }
+
+  .picture__animation {
+    max-height: 260px;
+    max-width: 260px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    animation: picture_move 2s;
+    z-index: 9;
+  }
+
+  @keyframes picture_move {
+    100% {
+      opacity: 0;
+      position: absolute;
+      top: -200px;
+      left: 300px;
+    }
+  }
 }
 
 .item__info {

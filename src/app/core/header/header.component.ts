@@ -8,8 +8,8 @@ import { SOCIALS } from '../../shared/data/socials';
 import { BasketService } from '../services/basket.service';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
-import { ActivatedRoute, NavigationEnd, Router, Scroll } from '@angular/router';
-import { delay, filter, tap } from 'rxjs/operators';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 
 
@@ -28,7 +28,6 @@ import { delay, filter, tap } from 'rxjs/operators';
         animate(200, style({ opacity: 0, transform: 'translateY(100%)' }))
       ])
     ])
-
   ]
 })
 export class HeaderComponent implements OnInit {

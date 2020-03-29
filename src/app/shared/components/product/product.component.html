@@ -1,6 +1,12 @@
 <div class="item__image">
   <div class="picture">
-    <img src="{{ image }}" alt="">
+    <img [src]="image" alt="">
+    <img
+      *ngIf="purchased"
+      class="picture__animation"
+      [src]="image"
+      alt=""
+    >
   </div>
   <div
     *ngIf="item.oldPrice"
@@ -46,7 +52,7 @@
     <div class="counter">{{ number }}</div>
     <div class="plus" (click)="changeNumber(1)"></div>
   </div>
-  <div class="info-f" (click)="replenishBasket($event, item)" #toCartButtonElement>
+  <div class="info-f" (click)="replenishBasket(item)" #toCartButtonElement>
     <span>{{ 'product.to_cart' | translate }}</span>
   </div>
 </div>

@@ -79,6 +79,26 @@
           margin-bottom: 10px;
         }
       }
+
+      .picture__animation {
+        max-height: 200px;
+        max-width: 200px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+        animation: picture_move 0.5s;
+        z-index: 7;
+      }
+
+      @keyframes picture_move {
+        100% {
+          opacity: 0;
+          position: absolute;
+          top: -100px;
+          left: calc(100% - 50px);
+        }
+      }
     }
 
     &-b {
