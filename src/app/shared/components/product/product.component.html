@@ -35,6 +35,12 @@
       >
       <span>{{ component.name }}</span>
     </div>
+    <div
+      *ngIf="item.components.length > 5"
+      class="components__scroll"
+    >
+      <img src="/assets/images/pop-up_scroll.svg" alt="Scroll">
+    </div>
   </div>
   <div class="info-d">
     <div
