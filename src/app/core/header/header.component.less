@@ -121,27 +121,24 @@
     grid-area: e;
 
     display: grid;
-    grid-template-columns: 20px minmax(155px, 240px) 20px minmax(145px, 1fr);
+    grid-template-columns: 10px minmax(155px, 240px) 20px minmax(145px, 1fr);
     grid-template-rows: 20px 20px;
     grid-template-areas:
       "a b c d"
       ". . e f";
 
-    .contacts-a {
-      grid-area: a;
-      align-self: center;
-    }
-
     .contacts-b {
       grid-area: b;
       align-self: center;
+      margin-left: -10px;
 
       position: relative;
 
       select {
         display: block;
-        width: 140px;
+        width: 150px;
         padding: 2px;
+        padding-left: 13px;
         background: none;
         border: none;
         outline: none;
@@ -163,11 +160,21 @@
         }
       }
 
+      &:before {
+        content: url('/assets/images/icon_tel.svg');
+        position: absolute;
+        top: 5px;
+        margin-left: 0;
+        z-index: -1;
+      }
+
       &:after {
         content: url('/assets/images/arrow-for-select-02.svg');
         position: absolute;
-        top: 0;
-        left: 130px;
+        top: -3px;
+        left: 140px;
+        transform: scale(2.2);
+        z-index: -1;
       }
     }
 
