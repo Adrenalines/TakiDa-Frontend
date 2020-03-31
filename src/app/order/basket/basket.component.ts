@@ -28,5 +28,4 @@ export class BasketComponent implements OnInit {
     this.basketService.replenishBasket(item, count);
   }
 
-
 }

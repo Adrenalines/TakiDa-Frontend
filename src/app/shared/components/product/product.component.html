@@ -37,7 +37,13 @@
     </div>
     <div
       *ngIf="item.components.length > 5"
-      class="components__scroll"
+      class="components__scroll_left"
+    >
+      <img src="/assets/images/pop-up_scroll.svg" alt="Scroll">
+    </div>
+    <div
+      *ngIf="item.components.length > 5"
+      class="components__scroll_right"
     >
       <img src="/assets/images/pop-up_scroll.svg" alt="Scroll">
     </div>

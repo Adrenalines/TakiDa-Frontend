@@ -24,14 +24,14 @@
           </option>
         </select>
       </div>
-      <div class="acc" #accountDialogButtonElement>
+      <!--<div class="acc" #accountDialogButtonElement>
         <a href="/profile" (click)="toggleAccount($event)">
           <div class="acc">
             <img src="/assets/images/icon_account.svg" alt="{{ 'core.account' | translate }}">
             {{ 'core.account' | translate }}
           </div>
         </a>
-      </div>
+      </div>-->
     </div>
     <div class="header__contacts">
       <div class="contacts-b">
@@ -116,7 +116,7 @@
   </div>
 </div>
 
-<div *ngIf="accountDialogShow" class="wrapper account__popup" #accountDialogElement>
+<!--<div *ngIf="accountDialogShow" class="wrapper account__popup" #accountDialogElement>
   <div class="triangle"></div>
   <div *ngIf="accountDialogResponseText" class="account__popup-text">
     <div *ngIf="accountDialogResponseText === 'error'">{{ 'profile.auth_error' | translate }}</div>
@@ -151,7 +151,7 @@
       >
     </form>
   </div>
-</div>
+</div>-->
 
 <div class="header-mobile">
   <div class="header-mobile-grid wrapper">
@@ -191,13 +191,13 @@
     </a>
     <div class="nav-menu__list">
       <a routerLink="/" (click)="toggleMobileNav(false)">{{ 'core.main' | translate }}</a>
-      <a
+      <!--<a
         routerLink="/profile"
         (click)="toggleAccount()"
         #accountDialogButtonMobileElement
       >
         {{ 'core.account' | translate }}
-      </a>
+      </a>-->
       <a routerLink="/pages/delivery" (click)="toggleMobileNav(false)">{{ 'core.delivery' | translate }}</a>
       <a routerLink="/pages/about" (click)="toggleMobileNav(false)">{{ 'core.about' | translate }}</a>
       <a routerLink="/pages/contacts" (click)="toggleMobileNav(false)">{{ 'core.contacts' | translate }}</a>

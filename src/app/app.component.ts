@@ -97,8 +97,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     const oldBasket = new Map<Item, number>(this.basketService.items);
     Array.from(oldBasket.keys()).forEach((itemBasket: Item) => {
       this.itemsSub.push(this.apiService.getItem(itemBasket.id).subscribe((item: Item) => {
-          if (!item) {
-            this.basketService.removeFromBasket(itemBasket);
+          this.basketService.removeFromBasket(itemBasket);
+          if (item) {
+            this.basketService.replenishBasket(item, (oldBasket.get(itemBasket)));
           }
         },
         error => {

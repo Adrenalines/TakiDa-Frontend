@@ -236,6 +236,8 @@
   }
 
   .menu__item {
+    z-index: 1;
+    
     .item-txt {
       display: none;
     }
@@ -247,6 +249,19 @@
     bottom: -25px;
     justify-content: space-between;
     transform-origin: center;
+  }
+
+  .menu:before {
+    background-color: @menu-rest;
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    height:100%;
+    z-index: 0;
   }
 }
 
@@ -272,19 +287,6 @@
   .menu {
     width: 95%;
     border: none;
-  }
-
-  .menu:before {
-    background-color: @menu-rest;
-    content: ' ';
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 5%;
-    width: 90%;
-    height:100%;
-    z-index: -1;
   }
 }
 
