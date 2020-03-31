@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SubscriptionLike } from 'rxjs';
 import { calendarLocales, defaultLocale } from '../../shared/data/languages';
 import { ApiService } from '../../core/services/api.service';
 import { OrderService } from '../services/order.service';
@@ -10,13 +11,16 @@ import { OrderService } from '../services/order.service';
   templateUrl: './fast-order.component.html',
   styleUrls: ['./fast-order.component.less']
 })
-export class FastOrderComponent implements OnInit {
+export class FastOrderComponent implements OnInit, OnDestroy {
   public fastOrderForm: FormGroup;
   public submitOrderResponseText: string;
-  public minDateValue = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours() + 1, new Date().getMinutes() + 5);
-  public maxDateValue = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 5, new Date().getHours(), new Date().getMinutes());
+  public minDateValue =
+    new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours() + 1, new Date().getMinutes() + 5);
+  public maxDateValue =
+    new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 5, new Date().getHours(), new Date().getMinutes());
   public calendarLocales = calendarLocales;
   public defaultLocale = defaultLocale;
+  private orderSub: SubscriptionLike;
 
   constructor(
     private orderService: OrderService,
@@ -30,7 +34,7 @@ export class FastOrderComponent implements OnInit {
   public submitFastOrder() {
     this.submitOrderResponseText = 'pending';
     const transformedOrderData = this.orderService.transformOrderData(this.fastOrderForm.value);
-    this.apiService.postOrder(transformedOrderData).subscribe((response: boolean) => {
+    this.orderSub = this.apiService.postOrder(transformedOrderData).subscribe((response: boolean) => {
         this.submitOrderResponseText = response ? 'success' : 'error';
       },
       error => {
@@ -54,8 +58,15 @@ export class FastOrderComponent implements OnInit {
       phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
       paymentType: new FormControl('CASH', [ Validators.required ]),
       pickup: new FormControl(false, [ Validators.required ]),
-      deliveryDate: new FormControl(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours() + 1, new Date().getMinutes() + 5))
+      deliveryDate: new FormControl(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(),
+        new Date().getHours() + 1, new Date().getMinutes() + 5))
     });
+  }
+  
+  ngOnDestroy(): void {
+    if (this.orderSub) {
+      this.orderSub.unsubscribe();
+    }
   }
 
 }

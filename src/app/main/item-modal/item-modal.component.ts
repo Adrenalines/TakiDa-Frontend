@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Item } from '../../shared/types/types';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Item } from '../../shared/types/types';
+
 
 @Component({
   selector: 'app-item-modal',

@@ -228,8 +228,13 @@
 </div>
 
 <a routerLink="/cart">
-  <div *ngIf="itemsCount && !routeHasParams" [@flyInOut] class="header__basket-mobile">
-    <img class="basket-mobile-icon" src="/assets/images/icon_25_basket.svg" alt="{{ 'core.basket' | translate }}">
+  <div *ngIf="itemsCount && !routeHasParams" class="header__basket-mobile" [@flyInOut]>
+    <img
+      class="basket-mobile-icon"
+      src="/assets/images/icon_25_basket.svg"
+      alt="{{ 'core.basket' | translate }}"
+      #basketMobileElement
+    >
     <span class="basket-mobile-text">{{ 'core.basket' | translate }}</span>
     <span class="basket-mobile-items">
       <span>{{ itemsCount }} {{ 'core.item' | translate }}</span>

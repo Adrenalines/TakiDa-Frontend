@@ -1,11 +1,11 @@
 <div class="item__image">
   <div class="picture">
-    <img [src]="image" alt="">
+    <img [src]="image" alt="{{ item.name }}">
     <img
       *ngIf="purchased"
       class="picture__animation"
       [src]="image"
-      alt=""
+      alt="{{ item.name }}"
     >
   </div>
   <div

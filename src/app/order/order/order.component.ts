@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item, OrderType } from '../../shared/types/types';
 import { BasketService } from '../../core/services/basket.service';
 
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',

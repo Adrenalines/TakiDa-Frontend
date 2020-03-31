@@ -13,8 +13,6 @@ export class BasketComponent implements OnInit {
   public items: Map<Item, number>;
   public environment = environment;
 
-
-
   constructor(private basketService: BasketService) {
     this.items = this.basketService.items;
   }

@@ -1,12 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Category, Item } from '../../shared/types/types';
-import { CategoryService } from '../services/category.service';
 import { ScrollService } from '../../core/services/scroll.service';
-import { Router } from '@angular/router';
 import { ApiService } from '../../core/services/api.service';
+import { CategoryService } from '../../core/services/category.service';
 
 
 @Component({
@@ -59,7 +59,7 @@ export class ItemsComponent implements OnInit {
 
   @HostListener('window:scroll', [ '$event' ])
   private handleOutsideClick() {
-    if (!this.anchors?.length) {
+    if (this.anchors && !this.anchors.length) {
       return;
     }
     for (let i = 1; i < this.anchors.length; i++) {
@@ -72,4 +72,5 @@ export class ItemsComponent implements OnInit {
       this.scrollService.activeItemsCategory.next(this.anchors[this.anchors.length - 1].id.split(' ').join('_'));
     }
   }
+
 }

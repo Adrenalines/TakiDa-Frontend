@@ -1,16 +1,16 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { SubscriptionLike } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { TELEPHONES } from '../../shared/data/telephones';
 import { defaultLocale, LANGUAGES } from '../../shared/data/languages';
 import { SOCIALS } from '../../shared/data/socials';
 import { BasketService } from '../services/basket.service';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
-
 
 
 @Component({
@@ -30,8 +30,9 @@ import { filter } from 'rxjs/operators';
     ])
   ]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('basketElement') basketElement: ElementRef;
+  @ViewChild('basketMobileElement') basketMobileElement: ElementRef;
   @ViewChild('callDialogElement') callDialogElement: ElementRef;
   @ViewChild('callDialogButtonElement') callDialogButtonElement: ElementRef;
   @ViewChild('callDialogButtonMobileElement') callDialogButtonMobileElement: ElementRef;
@@ -54,6 +55,9 @@ export class HeaderComponent implements OnInit {
   public accountDialogResponseText = '';
   public routeHasParams = false;
   public callBackFromMain = false;
+  private basketSub: SubscriptionLike;
+  private routerSub: SubscriptionLike;
+  private callbackSub: SubscriptionLike;
 
   constructor(
     private router: Router,
@@ -75,7 +79,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     // Listen to changes of items in basket
-    this.basketService.itemsCount$.subscribe(itemsCount => {
+    this.basketSub = this.basketService.itemsCount$.subscribe(itemsCount => {
       this.itemsCount = itemsCount;
       this.itemsCountPlural = this.num2word(itemsCount);
 
@@ -86,9 +90,17 @@ export class HeaderComponent implements OnInit {
           this.basketElement.nativeElement.classList.remove('header__basket_animate');
         }, 300);
       }
+
+      // Animation of mobile basket button
+      if (this.basketMobileElement) {
+        this.basketMobileElement.nativeElement.classList.add('header-mobile__basket_animate');
+        setTimeout(() => {
+          this.basketMobileElement.nativeElement.classList.remove('header-mobile__basket_animate');
+        }, 300);
+      }
     });
 
-    this.router.events.pipe(
+    this.routerSub = this.router.events.pipe(
       filter((e: any): e is NavigationEnd => e instanceof NavigationEnd),
     ).subscribe(path => {
       this.routeHasParams = path.url === '/cart';
@@ -164,7 +176,7 @@ export class HeaderComponent implements OnInit {
 
   public submitCallback() {
     this.callDialogResponseText = 'pending';
-    this.apiService.postCallBack(this.callDialogForm.value).subscribe((response: boolean) => {
+    this.callbackSub = this.apiService.postCallBack(this.callDialogForm.value).subscribe((response: boolean) => {
         this.callDialogResponseText = response ? 'success' : 'error';
       },
       error => {
@@ -197,6 +209,18 @@ export class HeaderComponent implements OnInit {
         this.accountDialogResponseText = '';
       }, 2000);
     }
-
   }
+
+  ngOnDestroy(): void {
+    if (this.basketSub) {
+      this.basketSub.unsubscribe();
+    }
+    if (this.routerSub) {
+      this.routerSub.unsubscribe();
+    }
+    if (this.callbackSub) {
+      this.callbackSub.unsubscribe();
+    }
+  }
+
 }

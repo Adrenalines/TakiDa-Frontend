@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProfileInfoType } from '../../shared/types/types';
 
+
 @Component({
   selector: 'app-account-menu',
   templateUrl: './account-menu.component.html',

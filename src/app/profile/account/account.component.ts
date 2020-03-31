@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileInfoType } from '../../shared/types/types';
 
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',

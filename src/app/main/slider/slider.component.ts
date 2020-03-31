@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SubscriptionLike } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 import * as jQuery from 'jquery';
 import 'slick-carousel';
 import { Slide } from '../../shared/types/types';
 import { ApiService } from '../../core/services/api.service';
-import { delay, map } from 'rxjs/operators';
-
 
 
 @Component({

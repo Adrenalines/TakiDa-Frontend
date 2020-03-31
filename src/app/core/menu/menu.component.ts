@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject, SubscriptionLike } from 'rxjs';
 import { catchError, debounceTime } from 'rxjs/operators';
 import { Category } from '../../shared/types/types';
-import { ApiService } from '../services/api.service';
-import { CategoryService } from '../../main/services/category.service';
 import { ScrollService } from '../services/scroll.service';
+import { ApiService } from '../services/api.service';
+import { CategoryService } from '../services/category.service';
 
 
 @Component({
@@ -13,10 +13,12 @@ import { ScrollService } from '../services/scroll.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.less']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
   public categories: Observable<Category[]>;
   public loadingError = new Subject<boolean>();
   public fragment: string;
+  private routerSub: SubscriptionLike;
+  private scrollSub: SubscriptionLike;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,11 +36,13 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.fragment.subscribe(fragment => {
+    this.routerSub = this.route.fragment.subscribe(fragment => {
       this.fragment = fragment;
     });
 
-    this.scrollService.activeItemsCategory.pipe(debounceTime(50)).subscribe(category => {
+    this.scrollSub = this.scrollService.activeItemsCategory.pipe(
+      debounceTime(50)
+    ).subscribe(category => {
       if (category === null) {
         this.fragment = '';
       } else {
@@ -52,5 +56,14 @@ export class MenuComponent implements OnInit {
     setTimeout(() => {
       document.querySelector('#' + this.fragment).scrollIntoView({ behavior: 'smooth' });
     }, 10);
+  }
+
+  ngOnDestroy(): void {
+    if (this.routerSub) {
+      this.routerSub.unsubscribe();
+    }
+    if (this.scrollSub) {
+      this.scrollSub.unsubscribe();
+    }
   }
 }

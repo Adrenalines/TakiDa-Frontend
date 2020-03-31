@@ -7,7 +7,7 @@
       </ul>
       <div class="reducer" [ngStyle]="{ 'margin-bottom': 200 - items.size * widthMultiplicator + 'px' }">
         <div *ngIf="items.size" class="checkout__title">{{ 'order.checkout' | translate }}</div>
-        <div *ngIf="!items.size" class="checkout__title">В корзине пока нет товаров</div>
+        <div *ngIf="!items.size" class="checkout__title">{{ 'order.empty' | translate }}</div>
         <app-basket *ngIf="items.size"></app-basket>
         <app-order-type *ngIf="items.size" (orderType)="orderType = $event"></app-order-type>
         <app-fast-order *ngIf="items.size && orderType === 'fast'"></app-fast-order>

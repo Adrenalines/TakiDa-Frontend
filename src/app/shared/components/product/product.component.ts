@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { Item } from '../../types/types';
 import { BasketService } from '../../../core/services/basket.service';
 
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',

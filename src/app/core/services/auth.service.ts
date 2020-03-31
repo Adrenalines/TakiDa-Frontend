@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AccountAccessData } from '../../shared/types/types';
 
+
 @Injectable({
   providedIn: 'root'
 })

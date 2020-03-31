@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ItemsResponse } from '../types/types';
 import { ApiService } from '../../core/services/api.service';
-import { Observable } from 'rxjs';
+
 
 @Pipe({
   name: 'getItems'
 })
 export class GetItemsPipe implements PipeTransform {
-  constructor(private apiService: ApiService) {
-  }
+  constructor(private apiService: ApiService) { }
 
   transform(categoryId: string, limit: number, offset: number): Observable<ItemsResponse> {
     if (!categoryId) {

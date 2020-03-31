@@ -20,11 +20,13 @@ export const calendarLocales = {
   }, [locales[1]]: {
     firstDayOfWeek: 1,
     dayNamesMin: [ 'Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб' ],
+    // tslint:disable-next-line:max-line-length
     monthNames: [ 'Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень' ],
     dateFormat: 'dd.mm.yy'
   }, [locales[2]]: {
     firstDayOfWeek: 0,
     dayNamesMin: [ 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa' ],
+    // tslint:disable-next-line:max-line-length
     monthNames: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
     dateFormat: 'mm/dd/yy'
   }

@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { Item } from '../../shared/types/types';
 import { BasketService } from '../../core/services/basket.service';
 
+
 @Component({
   selector: 'app-item-card',
   templateUrl: './item-card.component.html',
@@ -16,7 +17,6 @@ export class ItemCardComponent implements OnInit {
   public image: string;
   public number = 0;
   public purchased = false;
-
 
   constructor(private basketService: BasketService) {
     this.itemPlaceholder = {

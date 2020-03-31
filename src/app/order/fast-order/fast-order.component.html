@@ -1,8 +1,8 @@
 <div class="form__fast">
   <div *ngIf="submitOrderResponseText" class="order-succeed">
-    <div *ngIf="submitOrderResponseText === 'pending'" >Оформление заказа...</div>
-    <div *ngIf="submitOrderResponseText === 'success'" >Заказ успешно оформлен!</div>
-    <div *ngIf="submitOrderResponseText === 'error'" >Ошибка оформления заказа...</div>
+    <div *ngIf="submitOrderResponseText === 'pending'" >{{ 'order.pending' | translate }}</div>
+    <div *ngIf="submitOrderResponseText === 'success'" >{{ 'order.success' | translate }}</div>
+    <div *ngIf="submitOrderResponseText === 'error'" >{{ 'order.error' | translate }}</div>
   </div>
   <form
     *ngIf="!submitOrderResponseText"

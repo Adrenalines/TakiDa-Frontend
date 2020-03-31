@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SubscriptionLike } from 'rxjs';
 import { calendarLocales, defaultLocale } from '../../shared/data/languages';
 import { ApiService } from '../../core/services/api.service';
 import { OrderService } from '../services/order.service';
@@ -10,13 +11,16 @@ import { OrderService } from '../services/order.service';
   templateUrl: './detailed-order.component.html',
   styleUrls: ['./detailed-order.component.less']
 })
-export class DetailedOrderComponent implements OnInit {
+export class DetailedOrderComponent implements OnInit, OnDestroy {
   public detailedOrderForm: FormGroup;
   public submitOrderResponseText: string;
-  public minDateValue = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours() + 1, new Date().getMinutes() + 5);
-  public maxDateValue = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 5, new Date().getHours(), new Date().getMinutes());
+  public minDateValue =
+    new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours() + 1, new Date().getMinutes() + 5);
+  public maxDateValue =
+    new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 5, new Date().getHours(), new Date().getMinutes());
   public calendarLocales = calendarLocales;
   public defaultLocale = defaultLocale;
+  private orderSub: SubscriptionLike;
 
   constructor(
     private orderService: OrderService,
@@ -30,9 +34,8 @@ export class DetailedOrderComponent implements OnInit {
 
   public submitDetailedOrder() {
     this.submitOrderResponseText = 'pending';
-    console.log(this.detailedOrderForm.value);
     const transformedOrderData = this.orderService.transformOrderData(this.detailedOrderForm.value);
-    this.apiService.postOrder(transformedOrderData).subscribe((response: boolean) => {
+    this.orderSub = this.apiService.postOrder(transformedOrderData).subscribe((response: boolean) => {
         this.submitOrderResponseText = response ? 'success' : 'error';
       },
       error => {
@@ -59,9 +62,17 @@ export class DetailedOrderComponent implements OnInit {
       apartment: new FormControl(''),
       addressMemo: new FormControl(''),
       deliveryType: new FormControl( false),
-      deliveryDate: new FormControl(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours() + 1, new Date().getMinutes() + 5)),
+      deliveryDate: new FormControl(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(),
+        new Date().getHours() + 1, new Date().getMinutes() + 5)),
       paymentType: new FormControl('CASH', [ Validators.required ]),
       paymentMemo: new FormControl('')
     });
   }
+
+  ngOnDestroy(): void {
+    if (this.orderSub) {
+      this.orderSub.unsubscribe();
+    }
+  }
+
 }

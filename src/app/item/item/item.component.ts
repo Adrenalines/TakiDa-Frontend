@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { of, Subject, SubscriptionLike } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Category, Item, ItemsResponse } from '../../shared/types/types';
 import { ApiService } from '../../core/services/api.service';
-import { CategoryService } from '../../main/services/category.service';
-import { catchError } from 'rxjs/operators';
+import { CategoryService } from '../../core/services/category.service';
+
 
 @Component({
   selector: 'app-item',
@@ -14,7 +15,6 @@ import { catchError } from 'rxjs/operators';
 export class ItemComponent implements OnInit, OnDestroy {
   public item: Item;
   public categoryName = '';
-
   public loadingError = new Subject<boolean>();
   private categoriesSub: SubscriptionLike;
   private itemsSubs: SubscriptionLike[] = [];
@@ -23,8 +23,7 @@ export class ItemComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private apiService: ApiService,
     private categoryService: CategoryService
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     const name = this.route.snapshot.params.name;

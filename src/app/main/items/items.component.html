@@ -46,13 +46,13 @@
         class="section__more"
         (click)="category.expanded = true;"
       >
-        <button>Показать все</button>
+        <button>{{ 'core.show_all' | translate }}</button>
       </div>
       <div
         *ngIf="category.expanded && !(category.id | getItems:0:limit | async)"
         class="section__more"
       >
-        <button>Показать все</button>
+        <button>{{ 'core.show_all' | translate }}</button>
       </div>
       <div
         *ngIf="category.expanded && (category.id | getItems:0:limit | async) as itemsFullResponse"

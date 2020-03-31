@@ -1,32 +1,35 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Scroll } from '@angular/router';
-import { delay, filter, tap } from 'rxjs/operators';
+import { HttpParams } from '@angular/common/http';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { SubscriptionLike } from 'rxjs';
+import { delay, filter, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import smoothscroll from 'smoothscroll-polyfill';
 import { defaultLocale } from './shared/data/languages';
-import { ScrollService } from './core/services/scroll.service';
-import { HttpParams } from '@angular/common/http';
 import { Item } from './shared/types/types';
+import { ScrollService } from './core/services/scroll.service';
 import { ApiService } from './core/services/api.service';
-import { CategoryService } from './main/services/category.service';
+import { CategoryService } from './core/services/category.service';
 import { BasketService } from './core/services/basket.service';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.less' ],
+  styleUrls: ['./app.component.less'],
   animations: [
     trigger('fadeIn', [
       state('out', style({ opacity: 0 })),
       state('in', style({ opacity: 1 })),
-      transition('out => in', animate('1000ms ease-in')),
+      transition('out => in', animate('1500ms ease-in')),
     ])
   ]
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   public state = 'out';
+  private routerSub: SubscriptionLike;
+  private itemsSub: SubscriptionLike[] = [];
 
   constructor(
     private readonly router: Router,
@@ -39,7 +42,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     private basketService: BasketService
   ) {
     smoothscroll.polyfill();
-    this.router.events
+    this.routerSub = this.router.events
       .pipe(
         filter((e: any): e is Scroll => e instanceof Scroll),
         tap(e => {
@@ -70,7 +73,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     // Если в URL есть utm_campaign, то кладём в cookie,
     // чтобы впоследствие добавить к данным в order
     const utmCampaignValue = this.getParamValueQueryString('utm_campaign');
-    document.cookie = `utm_campaign=${ utmCampaignValue }`;
+    document.cookie = `utm_campaign=${utmCampaignValue}`;
 
     this.checkBasket();
   }
@@ -93,7 +96,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   private checkBasket() {
     const oldBasket = new Map<Item, number>(this.basketService.items);
     Array.from(oldBasket.keys()).forEach((itemBasket: Item) => {
-      this.apiService.getItem(itemBasket.id).subscribe((item: Item) => {
+      this.itemsSub.push(this.apiService.getItem(itemBasket.id).subscribe((item: Item) => {
           if (!item) {
             this.basketService.removeFromBasket(itemBasket);
           }
@@ -101,7 +104,18 @@ export class AppComponent implements OnInit, AfterViewInit {
         error => {
           console.error(error);
           this.basketService.removeFromBasket(itemBasket);
-        });
+        }));
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.routerSub) {
+      this.routerSub.unsubscribe();
+    }
+    this.itemsSub.forEach((itemSub: SubscriptionLike) => {
+      if (itemSub) {
+        itemSub.unsubscribe();
+      }
     });
   }
 

@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
 
 
-
 const routes: Routes = [
   { path: '', loadChildren: () => import('../main/main.module').then(m => m.MainModule) },
   { path: 'item',
@@ -18,6 +17,7 @@ const routes: Routes = [
   { path: 'pages', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) },
   { path: '**', redirectTo: '/' }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
