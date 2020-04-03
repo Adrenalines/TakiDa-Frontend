@@ -42,15 +42,10 @@
         </div>
 
       <div
-        *ngIf="itemsResponse.meta.count > limit && !category.expanded"
+        *ngIf="(itemsResponse.meta.count > limit && !category.expanded) ||
+        (category.expanded && !(category.id | getItems:0:limit | async))"
         class="section__more"
-        (click)="category.expanded = true;"
-      >
-        <button>{{ 'core.show_all' | translate }}</button>
-      </div>
-      <div
-        *ngIf="category.expanded && !(category.id | getItems:0:limit | async)"
-        class="section__more"
+        (click)="category.expanded = true"
       >
         <button>{{ 'core.show_all' | translate }}</button>
       </div>

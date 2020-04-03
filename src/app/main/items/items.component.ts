@@ -18,7 +18,7 @@ export class ItemsComponent implements OnInit {
   public categories: Observable<Category[]>;
   public item: Item;
   public loadingError = new Subject<boolean>();
-  public limit: number;
+  public limit = 100;
   private anchors: HTMLCollectionOf<Element>;
 
   constructor(
@@ -29,7 +29,6 @@ export class ItemsComponent implements OnInit {
     private scrollService: ScrollService
   ) {
     this.router.routeReuseStrategy.shouldDetach(undefined);
-    this.limit = window.screen.width < 930 ? 4 : 8;
   }
 
   ngOnInit(): void {

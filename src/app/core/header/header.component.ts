@@ -37,22 +37,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('callDialogButtonElement') callDialogButtonElement: ElementRef;
   @ViewChild('callDialogButtonMobileElement') callDialogButtonMobileElement: ElementRef;
   @ViewChild('callDialogButtonMobileMainElement') callDialogButtonMobileMainElement: ElementRef;
-  /*@ViewChild('accountDialogElement') accountDialogElement: ElementRef;
-  @ViewChild('accountDialogButtonElement') accountDialogButtonElement: ElementRef;
-  @ViewChild('accountDialogButtonMobileElement') accountDialogButtonMobileElement: ElementRef;*/
   public languages = LANGUAGES;
   public defaultLocale = defaultLocale;
   public telephones = TELEPHONES;
   public callDialogForm: FormGroup;
-  /*public accountDialogForm: FormGroup;*/
   public mobileNav = false;
   public itemsCount = 0;
   public itemsCountPlural = 1;
   public socials = SOCIALS;
   public callDialogShow = false;
   public callDialogResponseText = '';
-  /*public accountDialogShow = false;
-  public accountDialogResponseText = '';*/
   public routeHasParams = false;
   public callBackFromMain = false;
   private basketSub: SubscriptionLike;
@@ -71,10 +65,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
       phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
     });
-    /*this.accountDialogForm = new FormGroup({
-      phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
-      password: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
-    });*/
   }
 
   ngOnInit(): void {
@@ -152,14 +142,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.callDialogShow = !this.callDialogShow;
   }
 
-  /*public toggleAccount(event?: Event) {
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    this.accountDialogShow = !this.accountDialogShow;
-  }*/
-
   @HostListener('document:click', [ '$event' ])
   @HostListener('document:touchstart', [ '$event' ])
   private handleOutsideClick(event) {
@@ -170,12 +152,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.callDialogButtonMobileMainElement.nativeElement.contains(event.target))) {
       this.toggleCallback();
     }
-    /*if (this.accountDialogElement &&
-      !this.accountDialogElement.nativeElement.contains(event.target) &&
-      !(this.accountDialogButtonElement.nativeElement.contains(event.target) ||
-        this.accountDialogButtonMobileElement.nativeElement.contains(event.target))) {
-      this.toggleAccount();
-    }*/
   }
 
   public submitCallback() {
@@ -195,25 +171,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }, 2000);
     });
   }
-
-  /*public submitAccount() {
-    this.authService.setAccountData(this.accountDialogForm.value);
-    if (this.authService.isAuthenticated()) {
-      this.router.navigate([ '/profile' ]).then(
-        () => {
-          this.accountDialogForm.reset();
-          this.accountDialogShow = false;
-          this.toggleMobileNav(false);
-        }
-      );
-    } else {
-      this.accountDialogForm.reset();
-      this.accountDialogResponseText = 'error';
-      setTimeout(() => {
-        this.accountDialogResponseText = '';
-      }, 2000);
-    }
-  }*/
 
   ngOnDestroy(): void {
     if (this.basketSub) {
