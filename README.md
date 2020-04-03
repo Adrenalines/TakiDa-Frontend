@@ -1,27 +1,30 @@
 # TakidaFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
+Пользовательский UI
+
+## Установка зависимостей
+
+Необходимо установить Node.js 12.16.1 (+ npm 6.14.4).
+Запустить `npm ci` для установки зафиксированных зависимостей.
+
+## Настройка environments
+
+В `src/environments/` лежат 2 файла. `environment.ts` используется при разработке в режиме dev server.
+`environment.prod.ts` используется в продакшн-сборке.
+Устанавливаются основной путь до api-сервиса (`url`) и до хранилища изображений (`imageStore`).
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Запустить `ng serve` для старта dev server'а.
+Перейти в браузере на `http://localhost:4200/`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Запустить `ng build --prod` для продакшн-сборки приложения.
+Готовый билд будет лежать в директории `dist/`.
 
-## Running unit tests
+## Апдейт локализации
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Команда `npm run update-locale` парсит все строки в файлах шаблонов компонентов,
+требующие локализации (| translate), и помещает их в файлы `src/assets/locale/<language_name>.json`,
+добавляя новые строки к уже имеющимся.
