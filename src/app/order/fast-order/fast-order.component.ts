@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
 import { calendarLocales, defaultLocale } from '../../shared/data/languages';
 import { ApiService } from '../../core/services/api.service';
+import { BasketService } from '../../core/services/basket.service';
 import { OrderService } from '../services/order.service';
 
 
@@ -23,6 +25,8 @@ export class FastOrderComponent implements OnInit, OnDestroy {
   private orderSub: SubscriptionLike;
 
   constructor(
+    private router: Router,
+    private basketService: BasketService,
     private orderService: OrderService,
     private apiService: ApiService
   ) { }
@@ -44,7 +48,8 @@ export class FastOrderComponent implements OnInit, OnDestroy {
     ).add(() => {
       this.resetForm();
       if (this.submitOrderResponseText === 'success') {
-        localStorage.removeItem('items');
+        this.basketService.clearBasket();
+        this.router.navigate(['/pages/success']);
       }
       setTimeout(() => {
         this.submitOrderResponseText = '';
@@ -62,7 +67,7 @@ export class FastOrderComponent implements OnInit, OnDestroy {
         new Date().getHours() + 1, new Date().getMinutes() + 5))
     });
   }
-  
+
   ngOnDestroy(): void {
     if (this.orderSub) {
       this.orderSub.unsubscribe();

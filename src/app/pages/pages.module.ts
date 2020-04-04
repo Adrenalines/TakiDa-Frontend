@@ -6,12 +6,14 @@ import { DeliveryComponent } from './delivery/delivery.component';
 import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 @NgModule({
   declarations: [
     DeliveryComponent,
     AboutComponent,
-    ContactsComponent
+    ContactsComponent,
+    OrderSuccessComponent
   ],
   imports: [
     CommonModule,

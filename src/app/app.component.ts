@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Scroll } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, Scroll } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { SubscriptionLike } from 'rxjs';
@@ -22,13 +22,15 @@ import { BasketService } from './core/services/basket.service';
     trigger('fadeIn', [
       state('out', style({ opacity: 0 })),
       state('in', style({ opacity: 1 })),
-      transition('out => in', animate('1500ms ease-in')),
+      transition('out => in', animate('1200ms ease-in')),
     ])
   ]
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   public state = 'out';
-  private routerSub: SubscriptionLike;
+  public hasOrderSuccess = false;
+  private routerScrollSub: SubscriptionLike;
+  private routerNavigationSub: SubscriptionLike;
   private itemsSub: SubscriptionLike[] = [];
 
   constructor(
@@ -42,7 +44,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     private basketService: BasketService
   ) {
     smoothscroll.polyfill();
-    this.routerSub = this.router.events
+    this.routerScrollSub = this.router.events
       .pipe(
         filter((e: any): e is Scroll => e instanceof Scroll),
         tap(e => {
@@ -65,6 +67,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
           this.scrollService.delay = 100;
         }, this.scrollService.delay);
       });
+
+    this.routerNavigationSub = this.router.events.pipe(
+      filter((e: any): e is NavigationEnd => e instanceof NavigationEnd),
+    ).subscribe(path => {
+      this.hasOrderSuccess = path.url === '/pages/success';
+    });
   }
 
   ngOnInit(): void {
@@ -110,8 +118,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.routerSub) {
-      this.routerSub.unsubscribe();
+    if (this.routerScrollSub) {
+      this.routerScrollSub.unsubscribe();
+    }
+    if (this.routerNavigationSub) {
+      this.routerNavigationSub.unsubscribe();
     }
     this.itemsSub.forEach((itemSub: SubscriptionLike) => {
       if (itemSub) {

@@ -50,4 +50,10 @@ export class BasketService {
     localStorage.setItem('items', JSON.stringify(Array.from(this.items.entries())));
   }
 
+  public clearBasket() {
+    this.items.clear();
+    this.itemsCount$ = new BehaviorSubject<number>(0);
+    localStorage.removeItem('items');
+  }
+
 }
