@@ -1,3 +1,30 @@
-# takida-front
+# TakidaFront
 
-Frontend App for TakiDa Sushi Bar site
+Пользовательский UI
+
+## Установка зависимостей
+
+Необходимо установить Node.js 12.16.1 (+ npm 6.14.4).
+Запустить `npm ci` для установки зафиксированных зависимостей.
+
+## Настройка environments
+
+В `src/environments/` лежат 2 файла. `environment.ts` используется при разработке в режиме dev server.
+`environment.prod.ts` используется в продакшн-сборке.
+Устанавливаются основной путь до api-сервиса (`url`) и до хранилища изображений (`imageStore`).
+
+## Development server
+
+Запустить `ng serve` для старта dev server'а.
+Перейти в браузере на `http://localhost:4200/`.
+
+## Build
+
+Запустить `ng build --prod` для продакшн-сборки приложения.
+Готовый билд будет лежать в директории `dist/`.
+
+## Апдейт локализации
+
+Команда `npm run update-locale` парсит все строки в файлах шаблонов компонентов,
+требующие локализации (| translate), и помещает их в файлы `src/assets/locale/<language_name>.json`,
+добавляя новые строки к уже имеющимся.

@@ -1,0 +1,18 @@
+<div class="delivery">
+  <div class="icon-01"></div>
+  <div class="title-01">{{ 'item.delivery' | translate }}</div>
+  <div class="txt-01">
+    <p>{{ 'item.free_delivery' | translate }} <br>{{ 'item.delivery_price' | translate }}</p>
+  </div>
+  <div class="icon-02"></div>
+  <div class="title-02">{{ 'item.payment' | translate }}</div>
+  <div class="txt-02">
+    <p>{{ 'item.cash' | translate }}</p>
+    <p>{{ 'item.cashless' | translate }} <br>({{ 'item.only_bar' | translate }})</p>
+  </div>
+  <div class="icon-03"></div>
+  <div class="title-03">{{ 'item.order_by_phone' | translate }}</div>
+  <div class="txt-03">
+    <p *ngFor="let telephone of telephones">{{ telephone }}</p>
+  </div>
+</div>

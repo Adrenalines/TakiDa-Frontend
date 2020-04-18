@@ -1,0 +1,78 @@
+<div *ngIf="!item" class="item">
+  <div class="item__info">
+    <div class="item__info-a">
+      <div class="picture">
+        <img src="/assets/images/circle-bg.svg" alt="">
+      </div>
+    </div>
+    <div class="item__info-b">{{ itemPlaceholder.name }}</div>
+    <div class="item__info-c">{{ itemPlaceholder.pieces }} {{ 'product.pieces' | translate }}</div>
+    <div class="item__info-d">{{ itemPlaceholder.weight }} {{ 'product.gram' | translate }}</div>
+    <div class="item__info-f">
+      <div class="price__current">
+        {{ itemPlaceholder.price }} <span>₴</span>
+      </div>
+    </div>
+    <a class="item__info-g">
+      <span>+ {{ 'product.to_cart' | translate }}</span>
+    </a>
+  </div>
+</div>
+
+<div *ngIf="item" class="item">
+  <div class="item__info">
+    <div class="item__info-a">
+      <div class="picture">
+        <img [defaultImage]="'/assets/images/circle-bg.svg'" [lazyLoad]="image" alt="">
+        <img
+          *ngIf="purchased"
+          class="picture__animation"
+          [src]="image"
+          alt=""
+        >
+      </div>
+      <div
+        *ngIf="item.oldPrice"
+        class="extra"
+      >
+        <div class="extra-new">{{ 'product.new' | translate }}</div>
+        <div class="extra-stock">{{ 'product.stock' | translate }}</div>
+      </div>
+    </div>
+    <div class="item__info-b">{{ item.name }}</div>
+    <div class="item__info-c">{{ item.pieces }} {{ 'product.pieces' | translate }}</div>
+    <div class="item__info-d">{{ item.weight }} {{ 'product.gram' | translate }}</div>
+    <div *ngIf="item.components.length" class="item__info-e">
+      <span>
+        <span *ngFor="let component of item.components | slice:0:6">
+          {{ component.name }}<span *ngIf="component.name !== item.components[item.components.slice(0, 6).length - 1].name">,</span>
+        </span>
+      </span>
+
+    </div>
+    <div class="item__info-f">
+      <div *ngIf="item.oldPrice" class="price__stock">
+        {{ item.oldPrice }} <span>₴</span>
+      </div>
+      <div class="price__current">
+        {{ item.price }} <span>₴</span>
+      </div>
+    </div>
+    <div
+      *ngIf="number === 0"
+      class="item__info-g"
+      (click)="replenishBasket($event, item, 1); changeNumber($event, 1);"
+      #toCartButtonElement
+    >
+      <span>+ {{ 'product.to_cart' | translate }}</span>
+    </div>
+    <div
+      *ngIf="number > 0"
+      class="item__info-h"
+    >
+      <div class="minus" (click)="replenishBasket($event, item, -1); changeNumber($event, -1)"></div>
+      <div class="counter">{{ number }}</div>
+      <div class="plus" (click)="replenishBasket($event, item, 1); changeNumber($event, 1)"></div>
+    </div>
+  </div>
+</div>

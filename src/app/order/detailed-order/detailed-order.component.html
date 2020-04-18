@@ -1,0 +1,144 @@
+<div class="form__detailed">
+  <div *ngIf="submitOrderResponseText" class="order-succeed">
+    <div *ngIf="submitOrderResponseText === 'pending'" >{{ 'order.pending' | translate }}</div>
+    <div *ngIf="submitOrderResponseText === 'error'" >{{ 'order.error' | translate }}</div>
+  </div>
+  <form
+    *ngIf="!submitOrderResponseText"
+    [formGroup]="detailedOrderForm"
+    (ngSubmit)="submitDetailedOrder()"
+    class="registration"
+  >
+    <div class="form-bg">
+      <div class="form-header">
+        <img src="/assets/images/icon_delivery-04.svg" alt="{{ 'order.contact' | translate }}">
+        <div class="form-title">{{ 'order.contact' | translate }}</div>
+      </div>
+      <div class="form-fields">
+        <div class="form-field-01">
+          <input
+            type="text"
+            name="clientName"
+            placeholder="{{ 'order.first_name' | translate }}"
+            formControlName="clientName"
+            required
+            minlength="2"
+          >
+          <input
+            type="text"
+            name="street"
+            placeholder="{{ 'order.street' | translate }}"
+            formControlName="street"
+            required
+            minlength="3"
+          >
+          <input
+            type="text"
+            name="houseNo"
+            placeholder="{{ 'order.house' | translate }}"
+            formControlName="houseNo"
+          >
+        </div>
+        <div class="form-field-02">
+          <input
+            type="text"
+            name="apartment"
+            placeholder="{{ 'order.flat_office' | translate }}"
+            formControlName="apartment"
+          >
+          <input
+            type="text"
+            name="addressMemo"
+            placeholder="{{ 'order.intercom' | translate }}"
+            formControlName="addressMemo"
+          >
+          <input
+            type="tel"
+            name="phone"
+            placeholder="+380"
+            pattern="^[\d\(\)\-+]+$"
+            formControlName="phone"
+            required
+            minlength="6"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="delivery-bg">
+      <div class="delivery-header">
+        <img src="/assets/images/icon_delivery-01.svg" alt="{{ 'order.delivery_time' | translate }}">
+        <div class="delivery-title">{{ 'order.delivery_time' | translate }}</div>
+      </div>
+      <div class="form-fields">
+        <div class="form-field-01">
+          <div class="item-radio">
+            <input
+              type="radio"
+              name="deliveryType"
+              [value]="false"
+              formControlName="deliveryType"
+            >
+            <span>{{ 'order.fac' | translate }}</span>
+          </div>
+          <div class="item-radio">
+            <input
+              type="radio"
+              name="deliveryType"
+              [value]="true"
+              formControlName="deliveryType"
+            >
+            <span>{{ 'order.by_time' | translate }}</span>
+          </div>
+        </div>
+        <div class="form-field-02">
+          <p-calendar
+            [panelStyle]="{'margin-left':'-70px'}"
+            formControlName="deliveryDate"
+            showTime="true"
+            hourFormat="24"
+            [dateFormat]="calendarLocales[defaultLocale].dateFormat"
+            [minDate]="minDateValue"
+            [maxDate]="maxDateValue"
+            [locale]="calendarLocales[defaultLocale]"
+            [disabled]="!detailedOrderForm.get('deliveryType').value"
+          ></p-calendar>
+        </div>
+      </div>
+    </div>
+    <div class="payment-bg">
+      <div class="payment-header">
+        <img src="/assets/images/icon_delivery-02.svg" alt="">
+        <div class="payment-title">{{ 'order.payment_type' | translate }}</div>
+      </div>
+      <div class="form-fields">
+        <div class="form-field-01">
+          <div class="item-radio">
+            <input
+              type="radio"
+              name="paymentType"
+              value="CASH"
+              formControlName="paymentType"
+              required
+            >
+            <span>{{ 'order.in_cash' | translate }}</span>
+          </div>
+          <div>{{ 'order.change_with' | translate }}:</div>
+        </div>
+        <div class="form-field-02">
+          <input
+            type="text"
+            name="paymentMemo"
+            placeholder="500 грн"
+            formControlName="paymentMemo"
+          >
+        </div>
+      </div>
+    </div>
+    <input
+      class="btn-checkout"
+      type="submit"
+      value="{{ 'order.checkout_button' | translate }}"
+      [disabled]="!detailedOrderForm.valid"
+    >
+  </form>
+</div>

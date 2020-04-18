@@ -1,0 +1,116 @@
+/* ITEM-POP-UP */
+.item-pop-up {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+}
+
+.item-pop-up__main {
+  margin: calc(50vh - 200px) auto;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 980px;
+  min-height: 370px;
+  max-height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  grid-template-rows: 40px 1fr;
+  grid-template-areas: "b a" "b .";
+
+  padding: 20px;
+
+  &:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-close {
+    grid-area: a;
+
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    z-index: 4;
+
+    background-image: url('/assets/images/icon_40_btn-close.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    &:hover {
+      background-image: url('/assets/images/icon_40_btn-close-active.svg');
+    }
+
+    &:active {
+      filter: saturate(50%);
+    }
+  }
+
+  .product {
+    grid-area: b;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+
+
+@media (max-width: 1140px) {
+  .item-pop-up__main {
+    border-radius: 10px;
+    width: 880px;
+
+    &:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-close {
+      grid-area: a;
+      background-image: url('/assets/images/icon_40_btn-close.svg');
+      background-repeat: no-repeat;
+
+      &:hover {
+        background-image: url('/assets/images/icon_40_btn-close-active.svg');
+      }
+
+      &:active {
+        filter: saturate(50%);
+      }
+    }
+  }
+}
+
+@media (max-width: 930px) {
+  /* ITEM-POP-UP */
+  .wrapper {
+    margin-left: 15px;
+    margin-right: 20px;
+  }
+
+  .item-pop-up__main {
+    grid-template-columns: auto 40px;
+    justify-content: center;
+    margin-top: 7%;
+    width: 102%;
+    max-height: calc(100vh - 40px);
+
+    .btn-close {
+      position: relative;
+    }
+    .product {
+      margin-right: -46px;
+      padding-top: 20px;
+    }
+  }
+}
+
+@media (max-width: 340px) {
+  /* ITEM-POP-UP */
+
+  .item-pop-up__main {
+    min-height: 420px;
+  }
+}

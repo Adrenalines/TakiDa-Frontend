@@ -1,0 +1,70 @@
+<div class="item__image">
+  <div class="picture">
+    <img [src]="image" alt="{{ item.name }}">
+    <img
+      *ngIf="purchased"
+      class="picture__animation"
+      [src]="image"
+      alt="{{ item.name }}"
+    >
+  </div>
+  <div
+    *ngIf="item.oldPrice"
+    class="extra"
+  >
+    <div class="extra-new">{{ 'product.new' | translate }}</div>
+    <div class="extra-stock">{{ 'product.stock' | translate }}</div>
+  </div>
+</div>
+
+<div class="item__info">
+  <div class="info-a">{{ item.name }}</div>
+  <div class="info-b">
+    <div>{{ item.pieces }} {{ 'product.pieces' | translate }}</div>
+    <div>{{ item.weight }} {{ 'product.gram' | translate }}</div>
+  </div>
+  <div *ngIf="item.components.length" class="info-c">
+    <div
+      *ngFor="let component of item.components"
+      class="component"
+    >
+      <img
+        [defaultImage]="'/assets/images/cc-blank.png'"
+        [lazyLoad]="this.environment.imageStore + '/' + component.id + '_small.png'"
+        alt="{{ component.name }}"
+      >
+      <span>{{ component.name }}</span>
+    </div>
+    <div
+      *ngIf="item.components.length > 5"
+      class="components__scroll_left"
+    >
+      <img src="/assets/images/pop-up_scroll.svg" alt="Scroll">
+    </div>
+    <div
+      *ngIf="item.components.length > 5"
+      class="components__scroll_right"
+    >
+      <img src="/assets/images/pop-up_scroll.svg" alt="Scroll">
+    </div>
+  </div>
+  <div class="info-d">
+    <div
+      *ngIf="item.oldPrice"
+      class="price__stock"
+    >
+      {{ item.oldPrice * number }} <span>₴</span>
+    </div>
+    <div class="price__current">
+      {{ item.price * number }} <span>₴</span>
+    </div>
+  </div>
+  <div class="info-e">
+    <div class="minus" (click)="changeNumber(-1)"></div>
+    <div class="counter">{{ number }}</div>
+    <div class="plus" (click)="changeNumber(1)"></div>
+  </div>
+  <div class="info-f" (click)="replenishBasket(item)" #toCartButtonElement>
+    <span>{{ 'product.to_cart' | translate }}</span>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="form__fast">
+  <div *ngIf="submitOrderResponseText" class="order-succeed">
+    <div *ngIf="submitOrderResponseText === 'pending'" >{{ 'order.pending' | translate }}</div>
+    <div *ngIf="submitOrderResponseText === 'error'" >{{ 'order.error' | translate }}</div>
+  </div>
+  <form
+    *ngIf="!submitOrderResponseText"
+    [formGroup]="fastOrderForm"
+    (ngSubmit)="submitFastOrder()"
+    class="registration"
+  >
+    <div class="form-bg">
+      <div class="form-header">
+        <img src="/assets/images/icon_delivery-04.svg" alt="{{ 'order.contact' | translate }}">
+        <div class="form-title">{{ 'order.contact' | translate }}</div>
+      </div>
+      <div class="form-fields">
+        <input
+          type="text"
+          name="clientName"
+          placeholder="{{ 'order.first_last_name' | translate }}"
+          formControlName="clientName"
+          required
+          minlength="2"
+        >
+        <input
+          type="tel"
+          name="phone"
+          placeholder="+380"
+          pattern="^[\d\(\)\-+]+$"
+          formControlName="phone"
+          required
+          minlength="6"
+        >
+      </div>
+      <div class="form-pickup">
+        <input
+          type="checkbox"
+          id="pickup"
+          name="pickup"
+          [value]="false"
+          formControlName="pickup"
+        >
+        <label for="pickup">{{ 'order.pickup' | translate }}</label>
+      </div>
+      <div class="form-pickup">
+        <p-calendar
+          [panelStyle]="{'margin-left':'-70px'}"
+          formControlName="deliveryDate"
+          showTime="true"
+          hourFormat="24"
+          [dateFormat]="calendarLocales[defaultLocale].dateFormat"
+          [minDate]="minDateValue"
+          [maxDate]="maxDateValue"
+          [locale]="calendarLocales[defaultLocale]"
+          [disabled]="!fastOrderForm.get('pickup').value"
+        ></p-calendar>
+      </div>
+    </div>
+    <input
+      class="btn-checkout"
+      type="submit"
+      value="{{ 'order.checkout_button' | translate }}"
+      [disabled]="!fastOrderForm.valid"
+    >
+  </form>
+</div>

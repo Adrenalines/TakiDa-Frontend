@@ -1,0 +1,158 @@
+@import '../../../_vars';
+
+.breadcrumbs-back-socials {
+  display: grid;
+  grid-template-columns: 370px minmax(0, 40px) minmax(510px, min-content) 220px;
+  grid-template-areas: "a . b c";
+  grid-column-gap: 10px;
+}
+
+.breadcrumbs {
+  grid-area: a;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+
+  li {
+    display: inline;
+    font-size: 10px;
+
+    a {
+      color: #828282;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:active {
+        color: @menu-active;
+      }
+    }
+  }
+
+  li + li:before {
+    padding: 5px;
+    color: #828282;
+    content: "/";
+  }
+}
+
+.btn-back {
+  grid-area: b;
+
+  height: 100%;
+  width: 82px;
+  border-radius: 5px;
+
+  background-color: #eae9dc;
+
+  color: #828282;
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+
+  display: grid;
+
+  align-items: center;
+  justify-items: center;
+
+  &:hover {
+    background-color: #828282;
+    color: #eae9dc;
+  }
+
+  &:active {
+    background-color: #eae9dc;
+    color: #828282;
+  }
+}
+
+.socials {
+  grid-area: c;
+
+  color: #828282;
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-column-gap: 15px;
+
+  align-items: center;
+
+  img {
+    width: 20px;
+    height: auto;
+    cursor: pointer;
+  }
+}
+
+/* MEDIA QUERY */
+@media (max-width: 1140px) {
+  .breadcrumbs-back-socials {
+    grid-template-columns: 335px minmax(0, 40px) minmax(420px, min-content) 220px;
+  }
+}
+
+@media (max-width: 930px) {
+  .breadcrumbs-back-socials {
+    display: grid;
+    grid-template-columns: 100px 200px 70px;
+    grid-template-rows: 25px auto 1fr auto;
+    grid-template-areas: "a a a" "b . c";
+    grid-row-gap: 20px;
+    justify-content: center;
+    margin-left: 200px;
+    margin-top: 30px;
+  }
+
+  .breadcrumbs {
+    grid-area: a;
+  }
+
+  /* ITEM-CONTENT */
+  .btn-back {
+    grid-area: b;
+
+    height: 45px;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .socials {
+    grid-area: c;
+
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr;
+    grid-column-gap: 15px;
+    padding-right: 30px;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    img {
+      width: 35px;
+      height: auto;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+}
+
+@media (max-width: 480px) {
+  .breadcrumbs-back-socials {
+    margin-left: 180px;
+    display: grid;
+    grid-template-columns: 80px 150px 60px;
+  }
+}

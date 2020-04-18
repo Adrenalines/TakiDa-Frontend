@@ -1,0 +1,117 @@
+.account__menu {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px 80px;
+
+  justify-self: center;
+
+  align-items: center;
+  text-align: center;
+
+  .menu-title {
+    color: #000;
+    font-size: 36px;
+    font-weight: 900;
+  }
+
+  .menu-items {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: auto;
+    grid-column-gap: 22px;
+    justify-self: center;
+
+    .item.active {
+      background-color: #727164;
+
+      color: #fff;
+
+      position: relative;
+
+      &:after {
+        border: 12.5px solid transparent;
+        border-top-color: #727164;
+        position: absolute;
+        top: 100%;
+        right: 82px;
+        content: '';
+      }
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 35px;
+      width: 189px;
+      border-radius: 10px;
+      background-color: #eae9dc;
+      cursor: pointer;
+      color: #000;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+  }
+}
+
+
+@media (max-width: 930px) {
+  .account__menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px 80px;
+
+    justify-self: center;
+
+    align-items: center;
+    text-align: center;
+
+    .menu-title {
+      color: #000;
+      font-size: 36px;
+      font-weight: 900;
+    }
+
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      grid-template-rows: auto;
+      grid-column-gap: 16px;
+
+      .item.active {
+        background-color: #727164;
+
+        color: #fff;
+
+        position: relative;
+
+        &:after {
+          border: 12.5px solid transparent;
+          border-top-color: #727164;
+          position: absolute;
+          top: 100%;
+          right: 55.5px;
+          content: '';
+        }
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 35px;
+        width: 136px;
+        border-radius: 10px;
+        background-color: #eae9dc;
+
+        color: #000;
+        font-size: 12px;
+        font-weight: 500;
+        text-decoration: none;
+      }
+    }
+  }
+}

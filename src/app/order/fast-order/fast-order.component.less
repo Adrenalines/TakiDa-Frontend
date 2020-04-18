@@ -1,0 +1,229 @@
+@import '../../../_vars';
+
+.form__fast {
+  margin: 0 auto;
+
+  .order-succeed {
+    color: #000;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 50px;
+    text-align: center;
+  }
+
+  .registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-bg {
+    display: grid;
+    grid-template-columns: 540px;
+    grid-template-rows: auto auto;
+    grid-row-gap: 25px;
+    padding: 30px 30px 48px;
+
+    background-color: #fff;
+    border-radius: 10px;
+
+    &:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-header {
+      display: flex;
+      align-items: center;
+
+      .form-title {
+        padding-left: 15px;
+      }
+    }
+
+    .form-fields {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      input {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+
+        height: 33px;
+        width: 208px;
+
+        color: #000;
+        font-family: 'Montserrat',
+        sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+
+        padding: 0 15px;
+      }
+
+      input.ng-invalid {
+        border-color: #ffb9b7;
+      }
+    }
+
+    .form-pickup {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: -15px;
+
+      input {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+
+        height: 13px;
+
+        color: #000;
+        font-family: 'Montserrat',
+        sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+
+        padding: 0 5px;
+      }
+    }
+  }
+
+  input.btn-checkout {
+    margin-top: 30px;
+    height: 60px;
+    width: 400px;
+
+    background-color: rgba(107, 107, 102, 0.51);
+    border-radius: 10px;
+
+    border: none;
+    outline: none;
+
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+
+    &:enabled {
+      cursor: pointer;
+      background-color: @menu-active;
+    }
+  }
+}
+
+
+@media (max-width: 1140px) {
+  .form__fast {
+    margin: 0 auto;
+
+    .registration {
+      justify-self: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form-bg {
+      display: grid;
+      grid-template-columns: 380px;
+      grid-template-rows: auto auto;
+      grid-row-gap: 25px;
+      padding: 30px 30px 48px;
+
+      background-color: #fff;
+      border-radius: 10px;
+
+      &:hover {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .form-title {
+          padding-left: 15px;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+
+      .form-fields {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+
+        height: 135px;
+
+        input {
+          background: #fff;
+          border: 1px solid #e0e0e0;
+          border-radius: 5px;
+
+          height: 43px;
+          width: 348px;
+
+          color: #000;
+          font-family: 'Montserrat',
+          sans-serif;
+          font-size: 15px;
+          font-weight: 400;
+
+          padding: 0 15px;
+        }
+
+        input.ng-invalid {
+          border-color: #ffb9b7;
+        }
+      }
+
+      .form-pickup {
+        font-size: 16px;
+        align-items: center;
+        justify-content: center;
+
+        #pickup {
+          margin-left: -10px;
+        }
+      }
+    }
+
+    input.btn-checkout {
+      margin-top: 30px;
+      height: 60px;
+      width: 440px;
+
+      background-color: rgba(107, 107, 102, 0.51);
+      border-radius: 10px;
+
+      border: none;
+      outline: none;
+
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+
+      &:enabled {
+        cursor: pointer;
+        background-color: @menu-active;
+      }
+    }
+  }
+}
+
+@media (max-width: 930px) {
+  .form__fast {
+    margin-bottom: -400px;
+  }
+
+  .order-succeed {
+    min-height: 150px;
+  }
+}

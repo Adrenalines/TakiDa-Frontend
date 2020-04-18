@@ -1,0 +1,6 @@
+<div id="main" class="main" [@fadeIn]="state">
+  <app-header [hidden]="hasOrderSuccess"></app-header>
+  <app-menu [hidden]="hasOrderSuccess"></app-menu>
+  <router-outlet></router-outlet>
+  <app-footer [hidden]="hasOrderSuccess"></app-footer>
+</div>

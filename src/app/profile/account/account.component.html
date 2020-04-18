@@ -1,0 +1,16 @@
+<div class="account">
+  <div class="header-wrapper wrapper content">
+    <div class="account__main">
+      <ul class="breadcrumbs">
+        <li><a routerLink="/">{{ 'core.main' | translate }}</a></li>
+        <li><a routerLink="/profile">{{ 'profile.account' | translate }}</a></li>
+      </ul>
+      <div class="reducer">
+        <app-account-menu (profileInfoType)="profileInfo = $event"></app-account-menu>
+        <app-registration *ngIf="profileInfo === 'registration'"></app-registration>
+        <app-address *ngIf="profileInfo === 'address'"></app-address>
+        <app-history *ngIf="profileInfo === 'history'"></app-history>
+      </div>
+    </div>
+  </div>
+</div>

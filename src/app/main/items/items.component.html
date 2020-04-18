@@ -1,0 +1,73 @@
+<app-item-modal *ngIf="item" [item]="item" (closedPopup)="closePopup()"></app-item-modal>
+<div *ngIf="loadingError | async">Error of loading items...</div>
+<div *ngIf="!(categories | async)">
+  <div class="section">
+    <div class="section__title-rolls">
+      <img class="title-icon" src="/assets/images/icons_50px/icon_50_rolls-active.svg" alt="">
+      <div class="title-txt">...</div>
+    </div>
+    <div class="wrapper">
+      <div class="section__items">
+        <app-item-card></app-item-card>
+        <app-item-card></app-item-card>
+        <app-item-card></app-item-card>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="(categories | async) as categories">
+  <div *ngFor="let category of categories">
+    <a class="anchor" id="{{ category.name.split(' ').join('_') }}"></a>
+    <div
+      *ngIf="(category.id | getItems:limit:0 | async) as itemsResponse"
+      class="section"
+    >
+      <div class="section__title-rolls">
+        <img class="title-icon" [src]="'/assets/images/categories/' + category.id + '_regular.svg'" alt="">
+        <div class="title-txt">{{ category.name }}</div>
+      </div>
+      <div class="wrapper">
+        <div
+          *ngIf="itemsResponse.data as items"
+          class="section__items"
+        >
+          <div *ngFor="let item of items">
+            <a
+              (click)="showPopup($event, item)"
+              href="item/{{ item.name.split(' ').join('_') }}"
+            >
+              <app-item-card [item]="item"></app-item-card>
+            </a>
+          </div>
+        </div>
+
+      <div
+        *ngIf="(itemsResponse.meta.count > limit && !category.expanded) ||
+        (category.expanded && !(category.id | getItems:0:limit | async))"
+        class="section__more"
+        (click)="category.expanded = true"
+      >
+        <button>{{ 'core.show_all' | translate }}</button>
+      </div>
+      <div
+        *ngIf="category.expanded && (category.id | getItems:0:limit | async) as itemsFullResponse"
+      >
+        <div
+          *ngIf="itemsFullResponse.data as items"
+          class="section__items"
+        >
+          <div *ngFor="let item of items">
+            <a
+              (click)="showPopup($event, item)"
+              href="item/{{ item.name.split(' ').join('_') }}"
+            >
+              <app-item-card [item]="item"></app-item-card>
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+

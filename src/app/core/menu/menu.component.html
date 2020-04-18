@@ -1,0 +1,18 @@
+<div class="menu__container wrapper">
+  <div *ngIf="loadingError | async">Error of loading categories...</div>
+  <div class="menu">
+      <a
+        *ngFor="let category of categories | async; let i = index"
+        [ngClass]="{ 'menu__bg': true, 'active': fragment === category.name.split(' ').join('_') }"
+        routerLink="/"
+        fragment="{{ category.name.split(' ').join('_') }}"
+        (click)="forceScroll(category)"
+      >
+        <div class="menu__item">
+          <div *ngIf="fragment !== category.name.split(' ').join('_')" class="item-{{ i + 1 }}"></div>
+          <div *ngIf="fragment === category.name.split(' ').join('_')" class="active-{{ i + 1 }}"></div>
+          <div class="item-txt">{{ category.name }}</div>
+        </div>
+      </a>
+  </div>
+</div>

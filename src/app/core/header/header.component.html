@@ -1,0 +1,198 @@
+<header class="header">
+  <div class="header-grid wrapper">
+    <a class="header__logo" routerLink="/">
+      <img src="/assets/images/logo_taki-da.png" alt="{{ 'core.logo' | translate }}">
+    </a>
+    <div class="header__nav">
+      <a routerLink="/">{{ 'core.main' | translate }}</a>
+      <a routerLink="/pages/delivery">{{ 'core.delivery' | translate }}</a>
+      <a routerLink="/pages/about">{{ 'core.about' | translate }}</a>
+      <a routerLink="/pages/contacts">{{ 'core.contacts' | translate }}</a>
+    </div>
+    <div class="header__socials">
+      <a href="{{ socials.fb }}" target="_blank"><img src="/assets/images/icon_15_social_fb.svg" alt="fb"></a>
+      <a href="{{ socials.inst }}" target="_blank"><img src="/assets/images/icon_15_social_inst.svg" alt="inst"></a>
+    </div>
+    <div class="header__lang-acc">
+      <div class="lang">
+        <select name="language" id="language" (ngModelChange)="useLanguage($event)" [(ngModel)]="defaultLocale">
+          <option
+            *ngFor="let language of languages | keyvalue : returnZero"
+            value="{{ language.key }}"
+          >
+            {{ language.value }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="header__contacts">
+      <div class="contacts-b">
+        <select name="tel" id="tel">
+          <div class="contacts"></div>
+          <option *ngFor="let telephone of telephones" value="{{ telephone }}">
+            {{ telephone }}
+          </option>
+        </select>
+      </div>
+      <img class="contacts-c" src="/assets/images/icon_watches.svg" alt="">
+      <span class="contacts-d">{{ 'core.week' | translate }} <b>11:00 - 23:00</b></span>
+      <img class="contacts-e" src="/assets/images/icon_geolocation.svg" alt="">
+      <span class="contacts-f">
+        {{ 'core.prospect' | translate }}
+        <b>{{ 'core.shevchenko' | translate }} 8а</b>
+      </span>
+    </div>
+    <div class="header__call-me" #callDialogButtonElement>
+      <a class="call-me__btn" (click)="toggleCallback()">
+        <img src="/assets/images/icon_25_call.svg" alt="{{ 'core.callback' }}">
+        <span>{{ 'core.callback' | translate }}</span>
+      </a>
+    </div>
+    <div class="header__basket" #basketElement>
+      <a class="basket__btn" routerLink="/cart">
+        <img class="btn-a" src="/assets/images/icon_25_basket.svg" alt="{{ 'core.basket' | translate }}">
+        <span class="basket__empty" *ngIf="!itemsCount">{{ 'core.basket' | translate }}</span>
+        <span *ngIf="itemsCount" class="btn-b">{{ 'core.basket' | translate }}</span>
+        <span *ngIf="itemsCount" class="btn-c">
+          <span>{{ itemsCount }} {{ 'core.item' | translate }}</span>
+          <span *ngIf="itemsCountPlural === 2">{{ 'core.item_plural_2' | translate }}</span>
+          <span *ngIf="itemsCountPlural === 3">{{ 'core.item_plural_many' | translate }}</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div
+  *ngIf="callDialogShow"
+  [ngClass]="{ 'wrapper': true, 'call-me__popup': !callBackFromMain, 'call-me__popup__from_main': callBackFromMain }"
+  #callDialogElement>
+  <div class="triangle"></div>
+  <div *ngIf="callDialogResponseText" class="call-me__popup-text">
+    <div *ngIf="callDialogResponseText === 'pending'">{{ 'core.callback_pending' | translate }}</div>
+    <div *ngIf="callDialogResponseText === 'success'">{{ 'core.callback_success' | translate }}</div>
+    <div *ngIf="callDialogResponseText === 'error'">{{ 'core.callback_error' | translate }}</div>
+  </div>
+  <div *ngIf="!callDialogResponseText">
+    <ul *ngIf="callBackFromMain">
+      <li *ngFor="let telephone of telephones"><a href="tel:{{ telephone }}">{{ telephone }}</a></li>
+    </ul>
+    <div class="call-me__popup-text">{{ 'core.callback_where' | translate }}</div>
+    <form [formGroup]="callDialogForm" (ngSubmit)="submitCallback()">
+      <div class="form-fields">
+        <input
+          type="text"
+          name="clientName"
+          placeholder="{{ 'core.your_name' | translate }}"
+          formControlName="clientName"
+          required
+          minlength="2"
+        >
+        <input
+          type="tel"
+          name="phone"
+          placeholder="+380"
+          pattern="^[\d\(\)\-+]+$"
+          formControlName="phone"
+          required
+          minlength="6"
+        >
+      </div>
+      <input
+        class="btn-checkout"
+        type="submit"
+        value="{{ 'core.submit' | translate }}"
+        [disabled]="!callDialogForm.valid"
+      >
+    </form>
+  </div>
+</div>
+
+<div class="header-mobile">
+  <div class="header-mobile-grid wrapper">
+    <a class="header-mobile__logo" routerLink="/">
+      <img src="/assets/images/logo_taki-da.png" alt="{{ 'core.logo' | translate }} TakiDa">
+    </a>
+    <div class="header-mobile__lang">
+      <div class="lang">
+        <select name="language" id="language-mobile" (ngModelChange)="useLanguage($event)" [(ngModel)]="defaultLocale">
+          <option
+            *ngFor="let language of languages | keyvalue : returnZero"
+            value="{{ language.key }}"
+          >
+            {{ language.value }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="header-mobile__nav" (click)="toggleMobileNav(true)">
+      <img src="/assets/images/icons_50px/icon_50_menu-active.svg" alt="{{ 'core.menu' | translate }}">
+    </div>
+  </div>
+</div>
+<div
+  class="header-mobile__contacts"
+  (click)="toggleCallback(true)"
+  #callDialogButtonMobileMainElement
+>
+  <img class="contacts-a" src="/assets/images/icon_tel.svg" alt="telephone">
+  <img class="contacts-b" src="/assets/images/arrow-for-select-01.svg" alt="arrow">
+</div>
+
+<div id="nav-menu" [ngClass]="{ 'nav-menu': true, 'active': mobileNav }" class="nav-menu">
+  <div class="nav-menu-grid wrapper">
+    <a class="nav-menu__btn-back" (click)="toggleMobileNav(false)">
+      <img src="/assets/images/icons_50px/icon_50_arrow-active.svg" alt="{{ 'core.back' | translate }}">
+    </a>
+    <div class="nav-menu__list">
+      <a routerLink="/" (click)="toggleMobileNav(false)">{{ 'core.main' | translate }}</a>
+      <a routerLink="/pages/delivery" (click)="toggleMobileNav(false)">{{ 'core.delivery' | translate }}</a>
+      <a routerLink="/pages/about" (click)="toggleMobileNav(false)">{{ 'core.about' | translate }}</a>
+      <a routerLink="/pages/contacts" (click)="toggleMobileNav(false)">{{ 'core.contacts' | translate }}</a>
+    </div>
+    <div class="nav-menu__call-me" #callDialogButtonMobileElement>
+      <a class="call-me__btn" (click)="toggleCallback()">
+        <img src="/assets/images/icon_25_call.svg" alt="{{ 'core.callback' | translate }}">
+        <span>{{ 'core.callback' | translate }}</span>
+      </a>
+    </div>
+    <div class="nav-menu__basket">
+      <a class="basket__btn" routerLink="/cart" (click)="toggleMobileNav(false)">
+        <img class="btn-a" src="/assets/images/icon_25_basket.svg" alt="">
+        <span class="basket__empty" *ngIf="!itemsCount">{{ 'core.basket' | translate }}</span>
+        <span *ngIf="itemsCount" class="btn-b">{{ 'core.basket' | translate }}</span>
+        <span *ngIf="itemsCount" class="btn-c">
+          <span>{{ itemsCount }} {{ 'core.item' | translate }}</span>
+          <span *ngIf="itemsCountPlural === 2">{{ 'core.item_plural_2' | translate }}</span>
+          <span *ngIf="itemsCountPlural === 3">{{ 'core.item_plural_many' | translate }}</span>
+        </span>
+      </a>
+    </div>
+    <div class="nav-menu__socials">
+      <a href="{{ socials.fb }}" target="_blank"><img src="/assets/images/icon_15_social_fb.svg" alt="fb"></a>
+      <a href="{{ socials.inst }}" target="_blank"><img src="/assets/images/icon_15_social_inst.svg" alt="inst"></a>
+    </div>
+  </div>
+</div>
+
+<a routerLink="/cart">
+  <div *ngIf="itemsCount && !routeHasParams" class="header__basket-mobile" [@flyInOut]>
+    <img
+      class="basket-mobile-icon"
+      src="/assets/images/icon_25_basket.svg"
+      alt="{{ 'core.basket' | translate }}"
+      #basketMobileElement
+    >
+    <span class="basket-mobile-text">{{ 'core.basket' | translate }}</span>
+    <span class="basket-mobile-items">
+      <span>{{ itemsCount }} {{ 'core.item' | translate }}</span>
+      <span *ngIf="itemsCountPlural === 2">{{ 'core.item_plural_2' | translate }}</span>
+      <span *ngIf="itemsCountPlural === 3">{{ 'core.item_plural_many' | translate }}</span>
+    </span>
+    <div class="basket-mobile-button">
+      <span>{{ 'core.to_cart' | translate }}</span>
+    </div>
+  </div>
+</a>
+
+

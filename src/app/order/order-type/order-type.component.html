@@ -1,0 +1,17 @@
+<div class="order__menu">
+  <div class="menu-title">{{ 'delivery.free' | translate }}</div>
+  <div class="menu-forms">
+    <a
+      [ngClass]="{ 'item': true, 'active': orderTypeFast }"
+      (click)="toggleOrderType('fast')"
+    >
+      {{ 'order.fast' | translate }}
+    </a>
+    <a
+      [ngClass]="{ 'item': true, 'active': !orderTypeFast }"
+      (click)="toggleOrderType('detailed')"
+    >
+      {{ 'order.detailed' | translate }}
+    </a>
+  </div>
+</div>
