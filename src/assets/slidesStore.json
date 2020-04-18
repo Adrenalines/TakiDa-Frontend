@@ -13,5 +13,10 @@
     "id": "slide-3",
     "alt": "Слайд-03",
     "src": "assets/images/bg-slide_03.jpg"
+  },
+  {
+    "id": "slide-4",
+    "alt": "Слайд-04",
+    "src": "assets/images/bg-slide_04.jpg"
   }
 ]

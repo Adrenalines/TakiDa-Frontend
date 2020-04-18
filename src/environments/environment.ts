@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://157.230.112.201/api/rest/open',
-  imageStore: 'http://157.230.112.201/images'
+  url: 'https://takida.od.ua/api/rest/open',
+  imageStore: 'https://takida.od.ua/images'
 };
 
 /*

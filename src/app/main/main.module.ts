@@ -6,7 +6,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { MainRoutingModule } from './main-routing.module';
 import { SharedModule } from '../shared/shared.module';
-/*import { SliderComponent } from './slider/slider.component';*/
+import { SliderComponent } from './slider/slider.component';
 import { ItemsComponent } from './items/items.component';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { MainComponent } from './main/main.component';
@@ -16,7 +16,7 @@ import { ItemModalComponent } from './item-modal/item-modal.component';
 
 @NgModule({
   declarations: [
-    /*SliderComponent,*/
+    SliderComponent,
     ItemsComponent,
     ItemCardComponent,
     ItemModalComponent,
