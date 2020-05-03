@@ -7,11 +7,14 @@ import { BasketService } from '../../core/services/basket.service';
   providedIn: 'root'
 })
 export class OrderService {
-  private readonly metadata: string;
+  private readonly metadata: Map<string, string>;
 
   constructor(private basketService: BasketService) {
-    this.metadata = this.getCookie('utm_campaign') && this.getCookie('utm_campaign') !== 'undefined' ?
-      this.getCookie('utm_campaign') : null;
+    this.metadata = new Map<string, string>();
+    // let value = this.getCookie('utm_campaign') && this.getCookie('utm_campaign') !== 'undefined' ? this.getCookie('utm_campaign') : null;
+    // if (value != null) {
+    //   this.metadata.set("utm_campaign", value);
+    // }
   }
 
   public transformOrderData(rawOrderData: OrderFormData): OrderRequest {

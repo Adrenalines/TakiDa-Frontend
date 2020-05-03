@@ -99,6 +99,6 @@ export interface OrderRequest {
   paymentType: 'CASH';
   paymentMemo: string;
   pickup: boolean;
-  metadata: string;
+  metadata: Map<string, string>;
   goods: ItemsOrder;
 }
