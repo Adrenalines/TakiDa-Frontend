@@ -1,7 +1,8 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, Scroll } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { isPlatformBrowser } from '@angular/common';
 import { SubscriptionLike } from 'rxjs';
 import { delay, filter, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,6 +13,7 @@ import { ScrollService } from './core/services/scroll.service';
 import { ApiService } from './core/services/api.service';
 import { CategoryService } from './core/services/category.service';
 import { BasketService } from './core/services/basket.service';
+
 
 
 @Component({
@@ -34,6 +36,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private itemsSub: SubscriptionLike[] = [];
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private readonly router: Router,
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
@@ -76,7 +79,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.translateService.use(defaultLocale);
+    if (isPlatformBrowser(this.platformId)) {
+      this.translateService.use(defaultLocale);
+    }
 
     // Если в URL есть utm_campaign, то кладём в cookie,
     // чтобы впоследствие добавить к данным в order

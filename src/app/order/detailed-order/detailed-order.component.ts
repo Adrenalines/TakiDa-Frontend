@@ -1,11 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
 import { calendarLocales, defaultLocale } from '../../shared/data/languages';
 import { ApiService } from '../../core/services/api.service';
 import { BasketService } from '../../core/services/basket.service';
 import { OrderService } from '../services/order.service';
+
 
 
 @Component({
@@ -21,19 +23,23 @@ export class DetailedOrderComponent implements OnInit, OnDestroy {
   public maxDateValue =
     new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 5, new Date().getHours(), new Date().getMinutes());
   public calendarLocales = calendarLocales;
-  public defaultLocale = defaultLocale;
+  public defaultLocale: string;
   private orderSub: SubscriptionLike;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
     private basketService: BasketService,
     private orderService: OrderService,
     private apiService: ApiService
   ) {
-    this.resetForm();
+    if (isPlatformBrowser(this.platformId)) {
+      this.defaultLocale = defaultLocale;
+    }
   }
 
   ngOnInit(): void {
+    this.resetForm();
   }
 
   public submitDetailedOrder() {
