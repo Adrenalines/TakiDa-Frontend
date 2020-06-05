@@ -1,17 +1,22 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, Scroll } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { SubscriptionLike } from 'rxjs';
 import { delay, filter, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import smoothscroll from 'smoothscroll-polyfill';
 import { defaultLocale } from './shared/data/languages';
 import { Item } from './shared/types/types';
+import { WindowRefService } from './core/services/window-ref.service';
 import { ScrollService } from './core/services/scroll.service';
 import { ApiService } from './core/services/api.service';
 import { CategoryService } from './core/services/category.service';
 import { BasketService } from './core/services/basket.service';
+import { CookieService } from 'ngx-cookie-service';
+
+
 
 
 @Component({
@@ -29,27 +34,36 @@ import { BasketService } from './core/services/basket.service';
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   public state = 'out';
   public hasOrderSuccess = false;
-  private routerScrollSub: SubscriptionLike;
-  private routerNavigationSub: SubscriptionLike;
+  private readonly defaultLocale: string;
+  private readonly routerScrollSub: SubscriptionLike;
+  private readonly routerNavigationSub: SubscriptionLike;
   private itemsSub: SubscriptionLike[] = [];
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document,
     private readonly router: Router,
-    private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
+    private windowRefService: WindowRefService,
     private translateService: TranslateService,
+    private cookieService: CookieService,
     private scrollService: ScrollService,
     private apiService: ApiService,
     private categoryService: CategoryService,
     private basketService: BasketService
   ) {
-    smoothscroll.polyfill();
+    if (isPlatformBrowser(this.platformId)) {
+      smoothscroll.polyfill();
+      this.defaultLocale = localStorage.getItem('language') || defaultLocale;
+    }
     this.routerScrollSub = this.router.events
       .pipe(
         filter((e: any): e is Scroll => e instanceof Scroll),
         tap(e => {
           if (!e.anchor && !e.position) {
-            window.scroll(0, 0);
+            if (isPlatformBrowser(this.platformId)) {
+              this.windowRefService.nativeWindow.scroll(0, 0);
+            }
             setTimeout(() => {
               this.scrollService.activeItemsCategory.next(null);
             }, 100);
@@ -60,9 +74,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(e => {
         setTimeout(() => {
           if (e.position) {
-            window.scroll({ top: e.position[1] });
+            if (isPlatformBrowser(this.platformId)) {
+              this.windowRefService.nativeWindow.scroll({ top: e.position[1] });
+            }
           } else if (e.anchor) {
-            document.querySelector('#' + e.anchor).scrollIntoView({ behavior: 'smooth' });
+            this.document.querySelector('#' + e.anchor).scrollIntoView({ behavior: 'smooth' });
           }
           this.scrollService.delay = 100;
         }, this.scrollService.delay);
@@ -76,12 +92,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.translateService.use(defaultLocale);
+    this.translateService.use(this.defaultLocale);
 
     // Если в URL есть utm_campaign, то кладём в cookie,
     // чтобы впоследствие добавить к данным в order
     const utmCampaignValue = this.getParamValueQueryString('utm_campaign');
-    document.cookie = `utm_campaign=${utmCampaignValue}`;
+    this.cookieService.set('utm_campaign', utmCampaignValue);
 
     this.checkBasket();
   }
@@ -92,7 +108,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private getParamValueQueryString(paramName: string): string {
-    const url = window.location.href;
+    const url = this.document.location.href;
     let paramValue;
     if (url.includes('?')) {
       const httpParams = new HttpParams({ fromString: url.split('?')[1] });

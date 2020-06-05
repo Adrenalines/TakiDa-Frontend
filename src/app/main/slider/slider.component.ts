@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { SubscriptionLike } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import * as jQuery from 'jquery';
@@ -16,10 +17,13 @@ export class SliderComponent implements OnInit, OnDestroy {
   slides: Slide[];
   slidesSub: SubscriptionLike;
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private apiService: ApiService
+  ) { }
 
   ngOnInit(): void {
-    this.slidesSub = this.apiService.getSlides().pipe(
+    this.slidesSub = isPlatformBrowser(this.platformId) ? this.apiService.getSlides().pipe(
       map(slides => {
         this.slides = slides;
       }),
@@ -32,7 +36,8 @@ export class SliderComponent implements OnInit, OnDestroy {
         dots: true,
         fade: true
       });
-    });
+    })
+    : null;
   }
 
   ngOnDestroy(): void {

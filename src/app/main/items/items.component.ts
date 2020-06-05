@@ -1,5 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser, Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { Category, Item } from '../../shared/types/types';
 import { ScrollService } from '../../core/services/scroll.service';
 import { ApiService } from '../../core/services/api.service';
 import { CategoryService } from '../../core/services/category.service';
+import { WindowRefService } from '../../core/services/window-ref.service';
 
 
 @Component({
@@ -22,8 +23,11 @@ export class ItemsComponent implements OnInit {
   private anchors: HTMLCollectionOf<Element>;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document,
     private router: Router,
     private location: Location,
+    private windowRefService: WindowRefService,
     private apiService: ApiService,
     private categoryService: CategoryService,
     private scrollService: ScrollService
@@ -33,15 +37,16 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.scrollService.delay = 1000;
-    this.categories = this.categoryService.categories.pipe(
+    this.categories = isPlatformBrowser(this.platformId) ? this.categoryService.categories.pipe(
       catchError((error) => {
         console.error('Error loading categories and items', error);
         this.loadingError.next(true);
         return of(error);
       })
-    );
+    )
+    : null;
 
-    this.anchors = document.getElementsByClassName('anchor');
+    this.anchors = this.document.getElementsByClassName('anchor');
   }
 
   public showPopup(event: MouseEvent, item: Item) {
@@ -62,13 +67,20 @@ export class ItemsComponent implements OnInit {
       return;
     }
     for (let i = 1; i < this.anchors.length; i++) {
-      if (window.scrollY + window.innerHeight / 3 < (this.anchors[i] as HTMLElement).offsetTop &&
-        window.scrollY + window.innerHeight / 3 > (this.anchors[i - 1] as HTMLElement).offsetTop) {
-        this.scrollService.activeItemsCategory.next(this.anchors[i - 1].id.split(' ').join('_'));
+      if (isPlatformBrowser(this.platformId)) {
+        if (this.windowRefService.nativeWindow.scrollY + this.windowRefService.nativeWindow.innerHeight / 3
+          < (this.anchors[i] as HTMLElement).offsetTop &&
+          this.windowRefService.nativeWindow.scrollY + this.windowRefService.nativeWindow.innerHeight / 3
+          > (this.anchors[i - 1] as HTMLElement).offsetTop) {
+          this.scrollService.activeItemsCategory.next(this.anchors[i - 1].id.split(' ').join('_'));
+        }
       }
     }
-    if (window.scrollY + window.innerHeight / 3 > (this.anchors[this.anchors.length - 1] as HTMLElement).offsetTop) {
-      this.scrollService.activeItemsCategory.next(this.anchors[this.anchors.length - 1].id.split(' ').join('_'));
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.windowRefService.nativeWindow.scrollY + this.windowRefService.nativeWindow.innerHeight / 3
+        > (this.anchors[this.anchors.length - 1] as HTMLElement).offsetTop) {
+        this.scrollService.activeItemsCategory.next(this.anchors[this.anchors.length - 1].id.split(' ').join('_'));
+      }
     }
   }
 

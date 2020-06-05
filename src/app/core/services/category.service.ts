@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Category } from '../../shared/types/types';
@@ -11,8 +12,11 @@ import { ApiService } from './api.service';
 export class CategoryService {
   public categories: Observable<Category[]>;
 
-  constructor(private apiService: ApiService) {
-    this.categories = this.apiService.getCategories().pipe(
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private apiService: ApiService
+  ) {
+    this.categories = isPlatformBrowser(this.platformId) ? this.apiService.getCategories().pipe(
       map(categories => {
         return [
           categories[3], // Nigiri
@@ -26,6 +30,7 @@ export class CategoryService {
         ];
       }),
       shareReplay()
-    );
+    )
+    : null;
   }
 }

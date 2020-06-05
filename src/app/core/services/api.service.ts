@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -20,7 +21,10 @@ import {
 export class ApiService {
   itemsByCategory: Map<string, Observable<ItemsResponse>>;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     this.itemsByCategory = new Map<string, Observable<ItemsResponse>>();
   }
 
@@ -30,13 +34,15 @@ export class ApiService {
   }
 
   public getCategories(): Observable<Category[]> {
-    return this.http.get<CategoryResponse>(`${ environment.url }/categories`).pipe(
+    return isPlatformBrowser(this.platformId) ?
+      this.http.get<CategoryResponse>(`${ environment.url }/categories`).pipe(
       map((response: CategoryResponse) => {
         return response.data;
       }),
       catchError(ApiService.handleError),
       shareReplay()
-    );
+    )
+      : null;
   }
 
   public getItems(id: string, limit?: number, offset?: number): Observable<ItemsResponse> {
@@ -53,43 +59,50 @@ export class ApiService {
         shareReplay()
       );
       this.itemsByCategory.set(`${id}${limit}`, items);
-      return items;
+      return isPlatformBrowser(this.platformId) ? items : null;
     }
   }
 
   public getItem(id: string): Observable<Item> {
-    return this.http.get<ItemResponse>(`${ environment.url }/goods/${ id }`).pipe(
+    return isPlatformBrowser(this.platformId) ?
+      this.http.get<ItemResponse>(`${ environment.url }/goods/${ id }`).pipe(
       map((response: ItemResponse) => {
         return response.data;
       }),
       catchError(ApiService.handleError),
       shareReplay()
-    );
+    )
+      : null;
   }
 
   public postCallBack(callData: CallbackRequest): Observable<boolean> {
-    return this.http.post<PostResponse>(`${ environment.url }/booking/callbacks`, callData).pipe(
+    return isPlatformBrowser(this.platformId) ?
+      this.http.post<PostResponse>(`${ environment.url }/booking/callbacks`, callData).pipe(
       map((response: PostResponse) => {
         return response.success;
       }),
       catchError(ApiService.handleError)
-    );
+    )
+      : null;
   }
 
   public postOrder(orderData: OrderRequest): Observable<boolean> {
-    return this.http.post<PostResponse>(`${ environment.url }/booking`, orderData).pipe(
+    return isPlatformBrowser(this.platformId) ?
+      this.http.post<PostResponse>(`${ environment.url }/booking`, orderData).pipe(
       map((response: PostResponse) => {
         return response.success;
       }),
       catchError(ApiService.handleError)
-    );
+    )
+      : null;
   }
 
 
   public getSlides(): Observable<Slide[]> {
-    return this.http.get<Slide[]>('/assets/slidesStore.json').pipe(
+    return isPlatformBrowser(this.platformId) ? this.http.get<Slide[]>('/assets/slidesStore.json').pipe(
       catchError(ApiService.handleError),
       shareReplay()
-    );
+    )
+      : null;
   }
 }

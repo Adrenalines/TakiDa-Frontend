@@ -6,6 +6,7 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { RouteReuseStrategy } from '@angular/router';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CookieService } from 'ngx-cookie-service';
 import { CoreModule } from './core/core.module';
 import { MissingTranslationService } from './core/services/missingTranslation.service';
 import { CustomReuseStrategy } from './core/services/custom.reuse.strategy';
@@ -18,7 +19,7 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -42,7 +43,9 @@ import { AppComponent } from './app.component';
   }, {
     provide: RouteReuseStrategy,
     useClass: CustomReuseStrategy
-  }],
+  },
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

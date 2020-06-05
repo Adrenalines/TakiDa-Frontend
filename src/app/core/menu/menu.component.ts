@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 import { Observable, of, Subject, SubscriptionLike } from 'rxjs';
 import { catchError, debounceTime } from 'rxjs/operators';
 import { Category } from '../../shared/types/types';
@@ -22,17 +23,19 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private apiService: ApiService,
     private categoryService: CategoryService,
     private scrollService: ScrollService
   ) {
-    this.categories = this.categoryService.categories.pipe(
+    this.categories = isPlatformBrowser(this.platformId) ? this.categoryService.categories.pipe(
       catchError((error) => {
         console.error('Error loading categories and items', error);
         this.loadingError.next(true);
         return of(error);
       })
-    );
+    )
+    : null;
   }
 
   ngOnInit(): void {

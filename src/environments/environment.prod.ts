@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  url: '/api/rest/open',
-  imageStore: '/images'
+  url: 'https://takida.od.ua/api/rest/open',
+  imageStore: 'https://takida.od.ua/images'
 };

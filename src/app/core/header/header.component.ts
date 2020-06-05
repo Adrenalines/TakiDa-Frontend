@@ -1,7 +1,7 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser, Location } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { SubscriptionLike } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('callDialogButtonMobileElement') callDialogButtonMobileElement: ElementRef;
   @ViewChild('callDialogButtonMobileMainElement') callDialogButtonMobileMainElement: ElementRef;
   public languages = LANGUAGES;
-  public defaultLocale = defaultLocale;
+  public defaultLocale: string;
   public telephones = TELEPHONES;
   public callDialogForm: FormGroup;
   public mobileNav = false;
@@ -54,6 +54,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private callbackSub: SubscriptionLike;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document,
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
@@ -61,6 +63,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private basketService: BasketService
   ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.defaultLocale = localStorage.getItem('language') || defaultLocale;
+    }
     this.callDialogForm = new FormGroup({
       clientName: new FormControl('', [ Validators.required, Validators.minLength(2) ]),
       phone: new FormControl('+380', [ Validators.required, Validators.minLength(6) ]),
@@ -122,11 +127,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public useLanguage(language: string) {
-    localStorage.setItem('language', language);
-    if (window.location.hash) {
-      window.location.hash = '';
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('language', language);
     }
-    window.location.reload();
+    if (this.document.location.hash) {
+      this.document.location.hash = '';
+    }
+    this.document.location.reload();
   }
 
   public returnZero() {

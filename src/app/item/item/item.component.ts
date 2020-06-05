@@ -30,7 +30,6 @@ export class ItemComponent implements OnInit, OnDestroy {
     this.categoriesSub = this.categoryService.categories.pipe(
       catchError((error) => {
         console.error('Error loading categories and items', error);
-        this.loadingError.next(true);
         return of(error);
       })
     ).subscribe((categories: Category[]) => {

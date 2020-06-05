@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { WindowRefService } from '../../core/services/window-ref.service';
+
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -10,13 +13,17 @@ export class BreadcrumbsComponent implements OnInit {
   @Input() itemName: string;
   @Input() itemId: string;
 
-  constructor() { }
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document,
+    private windowRefService: WindowRefService
+  ) { }
 
   ngOnInit(): void {
   }
 
   public share(site: 'vk' | 'fb') {
-    const purl = location.href;
+    const purl = this.document.location.href;
     const ptitle = 'Taki Da. ' + this.itemName;
     const pimg = `/images/${this.itemId}_big.png`;
 
@@ -40,6 +47,8 @@ export class BreadcrumbsComponent implements OnInit {
   }
 
   private openSharePopup(url) {
-    window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
+    if (isPlatformBrowser(this.platformId)) {
+      this.windowRefService.nativeWindow.open(url, '', 'toolbar=0,status=0,width=626,height=436');
+    }
   }
 }

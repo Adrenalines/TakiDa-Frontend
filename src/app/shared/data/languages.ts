@@ -5,11 +5,7 @@ export const LANGUAGES = {
 };
 
 export const locales = Object.keys(LANGUAGES);
-export const defaultLocale =
-  localStorage.getItem('language') ||
-  navigator.language.slice(0, 2) ||
-  navigator.languages[0].slice(0, 2) ||
-  locales[0];
+export const defaultLocale = locales[0];
 
 export const calendarLocales = {
   [locales[0]]: {
