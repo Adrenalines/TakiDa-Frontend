@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TELEPHONES } from '../../shared/data/telephones';
-import { SOCIALS } from '../../shared/data/socials';
+import { TELEPHONES } from '../config/telephones';
+import { SOCIALS } from '../config/socials';
 
 @Component({
   selector: 'app-footer',

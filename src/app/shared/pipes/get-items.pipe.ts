@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItemsResponse } from '../types/types';
+import { ItemsResponse } from '../../core/types/types';
 import { ApiService } from '../../core/services/api.service';
 
 

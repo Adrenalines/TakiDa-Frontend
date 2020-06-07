@@ -46,7 +46,7 @@ export class CustomReuseStrategy implements RouteReuseStrategy {
     return !!CustomReuseStrategy.handlers[this.getRouteUrl(route)];
   }
 
-  // if we returned true in shouldAttach(), now return the actual route data for restoration
+  // if we returned true in shouldAttach(), now return the actual route config for restoration
   public retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
     if (!route.routeConfig) {
       return null;

@@ -7,6 +7,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { SEOService } from '../core/services/seo.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,9 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     CommonModule,
     PagesRoutingModule,
     TranslateModule
+  ],
+  providers: [
+    SEOService
   ]
 })
 export class PagesModule { }

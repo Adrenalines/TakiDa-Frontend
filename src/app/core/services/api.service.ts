@@ -12,7 +12,7 @@ import {
   ItemsResponse,
   Slide,
   OrderRequest, ItemResponse, Item
-} from '../../shared/types/types';
+} from '../types/types';
 
 
 @Injectable({

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
-import { calendarLocales, defaultLocale } from '../../shared/data/languages';
+import { calendarLocales, defaultLocale } from '../../core/config/languages';
 import { ApiService } from '../../core/services/api.service';
 import { BasketService } from '../../core/services/basket.service';
 import { OrderService } from '../services/order.service';

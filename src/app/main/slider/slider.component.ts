@@ -4,7 +4,7 @@ import { SubscriptionLike } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import * as jQuery from 'jquery';
 import 'slick-carousel';
-import { Slide } from '../../shared/types/types';
+import { Slide } from '../../core/types/types';
 import { ApiService } from '../../core/services/api.service';
 
 

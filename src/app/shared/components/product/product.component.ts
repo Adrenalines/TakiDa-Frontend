@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { Item } from '../../types/types';
+import { Item } from '../../../core/types/types';
 import { BasketService } from '../../../core/services/basket.service';
 
 

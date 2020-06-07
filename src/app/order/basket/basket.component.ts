@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Item } from '../../shared/types/types';
+import { Item } from '../../core/types/types';
 import { BasketService } from '../../core/services/basket.service';
 
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { OrderFormData, OrderRequest, ItemsOrder } from '../../shared/types/types';
+import { OrderFormData, OrderRequest, ItemsOrder } from '../../core/types/types';
 import { BasketService } from '../../core/services/basket.service';
 
 

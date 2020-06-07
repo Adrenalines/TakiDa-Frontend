@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TELEPHONES } from '../../shared/data/telephones';
+import { TELEPHONES } from '../../core/config/telephones';
 
 @Component({
   selector: 'app-delivery-info',

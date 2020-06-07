@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Item } from '../../shared/types/types';
+import { Item } from '../../core/types/types';
 
 
 @Component({

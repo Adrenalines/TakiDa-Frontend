@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ProfileInfoType } from '../../shared/types/types';
+import { ProfileInfoType } from '../../core/types/types';
 
 
 @Component({

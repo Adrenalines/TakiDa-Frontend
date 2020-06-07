@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { OrderType } from '../../shared/types/types';
+import { OrderType } from '../../core/types/types';
 
 
 @Component({

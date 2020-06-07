@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AccountAccessData } from '../../shared/types/types';
+import { AccountAccessData } from '../types/types';
 
 
 @Injectable({

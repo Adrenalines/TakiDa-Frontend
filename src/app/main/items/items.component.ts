@@ -3,7 +3,7 @@ import { DOCUMENT, isPlatformBrowser, Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Category, Item } from '../../shared/types/types';
+import { Category, Item } from '../../core/types/types';
 import { ScrollService } from '../../core/services/scroll.service';
 import { ApiService } from '../../core/services/api.service';
 import { CategoryService } from '../../core/services/category.service';

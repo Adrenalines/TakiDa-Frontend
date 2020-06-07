@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileInfoType } from '../../shared/types/types';
+import { ProfileInfoType } from '../../core/types/types';
 
 
 @Component({

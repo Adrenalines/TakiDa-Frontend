@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { Observable, of, Subject, SubscriptionLike } from 'rxjs';
 import { catchError, debounceTime } from 'rxjs/operators';
-import { Category } from '../../shared/types/types';
+import { Category } from '../types/types';
 import { ScrollService } from '../services/scroll.service';
 import { ApiService } from '../services/api.service';
 import { CategoryService } from '../services/category.service';

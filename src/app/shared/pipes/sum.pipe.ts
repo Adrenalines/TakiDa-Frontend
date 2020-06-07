@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { KeyValue } from '@angular/common';
-import { Item } from '../types/types';
+import { Item } from '../../core/types/types';
 
 
 @Pipe({
