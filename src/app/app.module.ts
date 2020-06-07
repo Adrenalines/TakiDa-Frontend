@@ -3,13 +3,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouteReuseStrategy } from '@angular/router';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CookieService } from 'ngx-cookie-service';
 import { CoreModule } from './core/core.module';
 import { MissingTranslationService } from './core/services/missingTranslation.service';
-import { CustomReuseStrategy } from './core/services/custom.reuse.strategy';
 import { ParamInterceptor } from './core/services/api.interceptor';
 import { AppComponent } from './app.component';
 
@@ -40,9 +38,6 @@ import { AppComponent } from './app.component';
     provide: HTTP_INTERCEPTORS,
     useClass: ParamInterceptor,
     multi: true
-  }, {
-    provide: RouteReuseStrategy,
-    useClass: CustomReuseStrategy
   },
     CookieService
   ],

@@ -11,7 +11,7 @@
         <div class="menu__item">
           <div *ngIf="fragment !== category.name.split(' ').join('_')" class="item-{{ i + 1 }}"></div>
           <div *ngIf="fragment === category.name.split(' ').join('_')" class="active-{{ i + 1 }}"></div>
-          <div class="item-txt">{{ category.name }}</div>
+          <h1 class="item-txt">{{ category.name }}</h1>
         </div>
       </a>
   </div>

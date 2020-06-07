@@ -1,5 +1,10 @@
 @import '../../../_vars';
 
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
 a.anchor {
   display: block;
   position: relative;
@@ -8,7 +13,18 @@ a.anchor {
 }
 
 .section {
-  margin-bottom: 60px;
+  margin-bottom: 10px;
+}
+
+.section__seo {
+  max-width: 1060px;
+  margin: 0 auto 60px;
+  padding: 0 10px;
+  color: #6c6c66;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  text-decoration: none;
 }
 
 /* SECTION */
@@ -37,15 +53,17 @@ a.anchor {
   background-repeat: repeat;
   background-position: center;
 
-  color: #000;
-  font-size: 36px;
-  font-weight: 900;
   padding-bottom: 30px;
   text-align: center;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  h1 {
+    color: #000;
+    font-size: 36px;
+  }
 
   .title-txt {
     margin-left: 15px;
@@ -93,8 +111,11 @@ a.anchor {
   }
 
   .section__title-rolls {
-    font-size: 28px;
     margin-bottom: 4px;
+
+    h1 {
+      font-size: 28px;
+    }
   }
 
   .section__items {
