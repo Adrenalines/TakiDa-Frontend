@@ -4,16 +4,40 @@
 
 ## Установка зависимостей
 
-Необходимо установить Node.js 14.2.0 (+ npm 6.14.5).
+Необходимо установить Node.js 12.18.0 (+ npm 6.14.4) или выше.
 Запустить `npm ci` для установки зафиксированных зависимостей.
 
-## Запуск SSR production server
+## Сборка приложения с SSR
+
+Запустить `npm run build:ssr`.
+Готовый билд приложения будет лежать в директории `dist/`.
+
+## Конфиг nginx
+
+Необходимо добавить:
+```
+location / {
+        proxy_pass http://localhost:4000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+```
+
+## Запуск сервера для раздачи приложения с SSR
+
+Готовый билд из /dist поместить на сервер.
+Внутри запустить `node takida-front/server/main.js`.
+
+## Локальный запуск SSR production server
 
 Запустить `npm run build:ssr && npm run serve:ssr`.
 Таким образом приложение скомпилируется, и будет запущен
 Node Express server для раздачи приложения на http://localhost:4000
 
-## Запуск SSR development server (only development)
+## Локальный запуск SSR development server (only development)
 
 Запустить `npm run dev:ssr`.
 Будет запущен тестовый Node Express server
