@@ -28,8 +28,8 @@ location / {
 
 ## Запуск сервера для раздачи приложения с SSR
 
-Готовый билд из /dist поместить на сервер.
-Внутри запустить `node takida-front/server/main.js`.
+Поместить директорию /dist на сервер.
+Сервер запустить командой `node ./dist/takida-front/server/main.js`.
 
 ## Локальный запуск SSR production server
 
