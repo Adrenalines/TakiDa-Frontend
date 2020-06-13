@@ -29,7 +29,28 @@ location / {
 ## Запуск сервера для раздачи приложения с SSR
 
 Готовый билд из /dist поместить на сервер.
-Внутри запустить `node takida-front/server/main.js`.
+Внутри запустить `node ./dist/takida-front/server/main.js`.
+Существует зависимость от рабочей директории в которой выполняется команда (см. WorkingDir Systemd Unit'а  в примере ниже).
+
+## Пример Unit-файла для systemd
+
+```
+[Unit]
+Description=Taki-Da Web Site Server Side Rendering server
+Documentation=https://gitlab.com/takida/takida-front
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=root
+ExecStart=node /var/www/html/ssr/dist/takida-front/server/main.js
+
+TimeoutStopSec=5s
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
+```
 
 ## Локальный запуск SSR production server
 
