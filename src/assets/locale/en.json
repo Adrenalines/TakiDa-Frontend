@@ -40,12 +40,13 @@
 		"show_all": "Show all",
 		"submit": "Submit",
 		"to_cart": "Go to basket",
-		"week": "Mon-Sun",
+		"workweek": "Mon-Thu",
+		"weekend": "Fri-Sun",
 		"your_name": "Your name"
 	},
 	"delivery": {
 		"free": "Free delivery in the city of Odessa is carried out when ordering from 250 hryvnia. The order amount for free delivery depends on the delivery address. You can obtain more detailed information from our manager by phone.",
-		"text1": "Our internet site offers delivery of goods. All orders are carefully checked before shipping. Delivery time depends on the time of placing the order and preparation. Delivery is from Mon-Sun",
+		"text1": "Our internet site offers delivery of goods. All orders are carefully checked before shipping. Delivery time depends on the time of placing the order and preparation. Delivery is from Monday to Thursday from 11:00 to 23:00, from Firday to Sunday from 11:00 to 00:00",
 		"text10": "Contact phones",
 		"text11": "Pickup at the address",
 		"text12": "Having placed an order for sushi with us, you will receive only a quality and fresh product. Only here you can feel the pleasure of our food.",
